@@ -1,4 +1,4 @@
-package com.nutsu7.BivolManager.ui.muncitori;
+package com.nutsu7.BivolManager.ui.struguri;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.nutsu7.BivolManager.databinding.FragmentMuncitoriBinding;
+import com.nutsu7.BivolManager.databinding.FragmentStruguriBinding;
 
-public class MuncitoriFragment extends Fragment {
+public class StruguriFragment extends Fragment {
 
-    private FragmentMuncitoriBinding binding;
+    private FragmentStruguriBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        MuncitoriViewModel muncitoriViewModel =
-                new ViewModelProvider(this).get(MuncitoriViewModel.class);
+        StruguriViewModel struguriViewModel =
+                new ViewModelProvider(this).get(StruguriViewModel.class);
 
-        binding = FragmentMuncitoriBinding.inflate(inflater, container, false);
+        binding = FragmentStruguriBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textMuncitori;
-        muncitoriViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textStruguri;
+        struguriViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

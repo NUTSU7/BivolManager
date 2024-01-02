@@ -15,5 +15,9 @@
         android:id="@+id/navigation_muncitori"
         android:icon="@drawable/ic_muncitori_black"
         android:title="@string/title_muncitori" />
+    <item
+        android:id="@+id/navigation_struguri"
+        android:icon="@drawable/ic_struguri_black"
+        android:title="@string/title_struguri" />
 
 </menu>

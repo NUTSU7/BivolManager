@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.muncitori.MuncitoriFragment">
+    tools:context=".ui.struguri.StruguriFragment">
 
     <TextView
-        android:id="@+id/text_muncitori"
+        android:id="@+id/text_struguri"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
