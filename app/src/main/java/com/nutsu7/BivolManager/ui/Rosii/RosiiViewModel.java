@@ -10,7 +10,7 @@ public class RosiiViewModel extends ViewModel {
 
     public RosiiViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("This is rosii fragment");
     }
 
     public LiveData<String> getText() {
