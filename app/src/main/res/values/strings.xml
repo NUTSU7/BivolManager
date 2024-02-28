@@ -2,6 +2,6 @@
     <string name="app_name">BivolManager</string>
     <string name="title_home">Acasa</string>
     <string name="title_rosii">Rosii</string>
-    <string name="title_muncitori">Muncitori</string>
+    <string name="title_angajat">Angajat</string>
     <string name="title_struguri">Struguri</string>
 </resources>

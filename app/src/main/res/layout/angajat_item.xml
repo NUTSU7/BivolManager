@@ -14,17 +14,19 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/muncitoriListImgView"
+            android:id="@+id/angajatListImgView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/ic_muncitor_icon" />
+            app:srcCompat="@drawable/ic_angajat_icon" />
 
         <TextView
-            android:id="@+id/muncitoriListTextView"
+            android:id="@+id/angajatListTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_toEndOf="@id/muncitoriListImgView"
-            android:textColor="@color/white"/>
+            android:layout_toEndOf="@id/angajatListImgView"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_home_black"
         android:title="@string/title_home" />
     <item
-        android:id="@+id/navigation_muncitori"
-        android:icon="@drawable/ic_muncitori_black"
-        android:title="@string/title_muncitori" />
+        android:id="@+id/navigation_angajat"
+        android:icon="@drawable/ic_angajat_black"
+        android:title="@string/title_angajat" />
     <item
         android:id="@+id/navigation_struguri"
         android:icon="@drawable/ic_struguri_black"

@@ -18,14 +18,14 @@
         tools:layout="@layout/fragment_rosii" />
 
     <fragment
-        android:id="@+id/navigation_muncitori"
-        android:name="com.nutsu7.BivolManager.ui.muncitori.MuncitoriFragment"
-        android:label="@string/title_muncitori"
-        tools:layout="@layout/fragment_muncitori" />
+        android:id="@+id/navigation_angajat"
+        android:name="com.nutsu7.BivolManager.ui.angajat.AngajatFragment"
+        android:label="@string/title_angajat"
+        tools:layout="@layout/fragment_angajat" />
 
     <fragment
         android:id="@+id/navigation_struguri"
         android:name="com.nutsu7.BivolManager.ui.struguri.StruguriFragment"
         android:label="@string/title_struguri"
-        tools:layout="@layout/fragment_muncitori" />
+        tools:layout="@layout/fragment_angajat" />
 </navigation>
