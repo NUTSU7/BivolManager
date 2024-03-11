@@ -6,6 +6,8 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Zile")
 public class Zi {
+    @ColumnInfo(name = "angajatID")
+    private int angajatID;
     @PrimaryKey
     private String date;
 

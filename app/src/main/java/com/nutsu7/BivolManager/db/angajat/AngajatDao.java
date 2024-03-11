@@ -3,7 +3,11 @@ package com.nutsu7.BivolManager.db.angajat;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
+
+import java.util.List;
 
 @Dao
 public interface AngajatDao {
@@ -15,4 +19,8 @@ public interface AngajatDao {
 
     @Update
     public void update(Angajat angajat);
+
+    @Transaction
+    @Query("SELECT * FROM Angajat")
+    public List<AngajatZi> getAngajatZi();
 }

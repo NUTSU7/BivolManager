@@ -29,7 +29,7 @@ public class AngajatViewModel extends ViewModel {
 
     public void populateList(){
 
-        Angajat mun1 = new Angajat(Angajat.idC++, "Liviu", "Bivol", 100, 50, 200);
+        Angajat mun1 = new Angajat(0, "Liviu", "Bivol", 100, 50, 200);
 
         angajatList = new ArrayList<>();
         angajatList.add(mun1);

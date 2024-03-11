@@ -1,6 +1,7 @@
 package com.nutsu7.BivolManager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -10,7 +11,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nutsu7.BivolManager.databinding.ActivityMainBinding;
+import com.nutsu7.BivolManager.ui.angajat.AngajatAddDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,5 +36,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+
 
 }

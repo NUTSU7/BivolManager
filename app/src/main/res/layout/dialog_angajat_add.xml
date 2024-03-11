@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+    <EditText
+        android:id="@+id/angajatInputSurname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:hint="Nume"
+        android:layout_alignParentStart="true">
+    </EditText>
+
+    <EditText
+        android:id="@+id/angajatInputName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prenume"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/angajatInputSurname"
+        android:layout_alignParentStart="true">
+    </EditText>
+
+    <EditText
+        android:id="@+id/angajatInputHR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Plata pe ora"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/angajatInputName"
+        android:layout_alignParentStart="true">
+    </EditText>
+
+    <EditText
+        android:id="@+id/angajatInputSalary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Salariul (Total)"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/angajatInputHR"
+        android:layout_alignParentStart="true">
+    </EditText>
+
+    <EditText
+        android:id="@+id/angajatInputDebt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Datorii (Total)"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/angajatInputSalary"
+        android:layout_alignParentStart="true">
+    </EditText>
+
+    <EditText
+        android:id="@+id/angajatInputOre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ore lucrate (Total)"
+        android:paddingTop="20dp"
+        android:layout_below="@+id/angajatInputDebt"
+        android:layout_alignParentStart="true">
+    </EditText>
+</RelativeLayout>

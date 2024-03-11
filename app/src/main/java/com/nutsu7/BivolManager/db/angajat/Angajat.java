@@ -5,15 +5,12 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.TreeMap;
 
 @Entity(tableName = "Angajat")
 public class Angajat {
-    @PrimaryKey
-    public static int idC=0;
-    @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = true)
     private final int id;
 
     @ColumnInfo(name = "name")
@@ -62,7 +59,7 @@ public class Angajat {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void addSalary(int salary) {
         this.salary += salary;
     }
 
@@ -78,16 +75,17 @@ public class Angajat {
         return debt;
     }
 
-    public void setDebt(int debt) {
+    public void addDebt(int debt) {
         this.debt += debt;
     }
 
-    public int getHoursWorked(LocalDate date) {
+    public int getHours(LocalDate date) {
         if(!hours.containsKey(date)) return 0;
         return (int)(hours.get(date));
     }
 
-    public void setHoursWorked(String date, int hours) {
+    public void addHours(String date, int hours) {
         this.hours.put(LocalDate.parse(date), hours);
     }
 }
+
