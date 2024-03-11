@@ -15,17 +15,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.databinding.FragmentAngajatBinding;
 import com.nutsu7.BivolManager.db.angajat.Angajat;
+import com.nutsu7.BivolManager.db.angajat.AngajatDao;
 
 import java.util.ArrayList;
 
 public class AngajatFragment extends Fragment {
-
     private FragmentAngajatBinding binding;
     private AdaptorAngajatList adaptorML;
     private RecyclerView muncitoriListRV;
     private AngajatViewModel angajatViewModel;
 
     private FloatingActionButton angajatAddFBA;
+    //public static ArrayList<Angajat> angajatList=
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,

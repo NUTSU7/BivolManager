@@ -20,7 +20,10 @@ public interface AngajatDao {
     @Update
     public void update(Angajat angajat);
 
-    @Transaction
     @Query("SELECT * FROM Angajat")
-    public List<AngajatZi> getAngajatZi();
+    public List<Angajat> getAll();
+
+    //@Transaction
+    //@Query("SELECT * FROM Angajat")
+    //public List<AngajatZi> getAngajatZi();
 }

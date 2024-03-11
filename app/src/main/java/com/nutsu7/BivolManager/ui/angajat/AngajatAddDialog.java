@@ -55,4 +55,8 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
 
         return builder.create();
     }
+
+    public interface AnagajatAddListener{
+        void saveText(String surname, String name, int hourlyRate, int salary, int debt, int hours);
+    }
 }
