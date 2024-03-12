@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.nutsu7.BivolManager.ui.angajat.AngajatFragment;
+
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.TreeMap;
@@ -11,7 +13,7 @@ import java.util.TreeMap;
 @Entity(tableName = "Angajat")
 public class Angajat {
     @PrimaryKey(autoGenerate = true)
-    private final int id;
+    public int id;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -20,24 +22,28 @@ public class Angajat {
     private String surname;
 
     @ColumnInfo(name = "salary")
-    private int salary;
+    private int salary=0;
 
     @ColumnInfo(name = "hourlyRate")
     private int hourlyRate;
 
     @ColumnInfo(name = "debt")
     private int debt;
-    private Map<LocalDate, Integer> hours = new TreeMap<>();
 
-    public Angajat(int id, String name, String surname, int salary, int hourlyRate, int debt) {
-        this.id = id;
+    @ColumnInfo(name = "totalHours")
+    private int totalHours;
+    //private Map<LocalDate, Integer> hours = new TreeMap<>();
+
+
+
+    public Angajat(String surname, String name, int salary, int hourlyRate, int debt, int totalHours) {
         this.name = name;
         this.surname = surname;
-        this.salary = salary;
-        this.hourlyRate = hourlyRate;
-        this.debt = debt;
+        addSalary(salary);
+        setHourlyRate(hourlyRate);
+        addDebt(debt);
+        addTotalHours(totalHours);
     }
-
 
     public String getName() {
         return name;
@@ -79,13 +85,22 @@ public class Angajat {
         this.debt += debt;
     }
 
-    public int getHours(LocalDate date) {
+    /*public int getHours(LocalDate date) {
         if(!hours.containsKey(date)) return 0;
         return (int)(hours.get(date));
     }
 
     public void addHours(String date, int hours) {
         this.hours.put(LocalDate.parse(date), hours);
+
+    } */
+
+    public int getTotalHours() {
+        return totalHours;
+    }
+
+    public void addTotalHours(int totalHours) {
+        this.totalHours += totalHours;
     }
 }
 

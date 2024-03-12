@@ -12,29 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.db.angajat.Angajat;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class AdaptorAngajatList extends RecyclerView.Adapter<AdaptorAngajatList.MuncitorViewHolder>{
-    private ArrayList<Angajat> angajatList;
+public class AdaptorAngajatList extends RecyclerView.Adapter<AdaptorAngajatList.AngajatViewHolder>{
+    private List<Angajat> angajatList;
     private Context context;
 
-    public AdaptorAngajatList(ArrayList<Angajat> angajatList, Context context) {
+    public AdaptorAngajatList(List<Angajat> angajatList, Context context) {
         this.angajatList = angajatList;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public MuncitorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AngajatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.angajat_item,parent,false);
-        return new MuncitorViewHolder(view);
+        return new AngajatViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MuncitorViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AngajatViewHolder holder, int position) {
         Angajat angajat = angajatList.get(position);
-        MuncitorViewHolder vh= (MuncitorViewHolder) holder;
-        vh.muncitoriListTextView.setText(angajat.getName() + " " + angajat.getSurname());
+        AngajatViewHolder vh= (AngajatViewHolder) holder;
+        vh.angajatListTextView.setText(angajat.id+" "+angajat.getName() + " " + angajat.getSurname());
+
     }
 
     @Override
@@ -42,11 +43,11 @@ public class AdaptorAngajatList extends RecyclerView.Adapter<AdaptorAngajatList.
         return angajatList.size();
     }
 
-    public static class MuncitorViewHolder extends RecyclerView.ViewHolder{
-        private TextView muncitoriListTextView;
-        public MuncitorViewHolder(@NonNull View itemView) {
+    public static class AngajatViewHolder extends RecyclerView.ViewHolder{
+        private TextView angajatListTextView;
+        public AngajatViewHolder(@NonNull View itemView) {
             super(itemView);
-            muncitoriListTextView=itemView.findViewById(R.id.angajatListTextView);
+            angajatListTextView =itemView.findViewById(R.id.angajatListTextView);
         }
     }
 }

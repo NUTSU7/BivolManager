@@ -14,11 +14,11 @@ public abstract class AppDB extends RoomDatabase {
     public abstract AngajatDao angajatDao();
     private static AppDB appDB;
 
-    static AppDB getAppDB(final Context context){
+    public static AppDB getAppDB(final Context context){
         if(appDB==null){
             synchronized (AppDB.class){
-                AppDB db = Room.databaseBuilder(context,
-                        AppDB.class, "database-name").build();
+                appDB = Room.databaseBuilder(context,
+                        AppDB.class, "BivolM_DB").allowMainThreadQueries().build();
             }
         }
         return appDB;

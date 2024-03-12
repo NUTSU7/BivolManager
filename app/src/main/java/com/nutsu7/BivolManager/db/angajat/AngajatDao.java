@@ -4,7 +4,6 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
 import java.util.List;
@@ -22,6 +21,9 @@ public interface AngajatDao {
 
     @Query("SELECT * FROM Angajat")
     public List<Angajat> getAll();
+
+    @Query("SELECT * FROM Angajat WHERE id=:id")
+    public Angajat getByID(int id);
 
     //@Transaction
     //@Query("SELECT * FROM Angajat")
