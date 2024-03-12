@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,8 +57,6 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
     public void onStart() {
         super.onStart();
         AlertDialog dialog = (AlertDialog) getDialog();
-        View view = getView();
-        //angajatInputSurname = dialog.findViewById()
         angajatInputSurname = dialog.findViewById(R.id.angajatInputSurname);
         angajatInputName = dialog.findViewById(R.id.angajatInputName);
         angajatInputHR = dialog.findViewById(R.id.angajatInputHR);
@@ -84,7 +83,8 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
                         AngajatFragment.angajatList1.add(
                                 AppDB.getAppDB(getContext()).angajatDao().getByID(AngajatFragment.angajatList1.size()+1)
                         );
-                        dialog.cancel();
+                        dialog.dismiss();
+                        Toast.makeText(getContext(),"Adaugat cu succes", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -92,17 +92,17 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
     }
 
     private boolean checkInput(String surname, String name, Integer hr) {
-        if (angajatInputSurname.length() == 0) {
+        if (surname == null) {
             angajatInputSurname.setError("Numele este necesar");
             return false;
         }
 
-        if (angajatInputName.length() == 0) {
+        if (name == null) {
             angajatInputName.setError("Prenumele este necesar");
             return false;
         }
 
-        if (angajatInputHR.length()==0) {
+        if (hr <= 0) {
             angajatInputHR.setError("Plata per ora este necesara");
             return false;
         }

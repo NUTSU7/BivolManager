@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:backgroundTint="@color/purple_500"
     app:cardCornerRadius="17dp"
-    app:cardElevation="5dp"
+    app:cardElevation="3dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -17,16 +17,30 @@
             android:id="@+id/angajatListImgView"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:padding="5dp"
+            android:paddingRight="0dp"
             app:srcCompat="@drawable/ic_angajat_icon" />
 
         <TextView
             android:id="@+id/angajatListTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_toEndOf="@id/angajatListImgView"
-            android:paddingLeft="10dp"
+            android:layout_toRightOf="@id/angajatDeleteBtn"
+            android:paddingLeft="5dp"
             android:paddingRight="10dp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="20dp"/>
+
+        <ImageButton
+            android:id="@+id/angajatDeleteBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_angajat_delete"
+            android:background="@null">
+
+        </ImageButton>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
