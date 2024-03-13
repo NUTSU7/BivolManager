@@ -15,20 +15,24 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.db.AppDB;
 import com.nutsu7.BivolManager.db.angajat.Angajat;
 
+import org.w3c.dom.Text;
+
 import java.util.Objects;
 
 public class AngajatAddDialog extends AppCompatDialogFragment {
-    private EditText angajatInputSurname;
-    private EditText angajatInputName;
-    private EditText angajatInputHR;
-    private EditText angajatInputSalary;
-    private EditText angajatInputDebt;
-    private EditText angajatInputHours;
+    private TextInputLayout angajatInputSurname;
+    private TextInputLayout angajatInputName;
+    private TextInputLayout angajatInputHR;
+    private TextInputLayout angajatInputSalary;
+    private TextInputLayout angajatInputDebt;
+    private TextInputLayout angajatInputHours;
 
 
     @NonNull
@@ -70,12 +74,16 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
                 public void onClick(View v) {
                     String surname=null,  name=null;
                     Integer hr=0, salary=0, debt=0, hours=0;
-                    if(angajatInputSurname.length()!=0) surname=angajatInputSurname.getText().toString().trim();
-                    if(angajatInputName.length()!=0) name=angajatInputName.getText().toString().trim();
-                    if(angajatInputHR.length()!=0)hr=Integer.parseInt(angajatInputHR.getText().toString().trim());
-                    if(angajatInputSalary.length()!=0) salary=Integer.parseInt(angajatInputSalary.getText().toString().trim());
-                    if(angajatInputDebt.length()!=0) debt=Integer.parseInt(angajatInputDebt.getText().toString().trim());
-                    if(angajatInputHours.length()!=0) hours=Integer.parseInt(angajatInputHours.getText().toString().trim());
+
+                    angajatInputSurname.setError(null);
+                    angajatInputName.setError(null);
+                    angajatInputHR.setError(null);
+                    if(angajatInputSurname.getEditText().length()!=0) surname=extractStr(angajatInputSurname);
+                    if(angajatInputName.getEditText().length()!=0) name=extractStr(angajatInputName);
+                    if(angajatInputHR.getEditText().length()!=0)hr=Integer.parseInt(extractStr(angajatInputHR));
+                    if(angajatInputSalary.getEditText().length()!=0) salary=Integer.parseInt(extractStr(angajatInputSalary));
+                    if(angajatInputDebt.getEditText().length()!=0) debt=Integer.parseInt(extractStr(angajatInputDebt));
+                    if(angajatInputHours.getEditText().length()!=0) hours=Integer.parseInt(extractStr(angajatInputHours));
 
                     if(checkInput(surname, name, hr)){
                         Angajat angajat=new Angajat(surname, name, hr, salary, debt, hours);
@@ -83,6 +91,8 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
                         AngajatFragment.angajatList1.add(
                                 AppDB.getAppDB(getContext()).angajatDao().getByID(AngajatFragment.angajatList1.size()+1)
                         );
+                        RecyclerView rv = getActivity().findViewById(R.id.angajatListRV);
+                        rv.getAdapter().notifyDataSetChanged();
                         dialog.dismiss();
                         Toast.makeText(getContext(),"Adaugat cu succes", Toast.LENGTH_SHORT).show();
                     }
@@ -92,21 +102,26 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
     }
 
     private boolean checkInput(String surname, String name, Integer hr) {
+        boolean ans=true;
         if (surname == null) {
             angajatInputSurname.setError("Numele este necesar");
-            return false;
+            ans=false;
         }
 
         if (name == null) {
             angajatInputName.setError("Prenumele este necesar");
-            return false;
+            ans=false;
         }
 
         if (hr <= 0) {
             angajatInputHR.setError("Plata per ora este necesara");
-            return false;
+            ans=false;
         }
 
-        return true;
+        return ans;
+    }
+
+    private String extractStr(TextInputLayout textInputLayout){
+        return textInputLayout.getEditText().getText().toString().trim();
     }
 }

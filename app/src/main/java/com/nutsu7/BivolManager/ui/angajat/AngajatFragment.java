@@ -49,17 +49,11 @@ public class AngajatFragment extends Fragment {
         angajatAddFBA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAgajatAddDialog();
+                AngajatAddDialog angajatAddDialog = new AngajatAddDialog();
+                angajatAddDialog.show(getChildFragmentManager(), "Adauga Angajat");
             }
         });
         return root;
-    }
-
-    public void openAgajatAddDialog() {
-        AngajatAddDialog angajatAddDialog = new AngajatAddDialog();
-        angajatAddDialog.show(getChildFragmentManager(), "Adauga Angajat");
-        muncitoriListRV.getAdapter().notifyDataSetChanged();
-
     }
 
     @Override

@@ -3,16 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/angajatInputSurname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="20dp"
         android:hint="Nume"
         android:layout_alignParentStart="true">
-    </EditText>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/angajatInputName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,49 +26,73 @@
         android:paddingTop="20dp"
         android:layout_below="@+id/angajatInputSurname"
         android:layout_alignParentStart="true">
-    </EditText>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/angajatInputHR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Plata pe ora"
-        android:inputType="number"
         android:paddingTop="20dp"
         android:layout_below="@+id/angajatInputName"
         android:layout_alignParentStart="true">
-    </EditText>
+        <EditText
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/angajatInputSalary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Salariul (Total)"
-        android:inputType="number"
         android:paddingTop="20dp"
         android:layout_below="@+id/angajatInputHR"
         android:layout_alignParentStart="true">
-    </EditText>
+        <EditText
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/angajatInputDebt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Datorii (Total)"
-        android:inputType="number"
         android:paddingTop="20dp"
         android:layout_below="@+id/angajatInputSalary"
         android:layout_alignParentStart="true">
-    </EditText>
+        <EditText
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/angajatInputHours"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ore lucrate (Total)"
-        android:inputType="number"
         android:paddingTop="20dp"
         android:layout_below="@+id/angajatInputDebt"
         android:layout_alignParentStart="true">
-    </EditText>
+        <EditText
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
 </RelativeLayout>
