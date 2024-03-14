@@ -17,10 +17,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.db.AppDB;
 import com.nutsu7.BivolManager.db.angajat.Angajat;
+import com.nutsu7.BivolManager.db.angajat.AngajatRepo;
 
 import org.w3c.dom.Text;
 
@@ -34,11 +36,14 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
     private TextInputLayout angajatInputDebt;
     private TextInputLayout angajatInputHours;
 
+    private AngajatRepo angajatRepo;
+
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        //MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_angajat_add, null);
@@ -61,6 +66,8 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
     public void onStart() {
         super.onStart();
         AlertDialog dialog = (AlertDialog) getDialog();
+        angajatRepo=new AngajatRepo(getContext());
+
         angajatInputSurname = dialog.findViewById(R.id.angajatInputSurname);
         angajatInputName = dialog.findViewById(R.id.angajatInputName);
         angajatInputHR = dialog.findViewById(R.id.angajatInputHR);
@@ -86,15 +93,16 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
                     if(angajatInputHours.getEditText().length()!=0) hours=Integer.parseInt(extractStr(angajatInputHours));
 
                     if(checkInput(surname, name, hr)){
-                        Angajat angajat=new Angajat(surname, name, hr, salary, debt, hours);
-                        AppDB.getAppDB(getContext()).angajatDao().insert(angajat);
-                        AngajatFragment.angajatList1.add(
-                                AppDB.getAppDB(getContext()).angajatDao().getByID(AngajatFragment.angajatList1.size()+1)
-                        );
-                        RecyclerView rv = getActivity().findViewById(R.id.angajatListRV);
-                        rv.getAdapter().notifyDataSetChanged();
+                        Angajat angajat = new Angajat(angajatRepo.getAll().size(), surname, name, hr, salary, debt, hours);
+                        angajatRepo.insert(angajat);
+
                         dialog.dismiss();
-                        Toast.makeText(getContext(),"Adaugat cu succes", Toast.LENGTH_SHORT).show();
+
+                        RecyclerView rv = getActivity().findViewById(R.id.angajatListRV);
+                        AngajatListAdaptor adaptor = (AngajatListAdaptor) rv.getAdapter();
+                        adaptor.updateList();
+                        adaptor.notifyItemInserted(angajat.getId());
+                        Toast.makeText(getContext(),angajat.getSurname()+" "+angajat.getName()+" a fost adaugat", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

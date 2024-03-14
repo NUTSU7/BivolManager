@@ -4,29 +4,38 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nutsu7.BivolManager.R;
+import com.nutsu7.BivolManager.db.AppDB;
 import com.nutsu7.BivolManager.db.angajat.Angajat;
+import com.nutsu7.BivolManager.db.angajat.AngajatRepo;
 
 import java.util.List;
 
-public class AdaptorAngajatList extends RecyclerView.Adapter<AdaptorAngajatList.AngajatViewHolder>{
+public class AngajatListAdaptor extends RecyclerView.Adapter<AngajatListAdaptor.AngajatViewHolder>{
     private List<Angajat> angajatList;
     private Context context;
+    private AngajatRepo angajatRepo;
 
-    public AdaptorAngajatList(List<Angajat> angajatList, Context context) {
-        this.angajatList = angajatList;
+    public AngajatListAdaptor(Context context) {
+
         this.context = context;
+        this.angajatRepo = new AngajatRepo(context);
+        updateList();
     }
-
+    public void updateList(){
+        angajatList=angajatRepo.getAll();
+    }
     @NonNull
     @Override
     public AngajatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.angajat_item,parent,false);
+
         return new AngajatViewHolder(view);
     }
 
@@ -34,8 +43,17 @@ public class AdaptorAngajatList extends RecyclerView.Adapter<AdaptorAngajatList.
     public void onBindViewHolder(@NonNull AngajatViewHolder holder, int position) {
         Angajat angajat = angajatList.get(position);
         AngajatViewHolder vh= (AngajatViewHolder) holder;
-        vh.angajatListTextView.setText(angajat.id+" "+angajat.getName() + " " + angajat.getSurname());
+        vh.angajatListTextView.setText(angajat.getSurname() + " " + angajat.getName());
 
+        vh.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                angajatRepo.delete(angajat);
+                updateList();
+
+                notifyItemRemoved(position);
+            }
+        });
     }
 
     @Override
@@ -45,9 +63,12 @@ public class AdaptorAngajatList extends RecyclerView.Adapter<AdaptorAngajatList.
 
     public static class AngajatViewHolder extends RecyclerView.ViewHolder{
         private TextView angajatListTextView;
+        private ImageButton imageButton;
         public AngajatViewHolder(@NonNull View itemView) {
             super(itemView);
-            angajatListTextView =itemView.findViewById(R.id.angajatListTextView);
+            angajatListTextView = itemView.findViewById(R.id.angajatListTextView);
+            imageButton = itemView.findViewById(R.id.angajatDeleteBtn);
         }
     }
+
 }

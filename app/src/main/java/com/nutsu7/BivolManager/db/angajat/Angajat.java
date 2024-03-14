@@ -12,8 +12,8 @@ import java.util.TreeMap;
 
 @Entity(tableName = "Angajat")
 public class Angajat {
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+    @PrimaryKey()
+    private int id;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -36,13 +36,22 @@ public class Angajat {
 
 
 
-    public Angajat(String surname, String name, int salary, int hourlyRate, int debt, int totalHours) {
+    public Angajat(int id, String surname, String name, int salary, int hourlyRate, int debt, int totalHours) {
+        this.id=id;
         this.name = name;
         this.surname = surname;
         addSalary(salary);
         setHourlyRate(hourlyRate);
         addDebt(debt);
         addTotalHours(totalHours);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

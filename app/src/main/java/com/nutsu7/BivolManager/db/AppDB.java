@@ -8,8 +8,9 @@ import androidx.room.RoomDatabase;
 
 import com.nutsu7.BivolManager.db.angajat.Angajat;
 import com.nutsu7.BivolManager.db.angajat.AngajatDao;
+import com.nutsu7.BivolManager.db.angajat.Zi;
 
-@Database(version = 4, entities = {Angajat.class})
+@Database(version = 4, entities = {Angajat.class, Zi.class})
 public abstract class AppDB extends RoomDatabase {
     public abstract AngajatDao angajatDao();
     private static AppDB appDB;

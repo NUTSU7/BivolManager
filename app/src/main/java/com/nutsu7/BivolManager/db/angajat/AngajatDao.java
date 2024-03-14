@@ -13,8 +13,14 @@ public interface AngajatDao {
     @Insert
     public void insert(Angajat angajat);
 
+    @Insert
+    public void insertAll(List<Angajat> angajatList);
+
     @Delete
     public void delete(Angajat angajat);
+
+    @Query("DELETE FROM Angajat WHERE id=:id")
+    public void deleteByID(int id);
 
     @Update
     public void update(Angajat angajat);
@@ -24,6 +30,18 @@ public interface AngajatDao {
 
     @Query("SELECT * FROM Angajat WHERE id=:id")
     public Angajat getByID(int id);
+
+    @Query("SELECT * FROM Zi")
+    public List<Zi> getZiAll();
+
+    @Query("SELECT * FROM Zi WHERE angajatID=:id")
+    public List<Zi> getZiByID(int id);
+
+    @Query("DELETE FROM Zi WHERE angajatID=:id")
+    public void deleteZiByID(int id);
+
+    @Insert
+    public void insertZi(Zi zi);
 
     //@Transaction
     //@Query("SELECT * FROM Angajat")
