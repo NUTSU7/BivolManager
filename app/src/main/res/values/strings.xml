@@ -3,5 +3,6 @@
     <string name="title_home">Acasa</string>
     <string name="title_rosii">Rosii</string>
     <string name="title_angajat">Angajat</string>
+    <string name="title_angajat_stats">Angajat Stats</string>
     <string name="title_struguri">Struguri</string>
 </resources>

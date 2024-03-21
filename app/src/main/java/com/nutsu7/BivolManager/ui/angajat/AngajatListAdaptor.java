@@ -6,8 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nutsu7.BivolManager.R;
@@ -45,6 +52,14 @@ public class AngajatListAdaptor extends RecyclerView.Adapter<AngajatListAdaptor.
         AngajatViewHolder vh= (AngajatViewHolder) holder;
         vh.angajatListTextView.setText(angajat.getSurname() + " " + angajat.getName());
 
+        vh.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(v);
+                navController.navigate(R.id.action_navigation_angajat_to_navigation_angajatStats);
+            }
+        });
+
         vh.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +76,8 @@ public class AngajatListAdaptor extends RecyclerView.Adapter<AngajatListAdaptor.
         return angajatList.size();
     }
 
+
+
     public static class AngajatViewHolder extends RecyclerView.ViewHolder{
         private TextView angajatListTextView;
         private ImageButton imageButton;
@@ -69,6 +86,7 @@ public class AngajatListAdaptor extends RecyclerView.Adapter<AngajatListAdaptor.
             angajatListTextView = itemView.findViewById(R.id.angajatListTextView);
             imageButton = itemView.findViewById(R.id.angajatDeleteBtn);
         }
+
     }
 
 }

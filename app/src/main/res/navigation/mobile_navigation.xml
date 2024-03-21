@@ -21,7 +21,23 @@
         android:id="@+id/navigation_angajat"
         android:name="com.nutsu7.BivolManager.ui.angajat.AngajatFragment"
         android:label="@string/title_angajat"
-        tools:layout="@layout/fragment_angajat" />
+        tools:layout="@layout/fragment_angajat">
+        <action
+            android:id="@+id/action_navigation_angajat_to_navigation_angajatStats"
+            app:destination="@id/navigation_angajatStats"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/navigation_angajat"
+            app:popUpToInclusive="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_angajatStats"
+        android:name="com.nutsu7.BivolManager.ui.angajat.AngajatStatsFragment"
+        android:label="@string/title_angajat_stats"
+        tools:layout="@layout/fragment_angajat_stats" />
 
     <fragment
         android:id="@+id/navigation_struguri"
