@@ -4,12 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.nutsu7.BivolManager.ui.angajat.AngajatFragment;
-
-import java.time.LocalDate;
-import java.util.Map;
-import java.util.TreeMap;
-
 @Entity(tableName = "Angajat")
 public class Angajat {
     @PrimaryKey()
@@ -22,24 +16,22 @@ public class Angajat {
     private String surname;
 
     @ColumnInfo(name = "salary")
-    private int salary=0;
+    private int salary;
 
     @ColumnInfo(name = "debt")
     private int debt;
 
+    @ColumnInfo(name = "totalDays")
+    private int totalDays;
+
     @ColumnInfo(name = "totalHours")
     private int totalHours;
-    //private Map<LocalDate, Integer> hours = new TreeMap<>();
-
-
-
-    public Angajat(int id, String surname, String name, int salary, int debt, int totalHours) {
+    public Angajat(int id, String surname, String name, int salary, int debt) {
         this.id=id;
         this.name = name;
         this.surname = surname;
         addSalary(salary);
         addDebt(debt);
-        addTotalHours(totalHours);
     }
 
     public int getId() {
@@ -73,6 +65,9 @@ public class Angajat {
     public void addSalary(int salary) {
         this.salary += salary;
     }
+    public void decreaseSalary(int salary) {
+        this.salary -= salary;
+    }
 
     public int getDebt() {
         return debt;
@@ -92,12 +87,40 @@ public class Angajat {
 
     } */
 
+    public int getTotalDays() {
+        return totalDays;
+    }
+
+    public void addTotalZile(int totalZile) {
+        this.totalDays += totalZile;
+    }
+
     public int getTotalHours() {
         return totalHours;
     }
 
     public void addTotalHours(int totalHours) {
         this.totalHours += totalHours;
+    }
+
+
+    //not needed
+
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setDebt(int debt) {
+        this.debt = debt;
+    }
+
+    public void setTotalDays(int totalDays) {
+        this.totalDays = totalDays;
+    }
+
+    public void setTotalHours(int totalHours) {
+        this.totalHours = totalHours;
     }
 }
 

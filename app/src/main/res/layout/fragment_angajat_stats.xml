@@ -170,7 +170,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp">
                 <com.google.android.material.textview.MaterialTextView
-                    android:layout_weight="1"
                     android:id="@+id/angajatTotalHRTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -186,7 +185,6 @@
                     android:textColor="@color/material_dynamic_primary90"/>
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:layout_weight="1"
                     android:id="@+id/angajatTotalHR"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -210,8 +208,7 @@
                     android:id="@+id/angajatTotalDaysTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:layout_constraintEnd_toStartOf="@+id/angajatTotalZile"
+                    app:layout_constraintEnd_toStartOf="@+id/angajatTotalDays"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
@@ -223,8 +220,7 @@
                     android:textColor="@color/material_dynamic_primary90"/>
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:layout_weight="1"
-                    android:id="@+id/angajatTotalZile"
+                    android:id="@+id/angajatTotalDays"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@id/angajatTotalDaysTextView"

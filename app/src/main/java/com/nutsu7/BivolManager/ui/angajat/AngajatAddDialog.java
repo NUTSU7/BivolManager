@@ -35,7 +35,6 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
     private TextInputLayout angajatInputName;
     private TextInputLayout angajatInputSalary;
     private TextInputLayout angajatInputDebt;
-    private TextInputLayout angajatInputHours;
 
     private AngajatRepo angajatRepo;
 
@@ -85,10 +84,9 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
         angajatInputName = dialog.findViewById(R.id.angajatInputName);
         angajatInputSalary = dialog.findViewById(R.id.angajatInputSalary);
         angajatInputDebt = dialog.findViewById(R.id.angajatInputDebt);
-        angajatInputHours = dialog.findViewById(R.id.angajatInputHours);
 
         String surname=null,  name=null;
-        Integer hr=0, salary=0, debt=0, hours=0;
+        Integer hr=0, salary=0, debt=0;
 
         angajatInputSurname.setError(null);
         angajatInputName.setError(null);
@@ -96,10 +94,9 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
         if(angajatInputName.getEditText().length()!=0) name=extractStr(angajatInputName);
         if(angajatInputSalary.getEditText().length()!=0) salary=Integer.parseInt(extractStr(angajatInputSalary));
         if(angajatInputDebt.getEditText().length()!=0) debt=Integer.parseInt(extractStr(angajatInputDebt));
-        if(angajatInputHours.getEditText().length()!=0) hours=Integer.parseInt(extractStr(angajatInputHours));
 
         if(checkInput(surname, name, hr)){
-            Angajat angajat = new Angajat(angajatRepo.getAll().size(), surname, name, salary, debt, hours);
+            Angajat angajat = new Angajat(angajatRepo.getAll().size(), surname, name, salary, debt);
             angajatRepo.insert(angajat);
 
             dialog.dismiss();

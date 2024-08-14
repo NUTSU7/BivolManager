@@ -33,5 +33,17 @@ public class AngajatStatsViewModel extends ViewModel {
         return angajat.getSalary();
     }
 
+    public int getDebt() {
+        return angajat.getDebt();
+    }
+
+    public int getTotalDays() {
+        return angajat.getTotalDays();
+    }
+
+    public int getTotalHours() {
+        return angajat.getTotalHours();
+    }
+
 
 }
