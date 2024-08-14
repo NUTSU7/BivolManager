@@ -1,6 +1,8 @@
 package com.nutsu7.BivolManager.ui.angajat;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +58,10 @@ public class AngajatListAdaptor extends RecyclerView.Adapter<AngajatListAdaptor.
             @Override
             public void onClick(View v) {
                 NavController navController = Navigation.findNavController(v);
-                navController.navigate(R.id.action_navigation_angajat_to_navigation_angajatStats);
+                Bundle arg = new Bundle();
+                arg.putInt("angajatID", position);
+                navController.navigate(R.id.action_navigation_angajat_to_navigation_angajatStats, arg);
+
             }
         });
 

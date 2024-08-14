@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -31,7 +33,6 @@ import java.util.Objects;
 public class AngajatAddDialog extends AppCompatDialogFragment {
     private TextInputLayout angajatInputSurname;
     private TextInputLayout angajatInputName;
-    private TextInputLayout angajatInputHR;
     private TextInputLayout angajatInputSalary;
     private TextInputLayout angajatInputDebt;
     private TextInputLayout angajatInputHours;
@@ -66,46 +67,47 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
     public void onStart() {
         super.onStart();
         AlertDialog dialog = (AlertDialog) getDialog();
-        angajatRepo=new AngajatRepo(getContext());
-
-        angajatInputSurname = dialog.findViewById(R.id.angajatInputSurname);
-        angajatInputName = dialog.findViewById(R.id.angajatInputName);
-        angajatInputHR = dialog.findViewById(R.id.angajatInputHR);
-        angajatInputSalary = dialog.findViewById(R.id.angajatInputSalary);
-        angajatInputDebt = dialog.findViewById(R.id.angajatInputDebt);
-        angajatInputHours = dialog.findViewById(R.id.angajatInputHours);
         if(dialog!=null){
             Button positiveButton = (Button) dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             positiveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String surname=null,  name=null;
-                    Integer hr=0, salary=0, debt=0, hours=0;
-
-                    angajatInputSurname.setError(null);
-                    angajatInputName.setError(null);
-                    angajatInputHR.setError(null);
-                    if(angajatInputSurname.getEditText().length()!=0) surname=extractStr(angajatInputSurname);
-                    if(angajatInputName.getEditText().length()!=0) name=extractStr(angajatInputName);
-                    if(angajatInputHR.getEditText().length()!=0)hr=Integer.parseInt(extractStr(angajatInputHR));
-                    if(angajatInputSalary.getEditText().length()!=0) salary=Integer.parseInt(extractStr(angajatInputSalary));
-                    if(angajatInputDebt.getEditText().length()!=0) debt=Integer.parseInt(extractStr(angajatInputDebt));
-                    if(angajatInputHours.getEditText().length()!=0) hours=Integer.parseInt(extractStr(angajatInputHours));
-
-                    if(checkInput(surname, name, hr)){
-                        Angajat angajat = new Angajat(angajatRepo.getAll().size(), surname, name, hr, salary, debt, hours);
-                        angajatRepo.insert(angajat);
-
-                        dialog.dismiss();
-
-                        RecyclerView rv = getActivity().findViewById(R.id.angajatListRV);
-                        AngajatListAdaptor adaptor = (AngajatListAdaptor) rv.getAdapter();
-                        adaptor.updateList();
-                        adaptor.notifyItemInserted(angajat.getId());
-                        Toast.makeText(getContext(),angajat.getSurname()+" "+angajat.getName()+" a fost adaugat", Toast.LENGTH_SHORT).show();
-                    }
+                    handleData(dialog);
                 }
             });
+            //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+    }
+    private void handleData(AlertDialog dialog){
+        angajatRepo=new AngajatRepo(getContext());
+
+        angajatInputSurname = dialog.findViewById(R.id.angajatInputSurname);
+        angajatInputName = dialog.findViewById(R.id.angajatInputName);
+        angajatInputSalary = dialog.findViewById(R.id.angajatInputSalary);
+        angajatInputDebt = dialog.findViewById(R.id.angajatInputDebt);
+        angajatInputHours = dialog.findViewById(R.id.angajatInputHours);
+
+        String surname=null,  name=null;
+        Integer hr=0, salary=0, debt=0, hours=0;
+
+        angajatInputSurname.setError(null);
+        angajatInputName.setError(null);
+        if(angajatInputSurname.getEditText().length()!=0) surname=extractStr(angajatInputSurname);
+        if(angajatInputName.getEditText().length()!=0) name=extractStr(angajatInputName);
+        if(angajatInputSalary.getEditText().length()!=0) salary=Integer.parseInt(extractStr(angajatInputSalary));
+        if(angajatInputDebt.getEditText().length()!=0) debt=Integer.parseInt(extractStr(angajatInputDebt));
+        if(angajatInputHours.getEditText().length()!=0) hours=Integer.parseInt(extractStr(angajatInputHours));
+
+        if(checkInput(surname, name, hr)){
+            Angajat angajat = new Angajat(angajatRepo.getAll().size(), surname, name, salary, debt, hours);
+            angajatRepo.insert(angajat);
+
+            dialog.dismiss();
+            RecyclerView rv = getActivity().findViewById(R.id.angajatListRV);
+            AngajatListAdaptor adaptor = (AngajatListAdaptor) rv.getAdapter();
+            adaptor.updateList();
+            adaptor.notifyItemInserted(angajat.getId());
+            Toast.makeText(getContext(),angajat.getSurname()+" "+angajat.getName()+" a fost adaugat", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -121,10 +123,6 @@ public class AngajatAddDialog extends AppCompatDialogFragment {
             ans=false;
         }
 
-        if (hr <= 0) {
-            angajatInputHR.setError("Plata per ora este necesara");
-            ans=false;
-        }
 
         return ans;
     }

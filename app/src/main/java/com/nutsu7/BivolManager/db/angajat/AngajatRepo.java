@@ -37,7 +37,7 @@ public class AngajatRepo {
     }
 
     public Angajat getByID(int id){
-        if(id<=0) return null;
+        if(id<0) return null;
         return appDB.angajatDao().getByID(id);
     }
 

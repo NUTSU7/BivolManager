@@ -1,14 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_angajat_stats"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.angajat.AngajatStatsFragment">
 
-    <TextView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/angajatNameCardView"
+        app:layout_constraintTop_toTopOf="@+id/fragment_angajat_stats"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary40"
+        app:cardCornerRadius="15dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/angajatIconImgView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/angajatName"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:srcCompat="@drawable/ic_angajat_icon" />
 
-</RelativeLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/angajatName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/angajatIconImgView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_toEndOf="@id/angajatIconImgView"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/angajatSalaryCardView"
+        app:layout_constraintTop_toBottomOf="@+id/angajatNameCardView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        android:layout_below="@id/angajatNameCardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_weight="1"
+                    android:id="@+id/angajatSalaryTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/angajatSalary"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textAlignment="center"
+                    android:text="Salariu"
+                    android:textSize="25sp"
+                    android:textColor="@color/material_dynamic_primary90"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_weight="1"
+                    android:id="@+id/angajatSalary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/angajatSalaryTextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textColor="@color/material_dynamic_primary90"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/angajatDebtCardView"
+        app:layout_constraintTop_toBottomOf="@+id/angajatSalaryCardView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        android:layout_below="@id/angajatSalaryCardView">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/angajatDebtLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_weight="1"
+                    android:id="@+id/angajatDebtTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/angajatDebt"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textAlignment="center"
+                    android:text="Datorie"
+                    android:textSize="25sp"
+                    android:textColor="@color/material_dynamic_primary90"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_weight="1"
+                    android:id="@+id/angajatDebt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/angajatDebtTextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textColor="@color/material_dynamic_primary90"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/angajatTimeCardView"
+        app:layout_constraintTop_toBottomOf="@+id/angajatDebtCardView"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        android:layout_below="@id/angajatSalaryCardView">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/angajatTimeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/angajatTotalHRLayout"
+                app:layout_constraintTop_toTopOf="@+id/angajatTimeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_weight="1"
+                    android:id="@+id/angajatTotalHRTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/angajatTotalHR"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textAlignment="center"
+                    android:text="Ore"
+                    android:textSize="25sp"
+                    android:textColor="@color/material_dynamic_primary90"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_weight="1"
+                    android:id="@+id/angajatTotalHR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/angajatTotalHRTextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textColor="@color/material_dynamic_primary90"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/angajatTotalDaysLayout"
+                app:layout_constraintTop_toBottomOf="@+id/angajatTotalHRLayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/angajatTotalDaysTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:layout_constraintEnd_toStartOf="@+id/angajatTotalZile"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textAlignment="center"
+                    android:text="Zile"
+                    android:textSize="25sp"
+                    android:textColor="@color/material_dynamic_primary90"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_weight="1"
+                    android:id="@+id/angajatTotalZile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/angajatTotalDaysTextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textColor="@color/material_dynamic_primary90"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/angajatDebtFBA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Datorie"
+        app:icon="@drawable/ic_angajat_add"
+        app:iconGravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/angajatPayFBA"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/angajatPayFBA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/angajatDebtFBA"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp"
+        android:text="Plateste"
+        app:icon="@drawable/ic_angajat_pay"
+        app:iconGravity="end">
+
+    </com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton>
+    
+
+</androidx.constraintlayout.widget.ConstraintLayout>

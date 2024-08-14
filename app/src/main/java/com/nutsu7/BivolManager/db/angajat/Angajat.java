@@ -24,9 +24,6 @@ public class Angajat {
     @ColumnInfo(name = "salary")
     private int salary=0;
 
-    @ColumnInfo(name = "hourlyRate")
-    private int hourlyRate;
-
     @ColumnInfo(name = "debt")
     private int debt;
 
@@ -36,12 +33,11 @@ public class Angajat {
 
 
 
-    public Angajat(int id, String surname, String name, int salary, int hourlyRate, int debt, int totalHours) {
+    public Angajat(int id, String surname, String name, int salary, int debt, int totalHours) {
         this.id=id;
         this.name = name;
         this.surname = surname;
         addSalary(salary);
-        setHourlyRate(hourlyRate);
         addDebt(debt);
         addTotalHours(totalHours);
     }
@@ -76,14 +72,6 @@ public class Angajat {
 
     public void addSalary(int salary) {
         this.salary += salary;
-    }
-
-    public int getHourlyRate() {
-        return hourlyRate;
-    }
-
-    public void setHourlyRate(int hourlyRate) {
-        this.hourlyRate = hourlyRate;
     }
 
     public int getDebt() {
