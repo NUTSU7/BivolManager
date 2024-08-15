@@ -65,19 +65,4 @@
             </EditText>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:id="@+id/angajatInputHours"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ore lucrate (Total)"
-            android:paddingTop="20dp"
-            android:layout_below="@+id/angajatInputDebt"
-            android:layout_alignParentStart="true">
-            <EditText
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </EditText>
-        </com.google.android.material.textfield.TextInputLayout>
     </RelativeLayout>

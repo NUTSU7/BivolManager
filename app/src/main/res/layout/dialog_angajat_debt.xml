@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:id="@+id/angajatInput"
+        android:id="@+id/angajatInputDebt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -14,7 +14,8 @@
         android:layout_margin="16dp">
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:inputType="number">
         </EditText>
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

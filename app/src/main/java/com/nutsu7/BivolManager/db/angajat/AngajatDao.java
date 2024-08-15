@@ -1,5 +1,6 @@
 package com.nutsu7.BivolManager.db.angajat;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -29,19 +30,10 @@ public interface AngajatDao {
     public List<Angajat> getAll();
 
     @Query("SELECT * FROM Angajat WHERE id=:id")
+    public LiveData<Angajat> getLiveByID(int id);
+
+    @Query("SELECT * FROM Angajat WHERE id=:id")
     public Angajat getByID(int id);
-
-    @Query("SELECT * FROM Zi")
-    public List<Zi> getZiAll();
-
-    @Query("SELECT * FROM Zi WHERE angajatID=:id")
-    public List<Zi> getZiByID(int id);
-
-    @Query("DELETE FROM Zi WHERE angajatID=:id")
-    public void deleteZiByID(int id);
-
-    @Insert
-    public void insertZi(Zi zi);
 
     //@Transaction
     //@Query("SELECT * FROM Angajat")

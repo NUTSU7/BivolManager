@@ -2,6 +2,8 @@ package com.nutsu7.BivolManager.db.angajat;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
 import com.nutsu7.BivolManager.db.AppDB;
 
 import java.util.List;
@@ -9,9 +11,6 @@ import java.util.List;
 public class AngajatRepo {
     private AppDB appDB;
     private Context context;
-
-    //public List<Angajat> angajatList;
-    //public List<Zi> ziList;
 
 
     public AngajatRepo(Context context){
@@ -21,10 +20,6 @@ public class AngajatRepo {
 
     }
 
-    /*public void listUpdate(){
-        angajatList=getAll();
-        ziList=getZiAll();
-    } */
 
     public void insert(Angajat angajat){
         if(angajat==null) return;
@@ -39,6 +34,10 @@ public class AngajatRepo {
     public Angajat getByID(int id){
         if(id<0) return null;
         return appDB.angajatDao().getByID(id);
+    }
+    public LiveData<Angajat> getLiveByID(int id){
+        if(id<0) return null;
+        return appDB.angajatDao().getLiveByID(id);
     }
 
     public List<Angajat> getAll(){
@@ -63,34 +62,9 @@ public class AngajatRepo {
     }
 
 
-
-    //ZI
-    public void insert(Zi zi){
-        if(zi==null) return;
-        appDB.angajatDao().insertZi(zi);
+    public void update(Angajat angajat){
+        if(angajat==null) return;
+        appDB.angajatDao().update(angajat);
     }
-
-    /*public void insertAll(){
-        if(angajatList.isEmpty()) return;
-        appDB.angajatDao().insertAll(angajatList);
-    } */
-
-    public List<Zi> getZiByID(int id){
-        if(id<=0) return null;
-        return appDB.angajatDao().getZiByID(id);
-    }
-
-    public List<Zi> getZiAll(){
-        return appDB.angajatDao().getZiAll();
-    }
-
-    public void deleteZiByID(int id){
-        if(id<=0) return;
-        appDB.angajatDao().deleteZiByID(id);
-    }
-
-
-
-
 
 }

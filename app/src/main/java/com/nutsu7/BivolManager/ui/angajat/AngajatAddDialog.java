@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -30,7 +31,7 @@ import org.w3c.dom.Text;
 
 import java.util.Objects;
 
-public class AngajatAddDialog extends AppCompatDialogFragment {
+public class AngajatAddDialog extends DialogFragment {
     private TextInputLayout angajatInputSurname;
     private TextInputLayout angajatInputName;
     private TextInputLayout angajatInputSalary;

@@ -7,14 +7,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.nutsu7.BivolManager.R;
+import com.nutsu7.BivolManager.db.angajat.Angajat;
+import com.nutsu7.BivolManager.db.angajat.AngajatRepo;
 
 public class AngajatDebtDialog extends DialogFragment {
+    private TextInputLayout angajatInput;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -55,6 +67,30 @@ public class AngajatDebtDialog extends DialogFragment {
     }
 
     private void handleData(AlertDialog dialog){
+        Integer sum=0;
+        AngajatRepo angajatRepo = new AngajatRepo(getContext());
 
+        angajatInput = dialog.findViewById(R.id.angajatInputDebt);
+        angajatInput.setError(null);
+
+        if(angajatInput.getEditText().length()!=0) sum=Integer.parseInt(angajatInput.getEditText().getText().toString().trim());
+
+        if(checkInput(sum)){
+            Angajat angajat = angajatRepo.getByID(getArguments().getInt("arg"));
+            angajat.addDebt(sum);
+            angajatRepo.update(angajat);
+
+            dialog.dismiss();
+            Toast.makeText(getContext(),"Datorie adaugata", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean checkInput(Integer sum) {
+        if (sum == null || sum == 0) {
+            angajatInput.setError("Suma invalida");
+            return false;
+        }
+
+        return true;
     }
 }

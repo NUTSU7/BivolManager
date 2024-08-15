@@ -76,16 +76,9 @@ public class Angajat {
     public void addDebt(int debt) {
         this.debt += debt;
     }
-
-    /*public int getHours(LocalDate date) {
-        if(!hours.containsKey(date)) return 0;
-        return (int)(hours.get(date));
+    public void decreaseDebt(int debt) {
+        this.debt -= debt;
     }
-
-    public void addHours(String date, int hours) {
-        this.hours.put(LocalDate.parse(date), hours);
-
-    } */
 
     public int getTotalDays() {
         return totalDays;
