@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="17dp"
+    app:cardElevation="0dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ziStatsListImgView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="5dp"
+            android:paddingRight="0dp"
+            app:srcCompat="@drawable/ic_angajat_icon" />
+
+        <TextView
+            android:id="@+id/ziStatsListTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/ziStatsListImgView"
+            app:layout_constraintRight_toLeftOf="@id/ziStatsListHours"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ziStatsListImgView"
+            android:layout_marginHorizontal="10dp"
+            android:textColor="@color/material_dynamic_primary90"
+            android:textSize="20dp"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/ziStatsListHours"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:layout_constraintLeft_toRightOf="@id/ziStatsListTextView"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/material_dynamic_primary90"
+            android:gravity="center"
+            android:textSize="20dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import com.nutsu7.BivolManager.db.AppDB;
+import com.nutsu7.BivolManager.db.relations.ZiAngajat;
 
 import java.util.List;
 
@@ -44,20 +45,34 @@ public class AngajatRepo {
         return appDB.angajatDao().getAll();
     }
 
+    public int getHoursByZi(int ziID, int angajatID){
+        ZiAngajat ziAngajat = appDB.ziAngajatDao().getByZiIDAndAngajatID(ziID, angajatID);
+        return ziAngajat.getHours();
+    }
+
     public void delete(Angajat angajat){
         if(angajat==null) return;
         int id=angajat.getId();
+
+        appDB.angajatDao().deleteByID(id);
+
         List<Angajat> angajatList=appDB.angajatDao().getAll();
-        for(int i=id+1; i<angajatList.size(); i++){
-            Angajat angajat1 = appDB.angajatDao().getByID(i);
-            angajat1.setId(i-1);
-            appDB.angajatDao().update(angajat1);
+        if(id==angajatList.size()) return;
+        int temp=id+1;
+        for(Angajat a:angajatList){
+
+            if(a.getId()>id){
+                appDB.angajatDao().updateIDByID(temp, temp-1);
+                temp++;
+            }
+
         }
-        appDB.angajatDao().deleteByID(angajatList.size()-1);
+
+        deleteZiByAngajatID(id);
     }
 
     public void deleteByID(int id){
-        if(id<=0) return;
+        if(id<0) return;
         appDB.angajatDao().deleteByID(id);
     }
 
@@ -65,6 +80,18 @@ public class AngajatRepo {
     public void update(Angajat angajat){
         if(angajat==null) return;
         appDB.angajatDao().update(angajat);
+    }
+
+    public void deleteZiByAngajatID(int angajatID) {
+        appDB.ziAngajatDao().deleteByAngajatID(angajatID);
+        int t = 0;
+        List<ZiAngajat> ziAngajatList = appDB.ziAngajatDao().getAll();
+        for (ZiAngajat ziAngajat : ziAngajatList) {
+            appDB.ziAngajatDao().updateIDByID(ziAngajat.getId(), t++);
+            if (ziAngajat.getAngajatID() > angajatID) {
+                appDB.ziAngajatDao().updateAngajatIDByAngajatID(ziAngajat.getAngajatID(), ziAngajat.getAngajatID() - 1);
+            }
+        }
     }
 
 }

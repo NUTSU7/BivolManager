@@ -92,7 +92,7 @@ public class AngajatPayDialog extends DialogFragment {
             angajatRepo.update(angajat);
 
             dialog.dismiss();
-            Toast.makeText(getContext(),"Datorie adaugata", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Plata efectuata", Toast.LENGTH_SHORT).show();
         }
     }
 

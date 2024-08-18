@@ -35,10 +35,10 @@ public class AngajatFragment extends Fragment {
         View root = binding.getRoot();
 
 
-        angajatListRV = root.findViewById(R.id.angajatListRV);
+        angajatListRV = binding.angajatListRV;
         angajatListRV.setAdapter(new AngajatListAdaptor(requireActivity()));
 
-        angajatAddFBA = root.findViewById(R.id.angajatAddFBA);
+        angajatAddFBA = binding.angajatAddFBA;
         angajatAddFBA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

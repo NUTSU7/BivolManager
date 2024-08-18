@@ -1,6 +1,5 @@
 package com.nutsu7.BivolManager.ui.angajat;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -8,8 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.databinding.FragmentAngajatStatsBinding;
-import com.nutsu7.BivolManager.db.angajat.Angajat;
 
 public class AngajatStatsFragment extends Fragment {
     private FragmentAngajatStatsBinding binding;
@@ -31,11 +26,6 @@ public class AngajatStatsFragment extends Fragment {
     TextView angajatDebtTextView;
     TextView angajatTotalDaysTextView;
     TextView angajatTotalHRTextView;
-
-
-    public static AngajatStatsFragment newInstance() {
-        return new AngajatStatsFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -94,10 +84,10 @@ public class AngajatStatsFragment extends Fragment {
     public void updateData(){
         angajatStatsViewModel.update();
         angajatNameTextView.setText(angajatStatsViewModel.getSurname()+" "+angajatStatsViewModel.getName());
-        angajatSalaryTextView.setText(String.valueOf(String.valueOf(angajatStatsViewModel.getSalary())));
-        angajatDebtTextView.setText(String.valueOf(String.valueOf(angajatStatsViewModel.getDebt())));
-        angajatTotalDaysTextView.setText(String.valueOf(String.valueOf(angajatStatsViewModel.getTotalDays())));
-        angajatTotalHRTextView.setText(String.valueOf(String.valueOf(angajatStatsViewModel.getTotalHours())));
+        angajatSalaryTextView.setText(String.valueOf(angajatStatsViewModel.getSalary()));
+        angajatDebtTextView.setText(String.valueOf(angajatStatsViewModel.getDebt()));
+        angajatTotalDaysTextView.setText(String.valueOf(angajatStatsViewModel.getTotalDays()));
+        angajatTotalHRTextView.setText(String.valueOf(angajatStatsViewModel.getTotalHours()));
     }
 
 

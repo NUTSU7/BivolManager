@@ -9,7 +9,17 @@
         android:id="@+id/navigation_home"
         android:name="com.nutsu7.BivolManager.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+    <action
+        android:id="@+id/action_navigation_zi_to_navigation_ziStats"
+        app:destination="@id/navigation_ziStats"
+        app:enterAnim="@animator/slide_in_right"
+        app:exitAnim="@animator/slide_out_left"
+        app:popEnterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/slide_out_right"
+        app:popUpTo="@id/navigation_home"
+        app:popUpToInclusive="false" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_rosii"
@@ -38,6 +48,12 @@
         android:name="com.nutsu7.BivolManager.ui.angajat.AngajatStatsFragment"
         android:label="@string/title_angajat_stats"
         tools:layout="@layout/fragment_angajat_stats" />
+
+    <fragment
+        android:id="@+id/navigation_ziStats"
+        android:name="com.nutsu7.BivolManager.ui.home.ZiStatsFragment"
+        android:label="@string/title_zi_stats"
+        tools:layout="@layout/fragment_zi_stats" />
 
     <fragment
         android:id="@+id/navigation_struguri"

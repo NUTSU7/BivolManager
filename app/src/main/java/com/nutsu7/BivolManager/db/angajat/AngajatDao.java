@@ -26,6 +26,9 @@ public interface AngajatDao {
     @Update
     public void update(Angajat angajat);
 
+    @Query("UPDATE Angajat SET id=:id2 WHERE id=:id1")
+    public void updateIDByID(int id1, int id2);
+
     @Query("SELECT * FROM Angajat")
     public List<Angajat> getAll();
 

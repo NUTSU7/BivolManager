@@ -9,12 +9,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nutsu7.BivolManager.databinding.FragmentHomeBinding;
+import com.nutsu7.BivolManager.db.relations.ZiAngajat;
+import com.nutsu7.BivolManager.db.relations.ZiAngajatRepo;
+import com.nutsu7.BivolManager.db.zi.Zi;
+import com.nutsu7.BivolManager.db.zi.ZiRepo;
+import com.nutsu7.BivolManager.ui.angajat.AngajatAddDialog;
+import com.nutsu7.BivolManager.ui.angajat.AngajatListAdaptor;
+import com.nutsu7.BivolManager.ui.angajat.AngajatViewModel;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private RecyclerView ziListRV;
+    private AngajatViewModel ziViewModel;
+    private FloatingActionButton ziAddFBA;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -24,8 +38,17 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        ziListRV = binding.ziListRV;
+        ziListRV.setAdapter(new ZiListAdaptor(requireActivity()));
+
+        ziAddFBA = binding.ziAddFBA;
+        ziAddFBA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ZiAddDialog ziAddDialog = new ZiAddDialog();
+                ziAddDialog.show(getChildFragmentManager(), "Adauga Zi");
+            }
+        });
         return root;
     }
 

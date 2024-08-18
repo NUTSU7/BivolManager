@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:backgroundTint="@color/material_dynamic_primary30"
+    app:cardCornerRadius="17dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ziAngListImgView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/ziAngListTextView"
+            android:padding="5dp"
+            android:paddingRight="0dp"
+            app:srcCompat="@drawable/ic_angajat_icon" />
+
+        <TextView
+            android:id="@+id/ziAngListTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/ziAngListImgView"
+            app:layout_constraintRight_toLeftOf="@id/ziAngInputHours"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ziAngListImgView"
+            android:layout_marginHorizontal="5dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:id="@+id/ziAngInputHours"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toRightOf="@id/ziAngListTextView"
+            app:layout_constraintRight_toLeftOf="@id/ziAngCheckBox"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ziAngCheckBox"
+            android:layout_marginRight="10dp"
+            app:boxBackgroundColor="@color/material_dynamic_primary30"
+            android:hint="Ore">
+            <EditText
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </EditText>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/ziAngCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/ziAngInputHours"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
