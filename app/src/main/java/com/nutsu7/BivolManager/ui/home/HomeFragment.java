@@ -13,12 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nutsu7.BivolManager.databinding.FragmentHomeBinding;
-import com.nutsu7.BivolManager.db.relations.ZiAngajat;
-import com.nutsu7.BivolManager.db.relations.ZiAngajatRepo;
-import com.nutsu7.BivolManager.db.zi.Zi;
-import com.nutsu7.BivolManager.db.zi.ZiRepo;
-import com.nutsu7.BivolManager.ui.angajat.AngajatAddDialog;
-import com.nutsu7.BivolManager.ui.angajat.AngajatListAdaptor;
 import com.nutsu7.BivolManager.ui.angajat.AngajatViewModel;
 
 import java.util.List;

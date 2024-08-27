@@ -14,9 +14,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nutsu7.BivolManager.R;
-import com.nutsu7.BivolManager.db.angajat.Angajat;
-import com.nutsu7.BivolManager.db.relations.ZiAngajat;
-import com.nutsu7.BivolManager.db.relations.ZiAngajatRepo;
 import com.nutsu7.BivolManager.db.zi.Zi;
 import com.nutsu7.BivolManager.db.zi.ZiRepo;
 
