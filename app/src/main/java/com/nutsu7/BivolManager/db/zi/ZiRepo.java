@@ -53,15 +53,16 @@ public class ZiRepo {
         appDB.ziDao().deleteByID(id);
 
         List<Zi> ziList=appDB.ziDao().getAll();
-        if(id==ziList.size()) return;
-        int temp=id+1;
-        for(Zi a:ziList){
+        if(id!=ziList.size()){
+            int temp=id+1;
+            for(Zi a:ziList){
 
-            if(a.getId()>id){
-                appDB.ziDao().updateIDByID(temp, temp-1);
-                temp++;
+                if(a.getId()>id){
+                    appDB.ziDao().updateIDByID(temp, temp-1);
+                    temp++;
+                }
+
             }
-
         }
 
         deleteAngajatByZiID(id);
@@ -81,27 +82,34 @@ public class ZiRepo {
     }
     public List<Angajat> getAngajati(int dayID){
         List<Angajat> angajatList= new ArrayList<>();
-        List<ZiAngajat> ziAngajatList = appDB.ziAngajatDao().getAngajatByZiID(dayID);
+        List<ZiAngajat> ziAngajatList = appDB.ziAngajatDao().getZiAngajatByZiID(dayID);
         for(ZiAngajat ziAngajat:ziAngajatList){
             angajatList.add(appDB.angajatDao().getByID(ziAngajat.getAngajatID()));
         }
         return angajatList;
     }
     public void insertAngajati(int ziID, List<Pair<Integer,Integer>> angajatList){
-        for(Pair<Integer,Integer> angajat:angajatList)
+        for(Pair<Integer,Integer> angajat:angajatList) {
             appDB.ziAngajatDao().insert(new ZiAngajat(appDB.ziAngajatDao().getAll().size(), ziID, angajat.first, angajat.second));
+            Angajat angajat1 = appDB.angajatDao().getByID(angajat.first);
+            angajat1.addSalary(angajat.second*50);
+            angajat1.addTotalHours(angajat.second);
+            angajat1.addTotalDays(1);
+            appDB.angajatDao().update(angajat1);
+        }
     }
 
     public void deleteAngajatByZiID(int ziID){
+        if(appDB.ziAngajatDao().getZiAngajatByZiID(ziID).isEmpty()) return;
         appDB.ziAngajatDao().deleteByZiID(ziID);
-        int t=0;
-        List<ZiAngajat> ziAngajatList = appDB.ziAngajatDao().getAll();
-        for(ZiAngajat ziAngajat:ziAngajatList){
-            appDB.ziAngajatDao().updateIDByID(ziAngajat.getId(),t++);
-            if(ziAngajat.getZiID()>ziID){
-                appDB.ziAngajatDao().updateZiIDByZiID(ziAngajat.getZiID(), ziAngajat.getZiID()-1);
-            }
+        List<ZiAngajat> ziAngajatList=appDB.ziAngajatDao().getAll();
+        int temp=0;
+        for(ZiAngajat a:ziAngajatList){
+            if(a.getZiID()>ziID) a.setZiID(a.getZiID()-1);
+            appDB.ziAngajatDao().update(a);
+            appDB.ziAngajatDao().updateIDByID(a.getId(), temp++);
         }
+
     }
 
 }

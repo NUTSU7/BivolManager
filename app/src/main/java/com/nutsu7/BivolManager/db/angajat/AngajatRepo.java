@@ -57,16 +57,17 @@ public class AngajatRepo {
         appDB.angajatDao().deleteByID(id);
 
         List<Angajat> angajatList=appDB.angajatDao().getAll();
-        if(id==angajatList.size()) return;
-        int temp=id+1;
-        for(Angajat a:angajatList){
+        if(id!=angajatList.size()){
+            int temp=id+1;
+            for(Angajat a:angajatList){
 
-            if(a.getId()>id){
-                appDB.angajatDao().updateIDByID(temp, temp-1);
-                temp++;
+                if(a.getId()>id){
+                    appDB.angajatDao().updateIDByID(temp, temp-1);
+                    temp++;
+                }
             }
-
         }
+
 
         deleteZiByAngajatID(id);
     }
@@ -83,14 +84,14 @@ public class AngajatRepo {
     }
 
     public void deleteZiByAngajatID(int angajatID) {
+        if(appDB.ziAngajatDao().getZiAngajatByAngajatID(angajatID).isEmpty()) return;
         appDB.ziAngajatDao().deleteByAngajatID(angajatID);
-        int t = 0;
-        List<ZiAngajat> ziAngajatList = appDB.ziAngajatDao().getAll();
-        for (ZiAngajat ziAngajat : ziAngajatList) {
-            appDB.ziAngajatDao().updateIDByID(ziAngajat.getId(), t++);
-            if (ziAngajat.getAngajatID() > angajatID) {
-                appDB.ziAngajatDao().updateAngajatIDByAngajatID(ziAngajat.getAngajatID(), ziAngajat.getAngajatID() - 1);
-            }
+        List<ZiAngajat> ziAngajatList=appDB.ziAngajatDao().getAll();
+        int temp=0;
+        for(ZiAngajat a:ziAngajatList){
+            if(a.getAngajatID()>angajatID) a.setAngajatID(a.getAngajatID()-1);
+            appDB.ziAngajatDao().update(a);
+            appDB.ziAngajatDao().updateIDByID(a.getId(), temp++);
         }
     }
 

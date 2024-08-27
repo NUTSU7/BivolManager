@@ -27,11 +27,11 @@ public class ZiAngajatRepo {
 
     public List<ZiAngajat> getAngajatByZiID(int id){
         if(id<0) return null;
-        return appDB.ziAngajatDao().getAngajatByZiID(id);
+        return appDB.ziAngajatDao().getZiAngajatByZiID(id);
     }
     public List<ZiAngajat> getZiByAngajatID(int id){
         if(id<0) return null;
-        return appDB.ziAngajatDao().getZiByAngajatID(id);
+        return appDB.ziAngajatDao().getZiAngajatByAngajatID(id);
     }
 
     public void delete(ZiAngajat ziAngajat){

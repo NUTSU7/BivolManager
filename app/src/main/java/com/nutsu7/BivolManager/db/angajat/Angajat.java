@@ -80,20 +80,28 @@ public class Angajat {
         this.debt -= debt;
     }
 
+    public void decreaseTotalDays(int days) {
+        this.totalDays -= days;
+    }
+
+    public void decreaseTotalHours(int hours) {
+        this.totalHours -= debt;
+    }
+
     public int getTotalDays() {
         return totalDays;
     }
 
-    public void addTotalZile(int totalZile) {
-        this.totalDays += totalZile;
+    public void addTotalDays(int days) {
+        this.totalDays += days;
     }
 
     public int getTotalHours() {
         return totalHours;
     }
 
-    public void addTotalHours(int totalHours) {
-        this.totalHours += totalHours;
+    public void addTotalHours(int hours) {
+        this.totalHours += hours;
     }
 
 

@@ -43,10 +43,10 @@ public interface ZiAngajatDao {
     public ZiAngajat getByID(int id);
 
     @Query("SELECT * FROM ZiAngajat WHERE ziID=:id")
-    public List<ZiAngajat> getAngajatByZiID(int id);
+    public List<ZiAngajat> getZiAngajatByZiID(int id);
 
     @Query("SELECT * FROM ZiAngajat WHERE angajatID=:id")
-    public List<ZiAngajat> getZiByAngajatID(int id);
+    public List<ZiAngajat> getZiAngajatByAngajatID(int id);
 
     @Query("SELECT * FROM ZiAngajat WHERE ziID=:ziID AND angajatID=:angajatID")
     public ZiAngajat getByZiIDAndAngajatID(int ziID, int angajatID);

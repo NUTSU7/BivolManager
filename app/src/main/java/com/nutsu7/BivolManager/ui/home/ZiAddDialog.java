@@ -10,6 +10,7 @@ import android.text.format.DateUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,6 +56,7 @@ public class ZiAddDialog extends DialogFragment {
     private Integer hours;
     LocalDate date;
     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     Calendar calendar = Calendar.getInstance();
     String dateStr, month;
     Integer day, year;
@@ -94,13 +97,16 @@ public class ZiAddDialog extends DialogFragment {
             dateInputHours = dialog.findViewById(R.id.dateInputHours);
             dateChangeButton = dialog.findViewById(R.id.dateChangeButton);
             dateTextView = dialog.findViewById(R.id.dateTextView);
+
+            dateInputHours.getEditText().setImeOptions(EditorInfo.IME_ACTION_DONE);
             date = LocalDate.now();
-            dateStr = date.toString();
+            dateStr = date.format(formatters);
             dateTextView.setText(dateStr);
 
             String[] strings = dateStr.split("-");
             day = Integer.parseInt(strings[0]);
-            month = calendar.getDisplayName(Integer.parseInt(strings[1]), Calendar.LONG, new Locale("ro", "RO"));
+            String temp = Month.of(Integer.parseInt(strings[1])).getDisplayName(TextStyle.FULL, new Locale("ro", "RO"));
+            month = temp.substring(0, 1).toUpperCase() + temp.substring(1);
             year = Integer.parseInt(strings[2]);
 
 
@@ -150,7 +156,8 @@ public class ZiAddDialog extends DialogFragment {
                             dateTextView.setText(dateStr);
                             String[] strings = dateStr.split("-");
                             day = Integer.parseInt(strings[0]);
-                            month = Month.of(Integer.parseInt(strings[1])).getDisplayName(TextStyle.FULL, new Locale("ro", "RO"));
+                            String temp = Month.of(Integer.parseInt(strings[1])).getDisplayName(TextStyle.FULL, new Locale("ro", "RO"));
+                            month = temp.substring(0, 1).toUpperCase() + temp.substring(1);
                             year = Integer.parseInt(strings[2]);
                         }
                     });
