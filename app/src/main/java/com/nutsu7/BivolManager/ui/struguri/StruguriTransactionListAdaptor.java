@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nutsu7.BivolManager.R;
+import com.nutsu7.BivolManager.db.struguri.Struguri;
 import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.struguri.StruguriTransaction;
 import com.nutsu7.BivolManager.db.zi.Zi;
@@ -62,6 +63,9 @@ public class StruguriTransactionListAdaptor extends RecyclerView.Adapter<Strugur
         vh.struguriTranListImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Struguri struguri = struguriRepo.getByID(0);
+                struguri.addQuantityCurrent(struguriTransaction.getQuantity());
+                struguri.decQuantitySold(struguriTransaction.getQuantity());
                 struguriRepo.deleteTransaction(struguriRepo.getTransactionByID(vh.getAdapterPosition()));
                 updateList();
 

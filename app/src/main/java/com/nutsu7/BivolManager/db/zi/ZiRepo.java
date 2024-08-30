@@ -101,6 +101,16 @@ public class ZiRepo {
 
     public void deleteAngajatByZiID(int ziID){
         if(appDB.ziAngajatDao().getZiAngajatByZiID(ziID).isEmpty()) return;
+
+        List<ZiAngajat> ziAngajatList1=appDB.ziAngajatDao().getZiAngajatByZiID(ziID);
+        for(ZiAngajat ziAngajat:ziAngajatList1){
+            Angajat angajat = appDB.angajatDao().getByID(ziAngajat.getAngajatID());
+            angajat.decreaseTotalDays(1);
+            angajat.decreaseTotalHours(ziAngajat.getHours());
+            angajat.decreaseSalary(ziAngajat.getHours()*50);
+            appDB.angajatDao().update(angajat);
+        }
+
         appDB.ziAngajatDao().deleteByZiID(ziID);
         List<ZiAngajat> ziAngajatList=appDB.ziAngajatDao().getAll();
         int temp=0;

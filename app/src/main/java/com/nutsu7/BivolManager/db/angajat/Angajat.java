@@ -85,7 +85,7 @@ public class Angajat {
     }
 
     public void decreaseTotalHours(int hours) {
-        this.totalHours -= debt;
+        this.totalHours -= hours;
     }
 
     public int getTotalDays() {
