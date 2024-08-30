@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import com.nutsu7.BivolManager.db.AppDB;
 import com.nutsu7.BivolManager.db.angajat.Angajat;
 import com.nutsu7.BivolManager.db.relations.ZiAngajat;
+import com.nutsu7.BivolManager.db.struguri.Struguri;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,10 @@ public class ZiRepo {
         int id=zi.getId();
 
         appDB.ziDao().deleteByID(id);
+        
+        Struguri struguri = appDB.struguriDao().getByID(0);
+        struguri.decDaysWorked(1);
+        appDB.struguriDao().update(struguri);
 
         List<Zi> ziList=appDB.ziDao().getAll();
         if(id!=ziList.size()){
