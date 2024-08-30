@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.nutsu7.BivolManager.databinding.FragmentStruguriPagerBinding;
 
 import java.util.ArrayList;
@@ -17,7 +19,8 @@ import java.util.List;
 public class StruguriPagerFragment extends Fragment {
 
     private FragmentStruguriPagerBinding binding;
-    private List<Fragment> fragmentList = new ArrayList<Fragment>();;
+    private List<Fragment> fragmentList = new ArrayList<Fragment>();
+    private List<String> fragmentNameList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -31,8 +34,16 @@ public class StruguriPagerFragment extends Fragment {
         fragmentList.add(StruguriFragment.newInstance());
         fragmentList.add(StruguriTransactionFragment.newInstance());
 
+        fragmentNameList.add("Statistica");
+        fragmentNameList.add("Tranzactii");
+
         StruguriPagerAdapter struguriPagerAdapter = new StruguriPagerAdapter(getChildFragmentManager(), getLifecycle(), fragmentList);
         binding.struguriPager.setAdapter(struguriPagerAdapter);
+
+        new TabLayoutMediator(binding.struguriPagerTabLayout, binding.struguriPager,
+                (tab, position) ->
+                        tab.setText(fragmentNameList.get(position))
+        ).attach();
 
 
         return root;
