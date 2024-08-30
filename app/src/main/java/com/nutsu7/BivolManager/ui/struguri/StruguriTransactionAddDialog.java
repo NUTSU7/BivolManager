@@ -21,6 +21,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.nutsu7.BivolManager.R;
+import com.nutsu7.BivolManager.db.struguri.Struguri;
 import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.struguri.StruguriTransaction;
 import com.nutsu7.BivolManager.db.zi.Zi;
@@ -161,6 +162,13 @@ public class StruguriTransactionAddDialog extends DialogFragment {
                     month,
                     year);
             struguriRepo.insert(struguriTransaction);
+
+            //Add safety check to not exceed the current quantity and the harvested quantity
+
+            Struguri struguri = struguriRepo.getByID(0);
+            struguri.decQuantityCurrent(quantity);
+            struguri.addQuantitySold(quantity);
+            struguriRepo.update(struguri);
 
             dialog.dismiss();
             RecyclerView rv = getActivity().findViewById(R.id.struguriTranListRV);

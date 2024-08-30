@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputLayout;
@@ -28,6 +30,8 @@ import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.db.angajat.Angajat;
 import com.nutsu7.BivolManager.db.angajat.AngajatRepo;
 import com.nutsu7.BivolManager.db.relations.ZiAngajat;
+import com.nutsu7.BivolManager.db.struguri.Struguri;
+import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.zi.Zi;
 import com.nutsu7.BivolManager.db.zi.ZiRepo;
 
@@ -49,9 +53,13 @@ public class ZiAddDialog extends DialogFragment {
     private RecyclerView rv;
     private ZiAngajatListAdaptor ziAngajatListAdaptor;
     private MaterialButton dateChangeButton;
+    private MaterialCheckBox rosiiCheckBox;
+    private MaterialCheckBox struguriCheckBox;
+    private TextInputLayout quantityInput;
 
     private ZiRepo ziRepo;
     private AngajatRepo angajatRepo;
+    private StruguriRepo struguriRepo;
     private Integer hours;
     private LocalDate date;
     private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -89,12 +97,16 @@ public class ZiAddDialog extends DialogFragment {
         if(dialog!=null){
             ziRepo=new ZiRepo(getContext());
             angajatRepo= new AngajatRepo(getContext());
+            struguriRepo = new StruguriRepo(getContext());
 
             rv = dialog.findViewById(R.id.dateAngListRV);
             dateInputInfo = dialog.findViewById(R.id.dateInputInfo);
             dateInputHours = dialog.findViewById(R.id.dateInputHours);
             dateChangeButton = dialog.findViewById(R.id.dateChangeButton);
             dateTextView = dialog.findViewById(R.id.dateTextView);
+            rosiiCheckBox = dialog.findViewById(R.id.rosiiCheckBox);
+            struguriCheckBox = dialog.findViewById(R.id.struguriCheckBox);
+            quantityInput = dialog.findViewById(R.id.quantityInput);
 
             dateInputHours.getEditText().setImeOptions(EditorInfo.IME_ACTION_DONE);
             date = LocalDate.now();
@@ -107,6 +119,7 @@ public class ZiAddDialog extends DialogFragment {
             month = temp.substring(0, 1).toUpperCase() + temp.substring(1);
             year = Integer.parseInt(strings[2]);
 
+            quantityInput.setEnabled(false);
 
             rv.setAdapter(new ZiAngajatListAdaptor(requireActivity()));
             ziAngajatListAdaptor= (ZiAngajatListAdaptor)rv.getAdapter();
@@ -161,18 +174,68 @@ public class ZiAddDialog extends DialogFragment {
                     });
                 }
             });
+
+            rosiiCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked && struguriCheckBox.isChecked()){
+                        rosiiCheckBox.setChecked(false);
+                        Toast.makeText(getContext(),"Struguri este selectat", Toast.LENGTH_SHORT).show();
+                    }
+                    if(isChecked){
+                        quantityInput.setEnabled(true);
+                    }
+                    else quantityInput.setEnabled(false);
+                }
+            });
+            struguriCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked && rosiiCheckBox.isChecked()){
+                        struguriCheckBox.setChecked(false);
+                        Toast.makeText(getContext(),"Rosii este selectat", Toast.LENGTH_SHORT).show();
+                    }
+                    if(isChecked){
+                        quantityInput.setEnabled(true);
+                    }
+                    else quantityInput.setEnabled(false);
+                }
+            });
         }
     }
     private void handleData(AlertDialog dialog){
 
-        Integer hr=0;
-        String info="";
+        Integer hr=0, kg=0;
+        String info="", work="";
         if(dateInputHours.getEditText().length()!=0) hr=Integer.parseInt(dateInputHours.getEditText().getText().toString().trim());
         if(dateInputInfo.getEditText().length()!=0) info=dateInputInfo.getEditText().getText().toString();
 
+        if(quantityInput.isEnabled()){
+            if(quantityInput.getEditText().length()==0) {
+                quantityInput.setError("Incomplet");
+                return;
+            }
+
+            kg=Integer.parseInt(quantityInput.getEditText().getText().toString().trim());
+            if(rosiiCheckBox.isChecked()){
+                work="Rosii";
+            }
+            else if(struguriCheckBox.isChecked()){
+                work="Struguri";
+            }
+        }
+
         if(checkInput(hr, info)){
-            Zi zi = new Zi(ziRepo.getAll().size(), day, month, year, info, hr);
+            Zi zi = new Zi(ziRepo.getAll().size(), day, month, year, info, hr, work, kg);
             ziRepo.insert(zi);
+
+            if(work=="Struguri"){
+                Struguri struguri=struguriRepo.getByID(0);
+                struguri.addDaysWorked(1);
+                struguri.addQuantityHarvested(kg);
+                struguri.addQuantityCurrent(kg);
+                struguriRepo.update(struguri);
+            }
 
             List<List<Integer>> angajatRVList = ziAngajatListAdaptor.getAngajatList();
             List<Pair<Integer,Integer>> angajatList = new ArrayList<>();
