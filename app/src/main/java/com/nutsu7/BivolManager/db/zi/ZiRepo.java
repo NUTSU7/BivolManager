@@ -52,10 +52,12 @@ public class ZiRepo {
         int id=zi.getId();
 
         appDB.ziDao().deleteByID(id);
-        
-        Struguri struguri = appDB.struguriDao().getByID(0);
-        struguri.decDaysWorked(1);
-        appDB.struguriDao().update(struguri);
+
+        if(zi.getWork()=="Struguri"){
+            Struguri struguri = appDB.struguriDao().getByID(0);
+            struguri.decDaysWorked(1);
+            appDB.struguriDao().update(struguri);
+        }
 
         List<Zi> ziList=appDB.ziDao().getAll();
         if(id!=ziList.size()){
