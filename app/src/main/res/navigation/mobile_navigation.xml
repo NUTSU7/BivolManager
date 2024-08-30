@@ -74,7 +74,7 @@
     <fragment
         android:id="@+id/navigation_struguriTransactionStats"
         android:name="com.nutsu7.BivolManager.ui.struguri.StruguriTransactionStatsFragment"
-        android:label="@string/title_zi_stats"
+        android:label="@string/title_struguri_transaction"
         tools:layout="@layout/fragment_struguri_transaction_stats" />
 
 </navigation>

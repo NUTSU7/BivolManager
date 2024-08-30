@@ -6,6 +6,7 @@
     <string name="title_angajat_stats">Angajat Stats</string>
     <string name="title_zi_stats">Zi Stats</string>
     <string name="title_struguri">Struguri</string>
+    <string name="title_struguri_transaction">Tranzactii Struguri</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

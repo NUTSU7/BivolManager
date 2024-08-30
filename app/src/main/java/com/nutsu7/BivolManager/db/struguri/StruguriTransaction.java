@@ -46,6 +46,7 @@ public class StruguriTransaction {
         this.day = day;
         this.month = month;
         this.year = year;
+        this.netQuant=quantity-(paletteNr*10);
     }
 
     public int getId() {
