@@ -55,7 +55,7 @@ public class StruguriTransactionListAdaptor extends RecyclerView.Adapter<Strugur
                 NavController navController = Navigation.findNavController(v);
                 Bundle arg = new Bundle();
                 arg.putInt("transactionID", struguriTransaction.getId());
-                navController.navigate(R.id.action_navigation_zi_to_navigation_ziStats, arg);
+                navController.navigate(R.id.action_navigation_struguriTransaction_to_navigation_struguriTransactionStats, arg);
             }
         });
 

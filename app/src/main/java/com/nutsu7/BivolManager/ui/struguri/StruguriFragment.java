@@ -41,7 +41,6 @@ public class StruguriFragment extends Fragment{
 
         binding.struguriDays.setText(String.valueOf(struguriViewModel.getDaysWorked()));
 
-
         return root;
     }
 

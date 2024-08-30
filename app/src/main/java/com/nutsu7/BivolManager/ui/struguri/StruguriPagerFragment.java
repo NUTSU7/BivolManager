@@ -18,7 +18,6 @@ import java.util.List;
 public class StruguriPagerFragment extends Fragment {
 
     private FragmentStruguriPagerBinding binding;
-    private List<Fragment> fragmentList = new ArrayList<Fragment>();
     private List<String> fragmentNameList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,15 +29,12 @@ public class StruguriPagerFragment extends Fragment {
         View root = binding.getRoot();
 
 
-        fragmentList.add(StruguriFragment.newInstance());
-        fragmentList.add(StruguriTransactionFragment.newInstance());
 
         fragmentNameList.add("Statistica");
         fragmentNameList.add("Tranzactii");
 
-        StruguriPagerAdapter struguriPagerAdapter = new StruguriPagerAdapter(getChildFragmentManager(), getLifecycle(), fragmentList);
+        StruguriPagerAdapter struguriPagerAdapter = new StruguriPagerAdapter(getChildFragmentManager(), getLifecycle());
         binding.struguriPager.setAdapter(struguriPagerAdapter);
-
         new TabLayoutMediator(binding.struguriPagerTabLayout, binding.struguriPager,
                 (tab, position) ->
                         tab.setText(fragmentNameList.get(position))
@@ -53,4 +49,5 @@ public class StruguriPagerFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

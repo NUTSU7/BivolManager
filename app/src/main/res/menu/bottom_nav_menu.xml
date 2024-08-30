@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_angajat_white"
         android:title="@string/title_angajat" />
     <item
-        android:id="@+id/navigation_struguri"
+        android:id="@+id/navigation_struguriPager"
         android:icon="@drawable/ic_struguri_black"
         android:title="@string/title_struguri" />
     <item

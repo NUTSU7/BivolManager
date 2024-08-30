@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.struguri.StruguriTransactionStatsFragment">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/struguriTranStatsDateCardView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/struguriTranStatsBuyerCardView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary40"
+        app:cardCornerRadius="15dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/struguriTranStatsIconImgView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                app:layout_constraintEnd_toStartOf="@+id/struguriTranStatsDate"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:srcCompat="@drawable/ic_struguri_white" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriTranStatsDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/struguriTranStatsIconImgView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_toEndOf="@id/struguriTranStatsIconImgView"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/struguriTranStatsBuyerCardView"
+        app:layout_constraintTop_toBottomOf="@+id/struguriTranStatsDateCardView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/struguriTranStatsQuantityCardView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        android:layout_below="@id/struguriTranStatsDateCardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_weight="1"
+                android:id="@+id/struguriTranStatsBuyerTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/struguriTranStatsBuyer"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:text="Cumparator"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_weight="1"
+                android:id="@+id/struguriTranStatsBuyer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/struguriTranStatsBuyerTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/struguriTranStatsQuantityCardView"
+        app:layout_constraintTop_toBottomOf="@+id/struguriTranStatsBuyerCardView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/struguriTranStatsPriceCardView"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        android:layout_below="@id/struguriTranStatsBuyerCardView">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/struguriTranStatsQuantityLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriTranStatsQuantityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/struguriTranStatsQuantity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/struguriTranStatsNetQuantityTextView"
+                android:textAlignment="center"
+                android:text="Cantitate"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriTranStatsQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/struguriTranStatsQuantityTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/struguriTranStatsNetQuantity"
+                app:layout_constraintVertical_chainStyle="spread"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriTranStatsNetQuantityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/struguriTranStatsNetQuantity"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@+id/struguriTranStatsQuantityTextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:text="Net Cantitate"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriTranStatsNetQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/struguriTranStatsNetQuantityTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/struguriTranStatsQuantity"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/struguriTranStatsPriceCardView"
+        app:layout_constraintTop_toBottomOf="@+id/struguriTranStatsQuantityCardView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        android:layout_below="@id/struguriTranStatsBuyerCardView">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/struguriTranStatsPriceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriTranStatsPriceTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/struguriTranStatsPrice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/struguriTranStatsPriceNCTextView"
+                android:textAlignment="center"
+                android:text="Pret"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriTranStatsPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/struguriTranStatsPriceTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/struguriTranStatsPriceNC"
+                app:layout_constraintVertical_chainStyle="spread"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriTranStatsPriceNCTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/struguriTranStatsPriceNC"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@+id/struguriTranStatsPriceTextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:text="Pret fara check"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriTranStatsPriceNC"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/struguriTranStatsPriceNCTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/struguriTranStatsPrice"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/struguriTranStatsPaletteNRCardView"
+        app:layout_constraintTop_toBottomOf="@+id/struguriTranStatsPriceCardView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_weight="1"
+                android:id="@+id/struguriTranStatsPaletteNRTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/struguriTranStatsPaletteNR"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:text="Nr. paleti"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_weight="1"
+                android:id="@+id/struguriTranStatsPaletteNR"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/struguriTranStatsPaletteNRTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+    
+
+</androidx.constraintlayout.widget.ConstraintLayout>
