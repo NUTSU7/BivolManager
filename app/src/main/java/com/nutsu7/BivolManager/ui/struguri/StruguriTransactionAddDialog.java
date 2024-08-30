@@ -1,16 +1,12 @@
-package com.nutsu7.BivolManager.ui.home;
+package com.nutsu7.BivolManager.ui.struguri;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.format.DateUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -25,11 +21,10 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.nutsu7.BivolManager.R;
-import com.nutsu7.BivolManager.db.angajat.Angajat;
-import com.nutsu7.BivolManager.db.angajat.AngajatRepo;
-import com.nutsu7.BivolManager.db.relations.ZiAngajat;
+import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
+import com.nutsu7.BivolManager.db.struguri.StruguriTransaction;
 import com.nutsu7.BivolManager.db.zi.Zi;
-import com.nutsu7.BivolManager.db.zi.ZiRepo;
+import com.nutsu7.BivolManager.ui.home.ZiListAdaptor;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,21 +33,19 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class ZiAddDialog extends DialogFragment {
-    private TextInputLayout dateInputInfo;
-    private TextInputLayout dateInputHours;
-    private MaterialTextView dateTextView;
-    private RecyclerView rv;
-    private ZiAngajatListAdaptor ziAngajatListAdaptor;
-    private MaterialButton dateChangeButton;
+public class StruguriTransactionAddDialog extends DialogFragment {
+    private MaterialTextView struguriTranDateTextView;
+    private TextInputLayout struguriTranBuyerInput;
+    private TextInputLayout struguriTranQuantityInput;
+    private TextInputLayout struguriTranPaletteNrInput;
+    private TextInputLayout struguriTranPriceInput;
+    private TextInputLayout struguriTranPriceNoReceiptInput;
+    private MaterialButton struguriTranDateChangeButton;
 
-    private ZiRepo ziRepo;
-    private AngajatRepo angajatRepo;
-    private Integer hours;
+    private StruguriRepo struguriRepo;
     private LocalDate date;
     private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -65,11 +58,11 @@ public class ZiAddDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_zi_add, null);
+        View view = inflater.inflate(R.layout.dialog_struguri_tran_add, null);
 
 
         builder.setView(view)
-                .setTitle("Adauga Zi")
+                .setTitle("Adauga tranzactie")
                 .setNegativeButton("Anulare", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -87,19 +80,20 @@ public class ZiAddDialog extends DialogFragment {
 
         AlertDialog dialog = (AlertDialog) getDialog();
         if(dialog!=null){
-            ziRepo=new ZiRepo(getContext());
-            angajatRepo= new AngajatRepo(getContext());
 
-            rv = dialog.findViewById(R.id.dateAngListRV);
-            dateInputInfo = dialog.findViewById(R.id.dateInputInfo);
-            dateInputHours = dialog.findViewById(R.id.dateInputHours);
-            dateChangeButton = dialog.findViewById(R.id.dateChangeButton);
-            dateTextView = dialog.findViewById(R.id.dateTextView);
+            struguriRepo= new StruguriRepo(getContext());
 
-            dateInputHours.getEditText().setImeOptions(EditorInfo.IME_ACTION_DONE);
+            struguriTranDateTextView = dialog.findViewById(R.id.struguriTranDateTextView);
+            struguriTranBuyerInput = dialog.findViewById(R.id.struguriTranBuyerInput);
+            struguriTranQuantityInput = dialog.findViewById(R.id.struguriTranQuantityInput);
+            struguriTranPaletteNrInput = dialog.findViewById(R.id.struguriTranPaletteNrInput);
+            struguriTranPriceInput = dialog.findViewById(R.id.struguriTranPriceInput);
+            struguriTranPriceNoReceiptInput = dialog.findViewById(R.id.struguriTranPriceNoReceiptInput);
+            struguriTranDateChangeButton = dialog.findViewById(R.id.struguriTranDateChangeButton);
+
             date = LocalDate.now();
             dateStr = date.format(formatters);
-            dateTextView.setText(dateStr);
+            struguriTranDateTextView.setText(dateStr);
 
             String[] strings = dateStr.split("-");
             day = Integer.parseInt(strings[0]);
@@ -107,9 +101,6 @@ public class ZiAddDialog extends DialogFragment {
             month = temp.substring(0, 1).toUpperCase() + temp.substring(1);
             year = Integer.parseInt(strings[2]);
 
-
-            rv.setAdapter(new ZiAngajatListAdaptor(requireActivity()));
-            ziAngajatListAdaptor= (ZiAngajatListAdaptor)rv.getAdapter();
             Button positiveButton = (Button) dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             positiveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -118,24 +109,7 @@ public class ZiAddDialog extends DialogFragment {
                 }
             });
 
-
-            dateInputHours.getEditText().addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    if(dateInputHours.getEditText().length()!=0) {
-                        hours=Integer.parseInt(dateInputHours.getEditText().getText().toString().trim());
-                        ziAngajatListAdaptor.updateHours(hours);
-                    }
-                }
-            });
-
-            dateChangeButton.setOnClickListener(new Button.OnClickListener() {
+            struguriTranDateChangeButton.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     MaterialDatePicker<Long> materialDatePicker = MaterialDatePicker
@@ -151,7 +125,7 @@ public class ZiAddDialog extends DialogFragment {
                         @Override
                         public void onPositiveButtonClick(Long selection) {
                             dateStr = dateFormat.format(selection);
-                            dateTextView.setText(dateStr);
+                            struguriTranDateTextView.setText(dateStr);
                             String[] strings = dateStr.split("-");
                             day = Integer.parseInt(strings[0]);
                             String temp = Month.of(Integer.parseInt(strings[1])).getDisplayName(TextStyle.FULL, new Locale("ro", "RO"));
@@ -163,56 +137,65 @@ public class ZiAddDialog extends DialogFragment {
             });
         }
     }
+
     private void handleData(AlertDialog dialog){
+        String buyer="";
+        Integer quantity=0, paletteNr=0, price=0, priceNoReceipt=0;
 
-        Integer hr=0;
-        String info="";
-        if(dateInputHours.getEditText().length()!=0) hr=Integer.parseInt(dateInputHours.getEditText().getText().toString().trim());
-        if(dateInputInfo.getEditText().length()!=0) info=dateInputInfo.getEditText().getText().toString();
+        if(struguriTranBuyerInput.getEditText().length()!=0) buyer=struguriTranBuyerInput.getEditText().getText().toString().trim();
+        if(struguriTranQuantityInput.getEditText().length()!=0) quantity=Integer.parseInt(struguriTranQuantityInput.getEditText().getText().toString());
+        if(struguriTranPaletteNrInput.getEditText().length()!=0) paletteNr=Integer.parseInt(struguriTranPaletteNrInput.getEditText().getText().toString());
+        if(struguriTranPriceInput.getEditText().length()!=0) price=Integer.parseInt(struguriTranPriceInput.getEditText().getText().toString());
+        if(struguriTranPriceNoReceiptInput.getEditText().length()!=0) priceNoReceipt=Integer.parseInt(struguriTranPriceNoReceiptInput.getEditText().getText().toString());
 
-        if(checkInput(hr, info)){
-            Zi zi = new Zi(ziRepo.getAll().size(), day, month, year, info, hr);
-            ziRepo.insert(zi);
 
-            List<List<Integer>> angajatRVList = ziAngajatListAdaptor.getAngajatList();
-            List<Pair<Integer,Integer>> angajatList = new ArrayList<>();
 
-            for(int i=0; i<angajatRVList.size(); i++){
-                if(angajatRVList.get(i).get(2)==1) {
-                    angajatList.add(new Pair<>(angajatRVList.get(i).get(0), angajatRVList.get(i).get(1)));
-                }
-            }
-           ziRepo.insertAngajati(zi.getId(), angajatList);
+        if(checkInput(buyer, quantity, paletteNr, price, priceNoReceipt)){
+            StruguriTransaction struguriTransaction = new StruguriTransaction(struguriRepo.getAllTransaction().size(),
+                    buyer,
+                    quantity,
+                    paletteNr,
+                    price,
+                    priceNoReceipt,
+                    day,
+                    month,
+                    year);
+            struguriRepo.insert(struguriTransaction);
 
             dialog.dismiss();
-            RecyclerView rv1 = getActivity().findViewById(R.id.ziListRV);
-            ZiListAdaptor adaptor1 = (ZiListAdaptor) rv1.getAdapter();
-            adaptor1.updateList();
-            adaptor1.notifyItemInserted(zi.getId());
+            RecyclerView rv = getActivity().findViewById(R.id.struguriTranListRV);
+            StruguriTransactionListAdaptor adaptor = (StruguriTransactionListAdaptor) rv.getAdapter();
+            adaptor.updateList();
+            adaptor.notifyItemInserted(struguriTransaction.getId());
             Toast.makeText(getContext(),"Zi adaugata", Toast.LENGTH_SHORT).show();
 
         }
     }
 
-    private boolean checkInput(Integer hr, String info) {
+    private boolean checkInput(String buyer, Integer quantity, Integer paletteNr, Integer price, Integer priceNoReceipt) {
         boolean ans=true;
-        if (hr == null) {
-            dateInputHours.setError("Pune orele");
+        if (buyer == null || buyer.isEmpty()) {
+            struguriTranDateTextView.setError("Cumparator invalid");
             ans=false;
         }
 
-        if (hr >24) {
-            dateInputHours.setError("Prea multe ore intr-o zi");
+        if (quantity==0) {
+            struguriTranQuantityInput.setError("Cantitatea lipseste");
             ans=false;
         }
 
-        if(info.length()>70) {
-            dateInputInfo.setError("Prea multa informatie");
+        if(paletteNr==0) {
+            struguriTranPaletteNrInput.setError("Numatul de paleti lipseste");
+            ans=false;
+        }
+
+        if(price==0 && priceNoReceipt==0) {
+            struguriTranPriceInput.setError("Pretul lipseste");
+            struguriTranPriceNoReceiptInput.setError("Pretul lipseste");
             ans=false;
         }
 
 
         return ans;
     }
-
 }

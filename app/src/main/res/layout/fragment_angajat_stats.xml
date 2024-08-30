@@ -242,7 +242,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Datorie"
-        app:icon="@drawable/ic_angajat_add"
+        app:icon="@drawable/ic_add"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/angajatPayFBA"

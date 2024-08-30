@@ -1,0 +1,86 @@
+package com.nutsu7.BivolManager.ui.struguri;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.nutsu7.BivolManager.R;
+import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
+import com.nutsu7.BivolManager.db.struguri.StruguriTransaction;
+import com.nutsu7.BivolManager.db.zi.Zi;
+import com.nutsu7.BivolManager.ui.home.ZiListAdaptor;
+
+import java.util.List;
+
+public class StruguriTransactionListAdaptor extends RecyclerView.Adapter<StruguriTransactionListAdaptor.StruguriTransactionViewHolder> {
+    private List<StruguriTransaction> struguriTransactionList;
+    private Context context;
+    private StruguriRepo struguriRepo;
+
+    public StruguriTransactionListAdaptor(Context context){
+        this.context=context;
+        this.struguriRepo = new StruguriRepo(context);
+        updateList();
+    }
+
+    public void updateList(){struguriTransactionList=struguriRepo.getAllTransaction();}
+
+    @NonNull
+    @Override
+    public StruguriTransactionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_struguri_transaction,parent,false);
+
+        return new StruguriTransactionViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull StruguriTransactionListAdaptor.StruguriTransactionViewHolder holder, int position) {
+        StruguriTransactionViewHolder vh= (StruguriTransactionViewHolder) holder;
+        StruguriTransaction struguriTransaction = struguriTransactionList.get(vh.getAdapterPosition());
+        vh.struguriTranListTextView.setText(struguriTransaction.getDay() + " " + struguriTransaction.getMonth()+" "+struguriTransaction.getYear());
+
+        vh.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                NavController navController = Navigation.findNavController(v);
+                Bundle arg = new Bundle();
+                arg.putInt("transactionID", struguriTransaction.getId());
+                navController.navigate(R.id.action_navigation_zi_to_navigation_ziStats, arg);
+            }
+        });
+
+        vh.struguriTranListImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                struguriRepo.deleteTransaction(struguriRepo.getTransactionByID(vh.getAdapterPosition()));
+                updateList();
+
+                notifyItemRemoved(vh.getAdapterPosition());
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return struguriTransactionList.size();
+    }
+
+    public static class StruguriTransactionViewHolder extends RecyclerView.ViewHolder{
+        private final TextView struguriTranListTextView;
+        private final ImageButton struguriTranListImageButton;
+        public StruguriTransactionViewHolder(@NonNull View itemView){
+            super(itemView);
+            struguriTranListTextView = itemView.findViewById(R.id.struguriTranListTextView);
+            struguriTranListImageButton = itemView.findViewById(R.id.struguriTranDeleteBtn);
+        }
+    }
+}

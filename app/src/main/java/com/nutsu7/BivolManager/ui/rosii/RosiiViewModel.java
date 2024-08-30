@@ -1,4 +1,4 @@
-package com.nutsu7.BivolManager.ui.Rosii;
+package com.nutsu7.BivolManager.ui.rosii;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

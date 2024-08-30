@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/navigation_rosii"
-        android:name="com.nutsu7.BivolManager.ui.Rosii.RosiiFragment"
+        android:name="com.nutsu7.BivolManager.ui.rosii.RosiiFragment"
         android:label="@string/title_rosii"
         tools:layout="@layout/fragment_rosii" />
 
@@ -57,7 +57,7 @@
 
     <fragment
         android:id="@+id/navigation_struguri"
-        android:name="com.nutsu7.BivolManager.ui.struguri.StruguriFragment"
+        android:name="com.nutsu7.BivolManager.ui.struguri.StruguriPagerFragment"
         android:label="@string/title_struguri"
         tools:layout="@layout/fragment_angajat" />
 </navigation>

@@ -6,17 +6,193 @@
     android:layout_height="match_parent"
     tools:context=".ui.struguri.StruguriFragment">
 
-    <TextView
-        android:id="@+id/text_struguri"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/struguriNameCardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary40"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/struguriIconImgView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_struguri_white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/struguriQuantityCardView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/struguriNameCardView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/struguriDaysCardView"
+        app:layout_constraintTop_toBottomOf="@+id/struguriNameCardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriCurrQuantityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cantitatea curenta"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/struguriHarvestedQuantityTextView"
+                app:layout_constraintEnd_toStartOf="@+id/struguriCurrQuantity"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriCurrQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintVertical_chainStyle="spread"
+                app:layout_constraintBottom_toTopOf="@+id/struguriHarvestedQuantity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/struguriCurrQuantityTextView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriHarvestedQuantityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cantitatea culeasa"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/struguriSoldQuantityTextView"
+                app:layout_constraintEnd_toStartOf="@+id/struguriHarvestedQuantity"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/struguriCurrQuantityTextView"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriHarvestedQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/struguriSoldQuantity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/struguriHarvestedQuantityTextView"
+                app:layout_constraintTop_toBottomOf="@+id/struguriCurrQuantity" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriSoldQuantityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cantitatea vanduta"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/struguriSoldQuantity"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/struguriHarvestedQuantityTextView"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriSoldQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/struguriSoldQuantityTextView"
+                app:layout_constraintTop_toBottomOf="@+id/struguriHarvestedQuantity" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/struguriDaysCardView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/struguriQuantityCardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/struguriDaysLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriDaysTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Zile"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/struguriDays"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriDays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/struguriDaysTextView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
