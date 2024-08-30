@@ -33,7 +33,7 @@
                 app:layout_constraintVertical_chainStyle="packed"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:srcCompat="@drawable/ic_angajat_icon" />
+                app:srcCompat="@drawable/ic_angajat_white" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/angajatName"

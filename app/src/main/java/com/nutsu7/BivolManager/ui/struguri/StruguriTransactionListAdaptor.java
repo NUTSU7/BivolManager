@@ -46,7 +46,8 @@ public class StruguriTransactionListAdaptor extends RecyclerView.Adapter<Strugur
     public void onBindViewHolder(@NonNull StruguriTransactionListAdaptor.StruguriTransactionViewHolder holder, int position) {
         StruguriTransactionViewHolder vh= (StruguriTransactionViewHolder) holder;
         StruguriTransaction struguriTransaction = struguriTransactionList.get(vh.getAdapterPosition());
-        vh.struguriTranListTextView.setText(struguriTransaction.getDay() + " " + struguriTransaction.getMonth()+" "+struguriTransaction.getYear());
+        vh.struguriTranListTextView.setText(struguriTransaction.getDay() + " " + struguriTransaction.getMonth());
+        vh.struguriTranListTextView2.setText(struguriTransaction.getBuyer());
 
         vh.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -76,10 +77,12 @@ public class StruguriTransactionListAdaptor extends RecyclerView.Adapter<Strugur
 
     public static class StruguriTransactionViewHolder extends RecyclerView.ViewHolder{
         private final TextView struguriTranListTextView;
+        private final TextView struguriTranListTextView2;
         private final ImageButton struguriTranListImageButton;
         public StruguriTransactionViewHolder(@NonNull View itemView){
             super(itemView);
             struguriTranListTextView = itemView.findViewById(R.id.struguriTranListTextView);
+            struguriTranListTextView2 = itemView.findViewById(R.id.struguriTranListTextView2);
             struguriTranListImageButton = itemView.findViewById(R.id.struguriTranDeleteBtn);
         }
     }
