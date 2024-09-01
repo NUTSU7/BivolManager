@@ -179,7 +179,8 @@ public class StruguriTransactionAddDialog extends DialogFragment {
             Struguri struguri = struguriRepo.getByID(0);
             struguri.decQuantityCurrent(quantity+quantityNR);
             struguri.addQuantitySold(quantity+quantityNR);
-            struguri.addMoneyTotal((quantity*price)+(quantityNR*priceNoReceipt));
+            struguri.addMoneyTotal(quantity*price);
+            struguri.addMoneyNRTotal(quantityNR*priceNoReceipt);
             struguriRepo.update(struguri);
 
 

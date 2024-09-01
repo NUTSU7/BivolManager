@@ -53,6 +53,9 @@ public class StruguriFragment extends Fragment{
         binding.struguriHarvestedQuantity.setText(String.valueOf(struguriViewModel.getQuantityHarvested()));
         binding.struguriSoldQuantity.setText(String.valueOf(struguriViewModel.getQuantitySold()));
 
+        binding.struguriMoney.setText(String.valueOf(struguriViewModel.getMoneyTotal()));
+        binding.struguriMoneyNR.setText(String.valueOf(struguriViewModel.getMoneyNRTotal()));
+
         binding.struguriDays.setText(String.valueOf(struguriViewModel.getDaysWorked()));
     }
 

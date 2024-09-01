@@ -34,6 +34,14 @@ public class StruguriViewModel extends ViewModel {
         return struguri.getDaysWorked();
     }
 
+    public int getMoneyTotal(){
+        return struguri.getMoneyTotal();
+    }
+
+    public int getMoneyNRTotal(){
+        return struguri.getMoneyNRTotal();
+    }
+
     public LiveData<Struguri> getStruguriLiveData(){ return struguriLiveData; }
 
 

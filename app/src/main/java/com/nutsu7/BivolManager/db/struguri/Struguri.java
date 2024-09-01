@@ -24,6 +24,9 @@ public class Struguri {
     @ColumnInfo(name = "moneyTotal")
     public int moneyTotal;
 
+    @ColumnInfo(name = "moneyNRTotal")
+    public int moneyNRTotal;
+
     public Struguri() {
         this.id = 0;
         this.quantityCurrent = 0;
@@ -31,6 +34,7 @@ public class Struguri {
         this.quantitySold = 0;
         this.daysWorked = 0;
         this.moneyTotal = 0;
+        this.moneyNRTotal = 0;
     }
 
     public int getId() {
@@ -99,6 +103,18 @@ public class Struguri {
 
     public void decMoneyTotal(int moneyTotal) {
         this.moneyTotal -= moneyTotal;
+    }
+
+    public int getMoneyNRTotal() {
+        return moneyNRTotal;
+    }
+
+    public void addMoneyNRTotal(int moneyNRTotal) {
+        this.moneyNRTotal += moneyNRTotal;
+    }
+
+    public void decMoneyNRTotal(int moneyNRTotal) {
+        this.moneyNRTotal -= moneyNRTotal;
     }
 
 
