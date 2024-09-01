@@ -30,6 +30,7 @@ public class ZiAngajatListAdaptor extends RecyclerView.Adapter<ZiAngajatListAdap
     private AngajatRepo angajatRepo;
     private static List<List<Integer>> angajatListChecked;
     private static Integer hours=0;
+    List<ZiAngajatViewHolder> viewHolders = new ArrayList<>();
 
 
     public ZiAngajatListAdaptor(Context context) {
@@ -59,6 +60,7 @@ public class ZiAngajatListAdaptor extends RecyclerView.Adapter<ZiAngajatListAdap
     public void onBindViewHolder(@NonNull ZiAngajatViewHolder holder, int position) {
 
         ZiAngajatViewHolder vh= holder;
+        viewHolders.add(holder);
         Angajat angajat = angajatList.get(vh.getAdapterPosition());
         vh.ziAngListTextView.setText(angajat.getSurname() + " " + angajat.getName());
         vh.ziAngInputHours.getEditText().setImeOptions(EditorInfo.IME_ACTION_DONE);
@@ -68,10 +70,11 @@ public class ZiAngajatListAdaptor extends RecyclerView.Adapter<ZiAngajatListAdap
             @Override
             public void onCheckedStateChangedListener(@NonNull MaterialCheckBox checkBox, int state) {
                 if(state==1){
-                    vh.ziAngInputHours.getEditText().setText(String.valueOf(hours));
+
                     vh.ziAngInputHours.setVisibility(View.VISIBLE);
-                    List<Integer> temp = angajatListChecked.get(vh.getAdapterPosition());
-                    angajatListChecked.set(vh.getAdapterPosition(), Arrays.asList(temp.get(0), hours, 1));
+                    //List<Integer> temp = angajatListChecked.get(vh.getAdapterPosition());
+                    angajatListChecked.set(vh.getAdapterPosition(), Arrays.asList(vh.getAdapterPosition(), hours, 1));
+                    vh.ziAngInputHours.getEditText().setText(String.valueOf(hours));
                 }
                 else {
                     vh.ziAngInputHours.setVisibility(View.INVISIBLE);
@@ -105,8 +108,20 @@ public class ZiAngajatListAdaptor extends RecyclerView.Adapter<ZiAngajatListAdap
         return angajatListChecked;
     }
 
-    public void updateHours(Integer hours){
-        this.hours=hours;
+    public void updateHours(Integer hours1){
+        for (List<Integer> integers : angajatListChecked) {
+            if(integers.get(2)==1 && integers.get(1)==hours){
+                angajatListChecked.set(integers.get(0), Arrays.asList(integers.get(0), hours1, 1));
+                viewHolders.get(integers.get(0)).ziAngInputHours.getEditText().setText(String.valueOf(hours1));
+            }
+        }
+        this.hours=hours1;
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull ZiAngajatViewHolder holder) {
+        super.onViewRecycled(holder);
+        viewHolders.remove(holder);
     }
 
     @Override
@@ -128,5 +143,7 @@ public class ZiAngajatListAdaptor extends RecyclerView.Adapter<ZiAngajatListAdap
         }
 
     }
+
+
 
 }
