@@ -23,10 +23,6 @@ import org.w3c.dom.Text;
 public class ZiStatsFragment extends Fragment {
     private FragmentZiStatsBinding binding;
     private ZiStatsViewModel ziStatsViewModel;
-    private RecyclerView ziStatsListRV;
-    TextView ziInfoTextView;
-    TextView ziHoursTextView;
-    TextView ziDate;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -37,13 +33,9 @@ public class ZiStatsFragment extends Fragment {
         binding = FragmentZiStatsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         ziStatsViewModel.init(getContext(), getArguments().getInt("ziID"));
-        ziInfoTextView = binding.ziInfo;
-        ziHoursTextView = binding.ziHours;
-        ziDate= binding.ziDate;
 
 
-        ziStatsListRV = binding.ziStatsListRV;
-        ziStatsListRV.setAdapter(new ZiStatsListAdaptor(requireActivity(), ziStatsViewModel.getID()));
+        binding.ziStatsListRV.setAdapter(new ZiStatsListAdaptor(requireActivity(), ziStatsViewModel.getID()));
 
         updateData();
 
@@ -57,9 +49,10 @@ public class ZiStatsFragment extends Fragment {
 
     public void updateData(){
         ziStatsViewModel.update();
-        ziDate.setText(String.valueOf(ziStatsViewModel.getDate()) + " " + ziStatsViewModel.getMonth()+ " ");
-        ziInfoTextView.setText(ziStatsViewModel.getInfo());
-        ziHoursTextView.setText(String.valueOf(ziStatsViewModel.getHours()));
+        binding.ziDate.setText(String.valueOf(ziStatsViewModel.getDate()) + " " + ziStatsViewModel.getMonth()+ " ");
+        binding.ziInfo.setText(ziStatsViewModel.getInfo());
+        binding.ziHours.setText(String.valueOf(ziStatsViewModel.getHours()));
+        binding.ziLucru.setText(ziStatsViewModel.getWork());
     }
 
 

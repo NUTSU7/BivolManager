@@ -49,4 +49,6 @@ public class ZiStatsViewModel extends ViewModel {
     public int getYear(){
         return zi.getYear();
     }
+
+    public String getWork(){ return zi.getWork(); }
 }

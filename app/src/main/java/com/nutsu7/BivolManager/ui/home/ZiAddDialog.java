@@ -206,7 +206,7 @@ public class ZiAddDialog extends DialogFragment {
     private void handleData(AlertDialog dialog){
 
         Integer hr=0, kg=0;
-        String info="", work="";
+        String info="", work="---";
         if(dateInputHours.getEditText().length()!=0) hr=Integer.parseInt(dateInputHours.getEditText().getText().toString().trim());
         if(dateInputInfo.getEditText().length()!=0) info=dateInputInfo.getEditText().getText().toString();
 
