@@ -26,6 +26,10 @@ public class StruguriTransactionStatsViewModel extends ViewModel {
         return struguriTransaction.getQuantity();
     }
 
+    public int getQuantityNR(){
+        return struguriTransaction.getQuantityNoReceipt();
+    }
+
     public int getNetQuantity(){
         return struguriTransaction.getNetQuant();
     }

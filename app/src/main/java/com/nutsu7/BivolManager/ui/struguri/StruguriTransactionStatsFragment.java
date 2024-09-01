@@ -37,6 +37,7 @@ public class StruguriTransactionStatsFragment extends Fragment {
                 struguriTransactionStatsViewModel.getMonth());
         binding.struguriTranStatsBuyer.setText(struguriTransactionStatsViewModel.getBuyer());
         binding.struguriTranStatsQuantity.setText(String.valueOf(struguriTransactionStatsViewModel.getQuantity()));
+        binding.struguriTranStatsQuantityNR.setText(String.valueOf(struguriTransactionStatsViewModel.getQuantityNR()));
         binding.struguriTranStatsNetQuantity.setText(String.valueOf(struguriTransactionStatsViewModel.getNetQuantity()));
         binding.struguriTranStatsPrice.setText(String.valueOf(struguriTransactionStatsViewModel.getPrice()));
         binding.struguriTranStatsPriceNC.setText(String.valueOf(struguriTransactionStatsViewModel.getPriceNC()));

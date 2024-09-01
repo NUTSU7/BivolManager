@@ -15,6 +15,9 @@ public class StruguriTransaction {
     @ColumnInfo(name = "quantity")
     private int quantity;
 
+    @ColumnInfo(name = "quantityNoReceipt")
+    private int quantityNoReceipt;
+
     @ColumnInfo(name = "netQuant")
     private int netQuant;
 
@@ -36,17 +39,18 @@ public class StruguriTransaction {
     @ColumnInfo(name = "year")
     private Integer year;
 
-    public StruguriTransaction(int id, String buyer, int quantity, int paletteNr, int price, int priceNoReceipt, Integer day, String month, Integer year) {
+    public StruguriTransaction(int id, String buyer, int quantity, int quantityNoReceipt, int paletteNr, int price, int priceNoReceipt, Integer day, String month, Integer year) {
         this.id = id;
         this.buyer = buyer;
         this.quantity = quantity;
+        this.quantityNoReceipt = quantityNoReceipt;
         this.paletteNr = paletteNr;
         this.price = price;
         this.priceNoReceipt = priceNoReceipt;
         this.day = day;
         this.month = month;
         this.year = year;
-        this.netQuant=quantity-(paletteNr*10);
+        this.netQuant=quantity+quantityNoReceipt-(paletteNr*10);
     }
 
     public int getId() {
@@ -79,6 +83,14 @@ public class StruguriTransaction {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getQuantityNoReceipt() {
+        return quantityNoReceipt;
+    }
+
+    public void setQuantityNoReceipt(int quantityNoReceipt) {
+        this.quantityNoReceipt = quantityNoReceipt;
     }
 
     public int getPaletteNr() {

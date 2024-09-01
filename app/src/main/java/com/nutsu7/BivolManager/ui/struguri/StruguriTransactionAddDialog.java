@@ -41,6 +41,7 @@ public class StruguriTransactionAddDialog extends DialogFragment {
     private MaterialTextView struguriTranDateTextView;
     private TextInputLayout struguriTranBuyerInput;
     private TextInputLayout struguriTranQuantityInput;
+    private TextInputLayout struguriTranQuantityNRInput;
     private TextInputLayout struguriTranPaletteNrInput;
     private TextInputLayout struguriTranPriceInput;
     private TextInputLayout struguriTranPriceNoReceiptInput;
@@ -87,6 +88,7 @@ public class StruguriTransactionAddDialog extends DialogFragment {
             struguriTranDateTextView = dialog.findViewById(R.id.struguriTranDateTextView);
             struguriTranBuyerInput = dialog.findViewById(R.id.struguriTranBuyerInput);
             struguriTranQuantityInput = dialog.findViewById(R.id.struguriTranQuantityInput);
+            struguriTranQuantityNRInput = dialog.findViewById(R.id.struguriTranQuantityNRInput);
             struguriTranPaletteNrInput = dialog.findViewById(R.id.struguriTranPaletteNrInput);
             struguriTranPriceInput = dialog.findViewById(R.id.struguriTranPriceInput);
             struguriTranPriceNoReceiptInput = dialog.findViewById(R.id.struguriTranPriceNoReceiptInput);
@@ -141,20 +143,29 @@ public class StruguriTransactionAddDialog extends DialogFragment {
 
     private void handleData(AlertDialog dialog){
         String buyer="";
-        Integer quantity=0, paletteNr=0, price=0, priceNoReceipt=0;
+        Integer quantity=0, quantityNR=0,  paletteNr=0, price=0, priceNoReceipt=0;
+
+        struguriTranBuyerInput.setError(null);
+        struguriTranQuantityInput.setError(null);
+        struguriTranQuantityNRInput.setError(null);
+        struguriTranPaletteNrInput.setError(null);
+        struguriTranPriceInput.setError(null);
+        struguriTranPriceNoReceiptInput.setError(null);
 
         if(struguriTranBuyerInput.getEditText().length()!=0) buyer=struguriTranBuyerInput.getEditText().getText().toString().trim();
         if(struguriTranQuantityInput.getEditText().length()!=0) quantity=Integer.parseInt(struguriTranQuantityInput.getEditText().getText().toString());
+        if(struguriTranQuantityNRInput.getEditText().length()!=0) quantityNR=Integer.parseInt(struguriTranQuantityNRInput.getEditText().getText().toString());
         if(struguriTranPaletteNrInput.getEditText().length()!=0) paletteNr=Integer.parseInt(struguriTranPaletteNrInput.getEditText().getText().toString());
         if(struguriTranPriceInput.getEditText().length()!=0) price=Integer.parseInt(struguriTranPriceInput.getEditText().getText().toString());
         if(struguriTranPriceNoReceiptInput.getEditText().length()!=0) priceNoReceipt=Integer.parseInt(struguriTranPriceNoReceiptInput.getEditText().getText().toString());
 
 
 
-        if(checkInput(buyer, quantity, paletteNr, price, priceNoReceipt)){
+        if(checkInput(buyer, quantity, quantityNR, paletteNr, price, priceNoReceipt)){
             StruguriTransaction struguriTransaction = new StruguriTransaction(struguriRepo.getAllTransaction().size(),
                     buyer,
                     quantity,
+                    quantityNR,
                     paletteNr,
                     price,
                     priceNoReceipt,
@@ -166,10 +177,11 @@ public class StruguriTransactionAddDialog extends DialogFragment {
             //Add safety check to not exceed the current quantity and the harvested quantity
 
             Struguri struguri = struguriRepo.getByID(0);
-            struguri.decQuantityCurrent(quantity);
-            struguri.addQuantitySold(quantity);
+            struguri.decQuantityCurrent(quantity+quantityNR);
+            struguri.addQuantitySold(quantity+quantityNR);
+            struguri.addMoneyTotal((quantity*price)+(quantityNR*priceNoReceipt));
             struguriRepo.update(struguri);
-            
+
 
             dialog.dismiss();
             RecyclerView rv = getActivity().findViewById(R.id.struguriTranListRV);
@@ -181,15 +193,16 @@ public class StruguriTransactionAddDialog extends DialogFragment {
         }
     }
 
-    private boolean checkInput(String buyer, Integer quantity, Integer paletteNr, Integer price, Integer priceNoReceipt) {
+    private boolean checkInput(String buyer, Integer quantity, Integer quantityNR,  Integer paletteNr, Integer price, Integer priceNoReceipt) {
         boolean ans=true;
         if (buyer == null || buyer.isEmpty()) {
-            struguriTranDateTextView.setError("Cumparator invalid");
+            struguriTranBuyerInput.setError("Cumparator invalid");
             ans=false;
         }
 
-        if (quantity==0) {
+        if (quantity==0 && quantityNR==0) {
             struguriTranQuantityInput.setError("Cantitatea lipseste");
+            struguriTranQuantityNRInput.setError("Cantitatea lipseste");
             ans=false;
         }
 
@@ -201,6 +214,26 @@ public class StruguriTransactionAddDialog extends DialogFragment {
         if(price==0 && priceNoReceipt==0) {
             struguriTranPriceInput.setError("Pretul lipseste");
             struguriTranPriceNoReceiptInput.setError("Pretul lipseste");
+            ans=false;
+        }
+
+        if(quantity!=0 && price==0) {
+            struguriTranPriceInput.setError("Pretul pentru cantitate lipseste");
+            ans=false;
+        }
+
+        if(quantity==0 && price!=0) {
+            struguriTranQuantityInput.setError("Cantitatea pentru pret lipseste");
+            ans=false;
+        }
+
+        if(quantityNR!=0 && priceNoReceipt==0) {
+            struguriTranPriceNoReceiptInput.setError("Pretul pentru cantitatea fara check lipseste");
+            ans=false;
+        }
+
+        if(quantityNR==0 && priceNoReceipt!=0) {
+            struguriTranQuantityNRInput.setError("Cantitatea pentru pretul fara check lipseste");
             ans=false;
         }
 
