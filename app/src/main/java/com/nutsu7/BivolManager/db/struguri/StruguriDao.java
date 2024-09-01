@@ -1,5 +1,6 @@
 package com.nutsu7.BivolManager.db.struguri;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -19,6 +20,9 @@ public interface StruguriDao {
 
     @Query("SELECT * FROM Struguri WHERE id=:id")
     public Struguri getByID(int id);
+
+    @Query("SELECT * FROM Struguri WHERE id=0")
+    public LiveData<Struguri> getLiveStruguri();
 
 
     @Insert

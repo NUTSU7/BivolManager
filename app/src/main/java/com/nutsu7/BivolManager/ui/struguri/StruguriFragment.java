@@ -15,6 +15,7 @@ import com.nutsu7.BivolManager.databinding.FragmentStruguriBinding;
 
 public class StruguriFragment extends Fragment{
     private FragmentStruguriBinding binding;
+    private StruguriViewModel struguriViewModel;
 
     public StruguriFragment(){
 
@@ -27,7 +28,7 @@ public class StruguriFragment extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        StruguriViewModel struguriViewModel =
+        struguriViewModel =
                 new ViewModelProvider(this).get(StruguriViewModel.class);
 
         binding = FragmentStruguriBinding.inflate(inflater, container, false);
@@ -35,13 +36,24 @@ public class StruguriFragment extends Fragment{
 
         struguriViewModel.init(getContext());
 
+        updateData();
+
+        struguriViewModel.getStruguriLiveData().observe(getViewLifecycleOwner(), struguri -> {
+            updateData();
+        });
+
+
+
+        return root;
+    }
+
+    public void updateData(){
+        struguriViewModel.update();
         binding.struguriCurrQuantity.setText(String.valueOf(struguriViewModel.getQuantityCurrent()));
         binding.struguriHarvestedQuantity.setText(String.valueOf(struguriViewModel.getQuantityHarvested()));
         binding.struguriSoldQuantity.setText(String.valueOf(struguriViewModel.getQuantitySold()));
 
         binding.struguriDays.setText(String.valueOf(struguriViewModel.getDaysWorked()));
-
-        return root;
     }
 
     @Override

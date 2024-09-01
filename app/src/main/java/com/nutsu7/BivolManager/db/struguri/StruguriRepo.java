@@ -37,6 +37,10 @@ public class StruguriRepo {
         appDB.struguriDao().update(struguri);
     }
 
+    public LiveData<Struguri> getLiveStruguri(){
+        return appDB.struguriDao().getLiveStruguri();
+    }
+
 
 
     //Transaction part

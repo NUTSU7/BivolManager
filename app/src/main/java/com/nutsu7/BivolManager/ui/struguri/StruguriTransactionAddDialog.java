@@ -169,6 +169,7 @@ public class StruguriTransactionAddDialog extends DialogFragment {
             struguri.decQuantityCurrent(quantity);
             struguri.addQuantitySold(quantity);
             struguriRepo.update(struguri);
+            
 
             dialog.dismiss();
             RecyclerView rv = getActivity().findViewById(R.id.struguriTranListRV);

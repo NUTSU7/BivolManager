@@ -12,11 +12,12 @@ import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 public class StruguriViewModel extends ViewModel {
     private StruguriRepo repo;
     private Struguri struguri;
+    private LiveData<Struguri> struguriLiveData;
     public void init(Context context){
         repo = new StruguriRepo(context);
-        struguri = repo.getByID(0);
+        struguriLiveData = repo.getLiveStruguri();
     }
-
+    public void update(){ struguri = repo.getByID(0); }
     public int getQuantityCurrent(){
         return struguri.getQuantityCurrent();
     }
@@ -32,6 +33,8 @@ public class StruguriViewModel extends ViewModel {
     public int getDaysWorked(){
         return struguri.getDaysWorked();
     }
+
+    public LiveData<Struguri> getStruguriLiveData(){ return struguriLiveData; }
 
 
 
