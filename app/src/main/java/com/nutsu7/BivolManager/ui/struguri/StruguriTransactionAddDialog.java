@@ -189,7 +189,7 @@ public class StruguriTransactionAddDialog extends DialogFragment {
             StruguriTransactionListAdaptor adaptor = (StruguriTransactionListAdaptor) rv.getAdapter();
             adaptor.updateList();
             adaptor.notifyItemInserted(struguriTransaction.getId());
-            Toast.makeText(getContext(),"Zi adaugata", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Transactie adaugata", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -197,44 +197,51 @@ public class StruguriTransactionAddDialog extends DialogFragment {
     private boolean checkInput(String buyer, Integer quantity, Integer quantityNR,  Integer paletteNr, Integer price, Integer priceNoReceipt) {
         boolean ans=true;
         if (buyer == null || buyer.isEmpty()) {
-            struguriTranBuyerInput.setError("Cumparator invalid");
+            struguriTranBuyerInput.setError("Incomplet");
             ans=false;
         }
 
         if (quantity==0 && quantityNR==0) {
-            struguriTranQuantityInput.setError("Cantitatea lipseste");
-            struguriTranQuantityNRInput.setError("Cantitatea lipseste");
+            struguriTranQuantityInput.setError("Incomplet");
+            struguriTranQuantityNRInput.setError("Incomplet");
+            ans=false;
+        }
+
+        if (quantity+quantityNR>struguriRepo.getByID(0).getQuantityCurrent()) {
+            struguriTranQuantityInput.setError(" ");
+            struguriTranQuantityNRInput.setError(" ");
+            Toast.makeText(getContext(),"Cantitate prea mare", Toast.LENGTH_SHORT).show();
             ans=false;
         }
 
         if(paletteNr==0) {
-            struguriTranPaletteNrInput.setError("Numatul de paleti lipseste");
+            struguriTranPaletteNrInput.setError("Incomplet");
             ans=false;
         }
 
         if(price==0 && priceNoReceipt==0) {
-            struguriTranPriceInput.setError("Pretul lipseste");
-            struguriTranPriceNoReceiptInput.setError("Pretul lipseste");
+            struguriTranPriceInput.setError("Incomplet");
+            struguriTranPriceNoReceiptInput.setError("Incomplet");
             ans=false;
         }
 
         if(quantity!=0 && price==0) {
-            struguriTranPriceInput.setError("Pretul pentru cantitate lipseste");
+            struguriTranPriceInput.setError("Incomplet");
             ans=false;
         }
 
         if(quantity==0 && price!=0) {
-            struguriTranQuantityInput.setError("Cantitatea pentru pret lipseste");
+            struguriTranQuantityInput.setError("Incomplet");
             ans=false;
         }
 
         if(quantityNR!=0 && priceNoReceipt==0) {
-            struguriTranPriceNoReceiptInput.setError("Pretul pentru cantitatea fara check lipseste");
+            struguriTranPriceNoReceiptInput.setError("Incomplet");
             ans=false;
         }
 
         if(quantityNR==0 && priceNoReceipt!=0) {
-            struguriTranQuantityNRInput.setError("Cantitatea pentru pretul fara check lipseste");
+            struguriTranQuantityNRInput.setError("Incomplet");
             ans=false;
         }
 
