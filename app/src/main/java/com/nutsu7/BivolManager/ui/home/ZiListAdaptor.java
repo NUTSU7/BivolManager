@@ -14,20 +14,25 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nutsu7.BivolManager.R;
+import com.nutsu7.BivolManager.db.struguri.Struguri;
+import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.zi.Zi;
 import com.nutsu7.BivolManager.db.zi.ZiRepo;
 
 
 import java.util.List;
+import java.util.Objects;
 
 public class ZiListAdaptor extends RecyclerView.Adapter<ZiListAdaptor.ZiViewHolder>{
     private List<Zi> ziList;
     private Context context;
     private ZiRepo ziRepo;
+    private StruguriRepo struguriRepo;
 
     public ZiListAdaptor(Context context){
         this.context=context;
         this.ziRepo= new ZiRepo(context);
+        this.struguriRepo = new StruguriRepo(context);
         updateList();
     }
 
@@ -63,7 +68,15 @@ public class ZiListAdaptor extends RecyclerView.Adapter<ZiListAdaptor.ZiViewHold
         vh.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ziRepo.delete(ziRepo.getByID(vh.getAdapterPosition()));
+                Zi zi1 = ziRepo.getByID(vh.getAdapterPosition());
+                if(Objects.equals(zi1.getWork(), "Struguri")){
+                    Struguri struguri = struguriRepo.getByID(0);
+                    struguri.decDaysWorked(1);
+                    struguri.decQuantityCurrent(zi1.getQuantity());
+                    struguri.decQuantityHarvested(zi1.getQuantity());
+                    struguriRepo.update(struguri);
+                }
+                ziRepo.delete(zi1);
                 updateList();
 
                 notifyItemRemoved(vh.getAdapterPosition());

@@ -66,7 +66,7 @@ public class Struguri {
     }
 
     public void decQuantityHarvested(int quantityHarvested) {
-        this.quantityHarvested += quantityHarvested;
+        this.quantityHarvested -= quantityHarvested;
     }
 
     public int getQuantitySold() {
