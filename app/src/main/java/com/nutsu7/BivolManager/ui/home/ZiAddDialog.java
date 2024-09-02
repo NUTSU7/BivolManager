@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +26,7 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.nutsu7.BivolManager.R;
-import com.nutsu7.BivolManager.db.angajat.Angajat;
 import com.nutsu7.BivolManager.db.angajat.AngajatRepo;
-import com.nutsu7.BivolManager.db.relations.ZiAngajat;
 import com.nutsu7.BivolManager.db.struguri.Struguri;
 import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.zi.Zi;
@@ -42,9 +39,9 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class ZiAddDialog extends DialogFragment {
     private TextInputLayout dateInputInfo;
@@ -55,7 +52,7 @@ public class ZiAddDialog extends DialogFragment {
     private MaterialButton dateChangeButton;
     private MaterialCheckBox rosiiCheckBox;
     private MaterialCheckBox struguriCheckBox;
-    private TextInputLayout quantityInput;
+    private TextInputLayout dateQuantityInput;
 
     private ZiRepo ziRepo;
     private AngajatRepo angajatRepo;
@@ -106,7 +103,7 @@ public class ZiAddDialog extends DialogFragment {
             dateTextView = dialog.findViewById(R.id.dateTextView);
             rosiiCheckBox = dialog.findViewById(R.id.rosiiCheckBox);
             struguriCheckBox = dialog.findViewById(R.id.struguriCheckBox);
-            quantityInput = dialog.findViewById(R.id.quantityInput);
+            dateQuantityInput = dialog.findViewById(R.id.dateQuantityInput);
 
             dateInputHours.getEditText().setImeOptions(EditorInfo.IME_ACTION_DONE);
             date = LocalDate.now();
@@ -119,7 +116,7 @@ public class ZiAddDialog extends DialogFragment {
             month = temp.substring(0, 1).toUpperCase() + temp.substring(1);
             year = Integer.parseInt(strings[2]);
 
-            quantityInput.setEnabled(false);
+            dateQuantityInput.setEnabled(false);
 
             rv.setAdapter(new ZiAngajatListAdaptor(requireActivity()));
             ziAngajatListAdaptor= (ZiAngajatListAdaptor)rv.getAdapter();
@@ -183,9 +180,12 @@ public class ZiAddDialog extends DialogFragment {
                         Toast.makeText(getContext(),"Struguri este selectat", Toast.LENGTH_SHORT).show();
                     }
                     if(isChecked){
-                        quantityInput.setEnabled(true);
+                        dateQuantityInput.setEnabled(true);
                     }
-                    else quantityInput.setEnabled(false);
+                    else{
+                        dateQuantityInput.setEnabled(false);
+                        if(dateQuantityInput.getError()!=null) dateQuantityInput.setError(null);
+                    }
                 }
             });
             struguriCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -196,27 +196,29 @@ public class ZiAddDialog extends DialogFragment {
                         Toast.makeText(getContext(),"Rosii este selectat", Toast.LENGTH_SHORT).show();
                     }
                     if(isChecked){
-                        quantityInput.setEnabled(true);
+                        dateQuantityInput.setEnabled(true);
                     }
-                    else quantityInput.setEnabled(false);
+                    else {
+                        dateQuantityInput.setEnabled(false);
+                        if(dateQuantityInput.getError()!=null) dateQuantityInput.setError(null);
+                    }
                 }
             });
         }
     }
     private void handleData(AlertDialog dialog){
 
+        dateInputHours.setError(null);
+        dateQuantityInput.setError(null);
+        dateInputInfo.setError(null);
+
+
         Integer hr=0, kg=0;
         String info="", work="---";
         if(dateInputHours.getEditText().length()!=0) hr=Integer.parseInt(dateInputHours.getEditText().getText().toString().trim());
         if(dateInputInfo.getEditText().length()!=0) info=dateInputInfo.getEditText().getText().toString();
-
-        if(quantityInput.isEnabled()){
-            if(quantityInput.getEditText().length()==0) {
-                quantityInput.setError("Incomplet");
-                return;
-            }
-
-            kg=Integer.parseInt(quantityInput.getEditText().getText().toString().trim());
+        if(dateQuantityInput.isEnabled() && dateQuantityInput.getEditText().length()!=0) kg=Integer.parseInt(dateQuantityInput.getEditText().getText().toString().trim());
+        if(dateQuantityInput.isEnabled()){
             if(rosiiCheckBox.isChecked()){
                 work="Rosii";
             }
@@ -225,7 +227,7 @@ public class ZiAddDialog extends DialogFragment {
             }
         }
 
-        if(checkInput(hr, info)){
+        if(checkInput(hr, info, work)){
             Zi zi = new Zi(ziRepo.getAll().size(), day, month, year, info, hr, work, kg);
             ziRepo.insert(zi);
 
@@ -257,10 +259,10 @@ public class ZiAddDialog extends DialogFragment {
         }
     }
 
-    private boolean checkInput(Integer hr, String info) {
+    private boolean checkInput(Integer hr, String info, String work) {
         boolean ans=true;
-        if (hr == null) {
-            dateInputHours.setError("Pune orele");
+        if (hr == 0) {
+            dateInputHours.setError("Incomplet");
             ans=false;
         }
 
@@ -273,6 +275,12 @@ public class ZiAddDialog extends DialogFragment {
             dateInputInfo.setError("Prea multa informatie");
             ans=false;
         }
+
+        if((work.equals("Struguri") || work.equals("Rosii")) && dateQuantityInput.getEditText().length()==0){
+            dateQuantityInput.setError("Incomplet");
+            ans=false;
+        }
+
 
 
         return ans;
