@@ -22,8 +22,8 @@ public class StruguriRepo {
         appDB.struguriDao().insert(struguri);
     }
 
-    public Struguri getByID(int id){
-        Struguri struguri = appDB.struguriDao().getByID(id);
+    public Struguri get(){
+        Struguri struguri = appDB.struguriDao().get();
         if(struguri==null){
             Struguri struguri1 = new Struguri();
             appDB.struguriDao().insert(struguri1);

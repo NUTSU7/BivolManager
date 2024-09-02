@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,8 +23,6 @@ import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.db.struguri.Struguri;
 import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.struguri.StruguriTransaction;
-import com.nutsu7.BivolManager.db.zi.Zi;
-import com.nutsu7.BivolManager.ui.home.ZiListAdaptor;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,8 +30,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class StruguriTransactionAddDialog extends DialogFragment {
@@ -176,7 +171,7 @@ public class StruguriTransactionAddDialog extends DialogFragment {
 
             //Add safety check to not exceed the current quantity and the harvested quantity
 
-            Struguri struguri = struguriRepo.getByID(0);
+            Struguri struguri = struguriRepo.get();
             struguri.decQuantityCurrent(quantity+quantityNR);
             struguri.addQuantitySold(quantity+quantityNR);
             struguri.addMoneyTotal(quantity*price);
@@ -207,7 +202,7 @@ public class StruguriTransactionAddDialog extends DialogFragment {
             ans=false;
         }
 
-        if (quantity+quantityNR>struguriRepo.getByID(0).getQuantityCurrent()) {
+        if (quantity+quantityNR>struguriRepo.get().getQuantityCurrent()) {
             struguriTranQuantityInput.setError(" ");
             struguriTranQuantityNRInput.setError(" ");
             Toast.makeText(getContext(),"Cantitate prea mare", Toast.LENGTH_SHORT).show();

@@ -41,7 +41,6 @@ import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 public class ZiAddDialog extends DialogFragment {
     private TextInputLayout dateInputInfo;
@@ -232,7 +231,7 @@ public class ZiAddDialog extends DialogFragment {
             ziRepo.insert(zi);
 
             if(work=="Struguri"){
-                Struguri struguri=struguriRepo.getByID(0);
+                Struguri struguri=struguriRepo.get();
                 struguri.addDaysWorked(1);
                 struguri.addQuantityHarvested(kg);
                 struguri.addQuantityCurrent(kg);

@@ -18,8 +18,8 @@ public interface StruguriDao {
     @Update
     public void update(Struguri struguri);
 
-    @Query("SELECT * FROM Struguri WHERE id=:id")
-    public Struguri getByID(int id);
+    @Query("SELECT * FROM Struguri WHERE id=0")
+    public Struguri get();
 
     @Query("SELECT * FROM Struguri WHERE id=0")
     public LiveData<Struguri> getLiveStruguri();

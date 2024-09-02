@@ -70,7 +70,7 @@ public class ZiListAdaptor extends RecyclerView.Adapter<ZiListAdaptor.ZiViewHold
             public void onClick(View v) {
                 Zi zi1 = ziRepo.getByID(vh.getAdapterPosition());
                 if(Objects.equals(zi1.getWork(), "Struguri")){
-                    Struguri struguri = struguriRepo.getByID(0);
+                    Struguri struguri = struguriRepo.get();
                     struguri.decDaysWorked(1);
                     struguri.decQuantityCurrent(zi1.getQuantity());
                     struguri.decQuantityHarvested(zi1.getQuantity());

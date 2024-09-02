@@ -17,8 +17,6 @@ import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.db.struguri.Struguri;
 import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.struguri.StruguriTransaction;
-import com.nutsu7.BivolManager.db.zi.Zi;
-import com.nutsu7.BivolManager.ui.home.ZiListAdaptor;
 
 import java.util.List;
 
@@ -63,7 +61,7 @@ public class StruguriTransactionListAdaptor extends RecyclerView.Adapter<Strugur
         vh.struguriTranListImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Struguri struguri = struguriRepo.getByID(0);
+                Struguri struguri = struguriRepo.get();
                 struguri.addQuantityCurrent(struguriTransaction.getQuantity()+struguriTransaction.getQuantityNoReceipt());
                 struguri.decQuantitySold(struguriTransaction.getQuantity()+struguriTransaction.getQuantityNoReceipt());
                 struguri.decMoneyTotal(struguriTransaction.getQuantity()*struguriTransaction.getPrice());

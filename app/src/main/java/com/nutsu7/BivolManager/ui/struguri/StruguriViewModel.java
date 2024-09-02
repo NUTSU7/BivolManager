@@ -17,7 +17,7 @@ public class StruguriViewModel extends ViewModel {
         repo = new StruguriRepo(context);
         struguriLiveData = repo.getLiveStruguri();
     }
-    public void update(){ struguri = repo.getByID(0); }
+    public void update(){ struguri = repo.get(); }
     public int getQuantityCurrent(){
         return struguri.getQuantityCurrent();
     }

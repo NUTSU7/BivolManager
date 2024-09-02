@@ -54,7 +54,7 @@ public class ZiRepo {
         appDB.ziDao().deleteByID(id);
 
         if(zi.getWork()=="Struguri"){
-            Struguri struguri = appDB.struguriDao().getByID(0);
+            Struguri struguri = appDB.struguriDao().get();
             struguri.decDaysWorked(1);
             appDB.struguriDao().update(struguri);
         }
