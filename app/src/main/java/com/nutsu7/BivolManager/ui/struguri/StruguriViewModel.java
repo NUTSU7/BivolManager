@@ -18,16 +18,20 @@ public class StruguriViewModel extends ViewModel {
         struguriLiveData = repo.getLiveStruguri();
     }
     public void update(){ struguri = repo.get(); }
-    public int getQuantityCurrent(){
-        return struguri.getQuantityCurrent();
+    public int getBoxCurrent(){
+        return struguri.getBoxCurrent();
+    }
+
+    public int getBoxSold(){
+        return struguri.getBoxSold();
+    }
+
+    public int getBoxHarvested(){
+        return struguri.getBoxHarvested();
     }
 
     public int getQuantitySold(){
         return struguri.getQuantitySold();
-    }
-
-    public int getQuantityHarvested(){
-        return struguri.getQuantityHarvested();
     }
 
     public int getDaysWorked(){

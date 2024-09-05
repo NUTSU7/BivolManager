@@ -49,9 +49,12 @@ public class StruguriFragment extends Fragment{
 
     public void updateData(){
         struguriViewModel.update();
-        binding.struguriCurrQuantity.setText(String.valueOf(struguriViewModel.getQuantityCurrent()));
-        binding.struguriHarvestedQuantity.setText(String.valueOf(struguriViewModel.getQuantityHarvested()));
-        binding.struguriSoldQuantity.setText(String.valueOf(struguriViewModel.getQuantitySold()));
+
+        binding.struguriQuantity.setText(String.valueOf(struguriViewModel.getQuantitySold()));
+
+        binding.struguriCurrBox.setText(String.valueOf(struguriViewModel.getBoxCurrent()));
+        binding.struguriHarvestedBox.setText(String.valueOf(struguriViewModel.getBoxHarvested()));
+        binding.struguriSoldBox.setText(String.valueOf(struguriViewModel.getBoxSold()));
 
         binding.struguriMoney.setText(String.valueOf(struguriViewModel.getMoneyTotal()));
         binding.struguriMoneyNR.setText(String.valueOf(struguriViewModel.getMoneyNRTotal()));

@@ -17,8 +17,8 @@
         app:exitAnim="@animator/slide_out_left"
         app:popEnterAnim="@android:anim/slide_in_left"
         app:popExitAnim="@android:anim/slide_out_right"
-        app:popUpTo="@id/navigation_home"
-        app:popUpToInclusive="false" />
+        app:popUpTo="@id/navigation_ziStats"
+        app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -39,8 +39,8 @@
             app:exitAnim="@animator/slide_out_left"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/navigation_angajat"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/navigation_angajatStats"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -67,8 +67,8 @@
             app:exitAnim="@animator/slide_out_left"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
-            app:popUpTo="@id/navigation_struguriPager"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/navigation_struguriTransactionStats"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

@@ -53,6 +53,8 @@ public class ZiStatsFragment extends Fragment {
         binding.ziInfo.setText(ziStatsViewModel.getInfo());
         binding.ziHours.setText(String.valueOf(ziStatsViewModel.getHours()));
         binding.ziLucru.setText(ziStatsViewModel.getWork());
+        binding.ziBox1.setText(String.valueOf(ziStatsViewModel.getQuantity1()));
+        binding.ziBox2.setText(String.valueOf(ziStatsViewModel.getQuantity2()));
     }
 
 

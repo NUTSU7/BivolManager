@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.lifecycle.ViewModel;
 
-import com.nutsu7.BivolManager.db.struguri.Struguri;
 import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.struguri.StruguriTransaction;
 
@@ -30,8 +29,16 @@ public class StruguriTransactionStatsViewModel extends ViewModel {
         return struguriTransaction.getQuantityNoReceipt();
     }
 
-    public int getNetQuantity(){
-        return struguriTransaction.getNetQuant();
+    public int getBoxWeight(){
+        return struguriTransaction.getBoxWeight();
+    }
+
+    public int getMoney(){
+        return struguriTransaction.getQuantity()*struguriTransaction.getPrice();
+    }
+
+    public int getMoneyNC(){
+        return struguriTransaction.getQuantityNoReceipt()*struguriTransaction.getPriceNoReceipt();
     }
 
     public int getPrice(){
@@ -42,8 +49,12 @@ public class StruguriTransactionStatsViewModel extends ViewModel {
         return struguriTransaction.getPriceNoReceipt();
     }
 
-    public int getPaletteNr(){
-        return struguriTransaction.getPaletteNr();
+    public int getBoxNr(){
+        return struguriTransaction.getBoxNr();
+    }
+
+    public int getBoxNRNr(){
+        return struguriTransaction.getBoxNRNr();
     }
 
     public String getMonth(){

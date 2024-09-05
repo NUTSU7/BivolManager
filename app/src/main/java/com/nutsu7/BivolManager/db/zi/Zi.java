@@ -20,11 +20,13 @@ public class Zi {
     private Integer hours;
     @ColumnInfo(name = "Lucru")
     private String work;
-    @ColumnInfo(name = "Quantity")
-    private Integer quantity;
+    @ColumnInfo(name = "Quantity1")
+    private Integer quantity1;
+    @ColumnInfo(name = "Quantity2")
+    private Integer quantity2;
 
 
-    public Zi(int id, Integer day, String month,Integer year,String info, Integer hours, String work, Integer quantity) {
+    public Zi(int id, Integer day, String month,Integer year,String info, Integer hours, String work, Integer quantity1, Integer quantity2) {
         this.id = id;
         this.day = day;
         this.month = month;
@@ -32,7 +34,8 @@ public class Zi {
         this.info = info;
         this.hours = hours;
         this.work = work;
-        this.quantity = quantity;
+        this.quantity1 = quantity1;
+        this.quantity2 = quantity2;
     }
 
     public int getId() {
@@ -92,11 +95,19 @@ public class Zi {
         this.work = work;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Integer getQuantity1() {
+        return quantity1;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setQuantity1(Integer quantity1) {
+        this.quantity1 = quantity1;
+    }
+
+    public Integer getQuantity2() {
+        return quantity2;
+    }
+
+    public void setQuantity2(Integer quantity2) {
+        this.quantity2 = quantity2;
     }
 }

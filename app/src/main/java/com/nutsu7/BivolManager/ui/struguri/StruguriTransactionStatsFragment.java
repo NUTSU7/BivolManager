@@ -36,12 +36,19 @@ public class StruguriTransactionStatsFragment extends Fragment {
                 String.valueOf(struguriTransactionStatsViewModel.getDay())+" "+
                 struguriTransactionStatsViewModel.getMonth());
         binding.struguriTranStatsBuyer.setText(struguriTransactionStatsViewModel.getBuyer());
+
         binding.struguriTranStatsQuantity.setText(String.valueOf(struguriTransactionStatsViewModel.getQuantity()));
         binding.struguriTranStatsQuantityNR.setText(String.valueOf(struguriTransactionStatsViewModel.getQuantityNR()));
-        binding.struguriTranStatsNetQuantity.setText(String.valueOf(struguriTransactionStatsViewModel.getNetQuantity()));
+
+        binding.struguriTranStatsMoney.setText(String.valueOf(struguriTransactionStatsViewModel.getMoney()));
+        binding.struguriTranStatsMoneyNC.setText(String.valueOf(struguriTransactionStatsViewModel.getMoneyNC()));
+
         binding.struguriTranStatsPrice.setText(String.valueOf(struguriTransactionStatsViewModel.getPrice()));
         binding.struguriTranStatsPriceNC.setText(String.valueOf(struguriTransactionStatsViewModel.getPriceNC()));
-        binding.struguriTranStatsPaletteNR.setText(String.valueOf(struguriTransactionStatsViewModel.getPaletteNr()));
+
+        binding.struguriTranStatsBoxNr.setText(String.valueOf(struguriTransactionStatsViewModel.getBoxNr()));
+        binding.struguriTranStatsBoxNRNr.setText(String.valueOf(struguriTransactionStatsViewModel.getBoxNRNr()));
+        binding.struguriTranStatsBoxWeight.setText(String.valueOf(struguriTransactionStatsViewModel.getBoxWeight()));
 
 
 

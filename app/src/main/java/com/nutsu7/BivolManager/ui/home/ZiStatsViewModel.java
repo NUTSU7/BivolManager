@@ -51,4 +51,8 @@ public class ZiStatsViewModel extends ViewModel {
     }
 
     public String getWork(){ return zi.getWork(); }
+
+    public int getQuantity1(){ return zi.getQuantity1(); }
+
+    public int getQuantity2(){ return zi.getQuantity2(); }
 }

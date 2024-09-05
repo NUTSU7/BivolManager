@@ -7,42 +7,57 @@
     tools:context=".ui.struguri.StruguriFragment">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/struguriNameCardView"
+        android:id="@+id/struguriQuantityCardView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
-        app:cardBackgroundColor="@color/material_dynamic_primary40"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
         app:cardCornerRadius="15dp"
         app:layout_constraintTop_toTopOf="parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/struguriQuantityLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/struguriIconImgView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriQuantityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cantitate vanduta"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/struguriQuantity"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_struguri_white" />
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/struguriQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/struguriQuantityTextView"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/struguriQuantityCardView"
+        android:id="@+id/struguriBoxCardView"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_below="@id/struguriNameCardView"
+        android:layout_height="180dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
@@ -50,88 +65,88 @@
         app:cardBackgroundColor="@color/material_dynamic_primary50"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/struguriMoneyCardView"
-        app:layout_constraintTop_toBottomOf="@+id/struguriNameCardView">
+        app:layout_constraintTop_toBottomOf="@+id/struguriQuantityCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/struguriCurrQuantityTextView"
+                android:id="@+id/struguriCurrBoxTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cantitatea curenta"
+                android:text="Lazi curente"
                 android:textAlignment="center"
                 android:textColor="@color/material_dynamic_primary90"
                 android:textSize="25sp"
-                app:layout_constraintBottom_toTopOf="@+id/struguriHarvestedQuantityTextView"
-                app:layout_constraintEnd_toStartOf="@+id/struguriCurrQuantity"
+                app:layout_constraintBottom_toTopOf="@+id/struguriHarvestedBoxTextView"
+                app:layout_constraintEnd_toStartOf="@+id/struguriCurrBox"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="spread" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/struguriCurrQuantity"
+                android:id="@+id/struguriCurrBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/material_dynamic_primary90"
                 android:textSize="25sp"
                 app:layout_constraintVertical_chainStyle="spread"
-                app:layout_constraintBottom_toTopOf="@+id/struguriHarvestedQuantity"
+                app:layout_constraintBottom_toTopOf="@+id/struguriHarvestedBox"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/struguriCurrQuantityTextView"
+                app:layout_constraintStart_toEndOf="@id/struguriCurrBoxTextView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/struguriHarvestedQuantityTextView"
+                android:id="@+id/struguriHarvestedBoxTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cantitatea culeasa"
+                android:text="Lazi culese"
                 android:textAlignment="center"
                 android:textColor="@color/material_dynamic_primary90"
                 android:textSize="25sp"
-                app:layout_constraintBottom_toTopOf="@+id/struguriSoldQuantityTextView"
-                app:layout_constraintEnd_toStartOf="@+id/struguriHarvestedQuantity"
+                app:layout_constraintBottom_toTopOf="@+id/struguriSoldBoxTextView"
+                app:layout_constraintEnd_toStartOf="@+id/struguriHarvestedBox"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/struguriCurrQuantityTextView"
+                app:layout_constraintTop_toBottomOf="@+id/struguriCurrBoxTextView"
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/struguriHarvestedQuantity"
+                android:id="@+id/struguriHarvestedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
                 android:textColor="@color/material_dynamic_primary90"
                 android:textSize="25sp"
-                app:layout_constraintBottom_toTopOf="@+id/struguriSoldQuantity"
+                app:layout_constraintBottom_toTopOf="@+id/struguriSoldBox"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/struguriHarvestedQuantityTextView"
-                app:layout_constraintTop_toBottomOf="@+id/struguriCurrQuantity" />
+                app:layout_constraintStart_toEndOf="@id/struguriHarvestedBoxTextView"
+                app:layout_constraintTop_toBottomOf="@+id/struguriCurrBox" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/struguriSoldQuantityTextView"
+                android:id="@+id/struguriSoldBoxTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cantitatea vanduta"
+                android:text="Lazi vandute"
                 android:textAlignment="center"
                 android:textColor="@color/material_dynamic_primary90"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/struguriSoldQuantity"
+                app:layout_constraintEnd_toStartOf="@+id/struguriSoldBox"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/struguriHarvestedQuantityTextView"
+                app:layout_constraintTop_toBottomOf="@+id/struguriHarvestedBoxTextView"
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/struguriSoldQuantity"
+                android:id="@+id/struguriSoldBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -140,8 +155,8 @@
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/struguriSoldQuantityTextView"
-                app:layout_constraintTop_toBottomOf="@+id/struguriHarvestedQuantity" />
+                app:layout_constraintStart_toEndOf="@id/struguriSoldBoxTextView"
+                app:layout_constraintTop_toBottomOf="@+id/struguriHarvestedBox" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -156,7 +171,7 @@
         android:layout_marginBottom="10dp"
         app:cardBackgroundColor="@color/material_dynamic_primary50"
         app:cardCornerRadius="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/struguriQuantityCardView"
+        app:layout_constraintTop_toBottomOf="@+id/struguriBoxCardView"
         app:layout_constraintBottom_toTopOf="@id/struguriDaysCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -240,7 +255,6 @@
         app:cardCornerRadius="15dp"
         app:layout_constraintTop_toBottomOf="@+id/struguriMoneyCardView">
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/struguriDaysLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

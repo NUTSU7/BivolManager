@@ -18,11 +18,14 @@ public class StruguriTransaction {
     @ColumnInfo(name = "quantityNoReceipt")
     private int quantityNoReceipt;
 
-    @ColumnInfo(name = "netQuant")
-    private int netQuant;
+    @ColumnInfo(name = "boxWeight")
+    private int boxWeight;
 
-    @ColumnInfo(name = "paletteNr")
-    private int paletteNr;
+    @ColumnInfo(name = "boxNr")
+    private int boxNr;
+
+    @ColumnInfo(name = "boxNRNr")
+    private int boxNRNr;
 
     @ColumnInfo(name = "price")
     private int price;
@@ -39,18 +42,19 @@ public class StruguriTransaction {
     @ColumnInfo(name = "year")
     private Integer year;
 
-    public StruguriTransaction(int id, String buyer, int quantity, int quantityNoReceipt, int paletteNr, int price, int priceNoReceipt, Integer day, String month, Integer year) {
+    public StruguriTransaction(int id, String buyer, int quantity, int quantityNoReceipt, int boxNr, int boxNRNr, int boxWeight, int price, int priceNoReceipt, Integer day, String month, Integer year) {
         this.id = id;
         this.buyer = buyer;
         this.quantity = quantity;
         this.quantityNoReceipt = quantityNoReceipt;
-        this.paletteNr = paletteNr;
+        this.boxNr = boxNr;
+        this.boxNRNr = boxNRNr;
+        this.boxWeight = boxWeight;
         this.price = price;
         this.priceNoReceipt = priceNoReceipt;
         this.day = day;
         this.month = month;
         this.year = year;
-        this.netQuant=quantity+quantityNoReceipt-(paletteNr*10);
     }
 
     public int getId() {
@@ -69,12 +73,12 @@ public class StruguriTransaction {
         this.buyer = buyer;
     }
 
-    public int getNetQuant() {
-        return netQuant;
+    public int getBoxWeight() {
+        return boxWeight;
     }
 
-    public void setNetQuant(int netQuant) {
-        this.netQuant = netQuant;
+    public void setBoxWeight(int boxWeight) {
+        this.boxWeight = boxWeight;
     }
 
     public int getQuantity() {
@@ -93,12 +97,12 @@ public class StruguriTransaction {
         this.quantityNoReceipt = quantityNoReceipt;
     }
 
-    public int getPaletteNr() {
-        return paletteNr;
+    public int getBoxNr() {
+        return boxNr;
     }
 
-    public void setPaletteNr(int paletteNr) {
-        this.paletteNr = paletteNr;
+    public void setBoxNr(int boxNr) {
+        this.boxNr = boxNr;
     }
 
     public int getPrice() {
@@ -139,5 +143,13 @@ public class StruguriTransaction {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public int getBoxNRNr() {
+        return boxNRNr;
+    }
+
+    public void setBoxNRNr(int boxNRNr) {
+        this.boxNRNr = boxNRNr;
     }
 }

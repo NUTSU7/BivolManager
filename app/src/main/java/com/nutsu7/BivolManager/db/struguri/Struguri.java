@@ -9,12 +9,15 @@ public class Struguri {
     @PrimaryKey
     public int id;
 
-    @ColumnInfo(name = "quantityCurrent")
-    public int quantityCurrent;
+    @ColumnInfo(name = "boxCurrent")
+    public int boxCurrent;
 
-    @ColumnInfo(name = "quantityHarvested")
-    public int quantityHarvested;
+    @ColumnInfo(name = "boxHarvested")
+    public int boxHarvested;
 
+    @ColumnInfo(name = "boxSold")
+    public int boxSold;
+    
     @ColumnInfo(name = "quantitySold")
     public int quantitySold;
 
@@ -29,8 +32,9 @@ public class Struguri {
 
     public Struguri() {
         this.id = 0;
-        this.quantityCurrent = 0;
-        this.quantityHarvested = 0;
+        this.boxCurrent = 0;
+        this.boxHarvested = 0;
+        this.boxSold=0;
         this.quantitySold = 0;
         this.daysWorked = 0;
         this.moneyTotal = 0;
@@ -45,28 +49,28 @@ public class Struguri {
         this.id = id;
     }
 
-    public int getQuantityCurrent() {
-        return quantityCurrent;
+    public int getBoxCurrent() {
+        return boxCurrent;
     }
 
-    public void addQuantityCurrent(int quantityCurrent) {
-        this.quantityCurrent += quantityCurrent;
+    public void addBoxCurrent(int boxCurrent) {
+        this.boxCurrent += boxCurrent;
     }
 
-    public void decQuantityCurrent(int quantityCurrent) {
-        this.quantityCurrent -= quantityCurrent;
+    public void decBoxCurrent(int boxCurrent) {
+        this.boxCurrent -= boxCurrent;
     }
 
-    public int getQuantityHarvested() {
-        return quantityHarvested;
+    public int getBoxHarvested() {
+        return boxHarvested;
     }
 
-    public void addQuantityHarvested(int quantityHarvested) {
-        this.quantityHarvested += quantityHarvested;
+    public void addBoxHarvested(int boxHarvested) {
+        this.boxHarvested += boxHarvested;
     }
 
-    public void decQuantityHarvested(int quantityHarvested) {
-        this.quantityHarvested -= quantityHarvested;
+    public void decBoxHarvested(int boxHarvested) {
+        this.boxHarvested -= boxHarvested;
     }
 
     public int getQuantitySold() {
@@ -117,5 +121,15 @@ public class Struguri {
         this.moneyNRTotal -= moneyNRTotal;
     }
 
+    public int getBoxSold() {
+        return boxSold;
+    }
 
+    public void addBoxSold(int boxSold) {
+        this.boxSold += boxSold;
+    }
+
+    public void decBoxSold(int boxSold) {
+        this.boxSold -= boxSold;
+    }
 }

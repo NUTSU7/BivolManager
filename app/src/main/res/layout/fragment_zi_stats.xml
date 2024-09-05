@@ -11,7 +11,7 @@
         android:id="@+id/ziDateCardView"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -24,8 +24,8 @@
             >
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ZiIconImgView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="5dp"
                 app:layout_constraintEnd_toStartOf="@+id/ziDate"
                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -56,7 +56,7 @@
         android:id="@+id/ziInfoCardView"
         app:layout_constraintTop_toBottomOf="@+id/ziDateCardView"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="150dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -93,7 +93,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/ziLucru"
-                app:layout_constraintVertical_chainStyle="spread"
                 android:textAlignment="center"
                 android:textSize="25sp"
                 android:textColor="@color/material_dynamic_primary90"/>
@@ -106,24 +105,63 @@
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ziInfoTextView"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ziBoxTextView"
                 android:textAlignment="center"
                 android:text="Cules"
                 android:textSize="25sp"
                 android:textColor="@color/material_dynamic_primary90"/>
 
             <com.google.android.material.textview.MaterialTextView
-                android:layout_weight="1"
                 android:id="@+id/ziLucru"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/ziLucruTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ziInfo"
+                app:layout_constraintBottom_toTopOf="@id/ziBox1"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ziBoxTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/ziBox1"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ziLucruTextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:text="Nr. Lazi"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ziBox1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/ziLucruTextView"
+                app:layout_constraintEnd_toStartOf="@+id/ziBox2"
+                app:layout_constraintTop_toBottomOf="@+id/ziLucru"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:textAlignment="center"
                 android:textSize="25sp"
                 android:textColor="@color/material_dynamic_primary90"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ziBox2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/ziBox1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ziLucru"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textColor="@color/material_dynamic_primary90"/>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -132,7 +170,7 @@
         android:id="@+id/ziHoursCardView"
         app:layout_constraintTop_toBottomOf="@+id/ziInfoCardView"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -197,7 +235,6 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_zi_stats_angajat" />
 </com.google.android.material.card.MaterialCardView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

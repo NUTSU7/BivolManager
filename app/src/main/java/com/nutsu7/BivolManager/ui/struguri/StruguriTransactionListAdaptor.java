@@ -62,12 +62,16 @@ public class StruguriTransactionListAdaptor extends RecyclerView.Adapter<Strugur
             @Override
             public void onClick(View v) {
                 Struguri struguri = struguriRepo.get();
-                struguri.addQuantityCurrent(struguriTransaction.getQuantity()+struguriTransaction.getQuantityNoReceipt());
-                struguri.decQuantitySold(struguriTransaction.getQuantity()+struguriTransaction.getQuantityNoReceipt());
-                struguri.decMoneyTotal(struguriTransaction.getQuantity()*struguriTransaction.getPrice());
-                struguri.decMoneyNRTotal(struguriTransaction.getQuantityNoReceipt()*struguriTransaction.getPriceNoReceipt());
-                struguriRepo.deleteTransaction(struguriRepo.getTransactionByID(vh.getAdapterPosition()));
+                StruguriTransaction struguriTransaction1 = struguriRepo.getTransactionByID(vh.getAdapterPosition());
+
+                struguri.addBoxCurrent(struguriTransaction1.getBoxNr()+struguriTransaction1.getBoxNRNr());
+                struguri.decBoxSold(struguriTransaction1.getBoxNr()+struguriTransaction1.getBoxNRNr());
+                struguri.decQuantitySold(struguriTransaction1.getQuantity()+struguriTransaction1.getQuantityNoReceipt());
+                struguri.decMoneyTotal(struguriTransaction1.getQuantity()*struguriTransaction1.getPrice());
+                struguri.decMoneyNRTotal(struguriTransaction1.getQuantityNoReceipt()*struguriTransaction1.getPriceNoReceipt());
+
                 struguriRepo.update(struguri);
+                struguriRepo.deleteTransaction(struguriTransaction1);
                 updateList();
 
                 notifyItemRemoved(vh.getAdapterPosition());

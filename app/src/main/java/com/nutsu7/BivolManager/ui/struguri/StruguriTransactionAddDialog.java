@@ -37,7 +37,9 @@ public class StruguriTransactionAddDialog extends DialogFragment {
     private TextInputLayout struguriTranBuyerInput;
     private TextInputLayout struguriTranQuantityInput;
     private TextInputLayout struguriTranQuantityNRInput;
-    private TextInputLayout struguriTranPaletteNrInput;
+    private TextInputLayout struguriTranBoxNrInput;
+    private TextInputLayout struguriTranBoxNRNrInput;
+    private TextInputLayout struguriTranBoxWeightInput;
     private TextInputLayout struguriTranPriceInput;
     private TextInputLayout struguriTranPriceNoReceiptInput;
     private MaterialButton struguriTranDateChangeButton;
@@ -84,7 +86,9 @@ public class StruguriTransactionAddDialog extends DialogFragment {
             struguriTranBuyerInput = dialog.findViewById(R.id.struguriTranBuyerInput);
             struguriTranQuantityInput = dialog.findViewById(R.id.struguriTranQuantityInput);
             struguriTranQuantityNRInput = dialog.findViewById(R.id.struguriTranQuantityNRInput);
-            struguriTranPaletteNrInput = dialog.findViewById(R.id.struguriTranPaletteNrInput);
+            struguriTranBoxNrInput = dialog.findViewById(R.id.struguriTranBoxNrInput);
+            struguriTranBoxNRNrInput = dialog.findViewById(R.id.struguriTranBoxNRNrInput);
+            struguriTranBoxWeightInput = dialog.findViewById(R.id.struguriTranBoxWeightInput);
             struguriTranPriceInput = dialog.findViewById(R.id.struguriTranPriceInput);
             struguriTranPriceNoReceiptInput = dialog.findViewById(R.id.struguriTranPriceNoReceiptInput);
             struguriTranDateChangeButton = dialog.findViewById(R.id.struguriTranDateChangeButton);
@@ -138,30 +142,36 @@ public class StruguriTransactionAddDialog extends DialogFragment {
 
     private void handleData(AlertDialog dialog){
         String buyer="";
-        Integer quantity=0, quantityNR=0,  paletteNr=0, price=0, priceNoReceipt=0;
+        Integer quantity=0, quantityNR=0,  boxNr=0, boxNRNr=0, boxWeight=0, price=0, priceNoReceipt=0;
 
         struguriTranBuyerInput.setError(null);
         struguriTranQuantityInput.setError(null);
         struguriTranQuantityNRInput.setError(null);
-        struguriTranPaletteNrInput.setError(null);
+        struguriTranBoxNrInput.setError(null);
+        struguriTranBoxNRNrInput.setError(null);
+        struguriTranBoxWeightInput.setError(null);
         struguriTranPriceInput.setError(null);
         struguriTranPriceNoReceiptInput.setError(null);
 
         if(struguriTranBuyerInput.getEditText().length()!=0) buyer=struguriTranBuyerInput.getEditText().getText().toString().trim();
         if(struguriTranQuantityInput.getEditText().length()!=0) quantity=Integer.parseInt(struguriTranQuantityInput.getEditText().getText().toString());
         if(struguriTranQuantityNRInput.getEditText().length()!=0) quantityNR=Integer.parseInt(struguriTranQuantityNRInput.getEditText().getText().toString());
-        if(struguriTranPaletteNrInput.getEditText().length()!=0) paletteNr=Integer.parseInt(struguriTranPaletteNrInput.getEditText().getText().toString());
+        if(struguriTranBoxNrInput.getEditText().length()!=0) boxNr=Integer.parseInt(struguriTranBoxNrInput.getEditText().getText().toString());
+        if(struguriTranBoxNRNrInput.getEditText().length()!=0) boxNRNr=Integer.parseInt(struguriTranBoxNRNrInput.getEditText().getText().toString());
+        if(struguriTranBoxWeightInput.getEditText().length()!=0) boxWeight=Integer.parseInt(struguriTranBoxWeightInput.getEditText().getText().toString());
         if(struguriTranPriceInput.getEditText().length()!=0) price=Integer.parseInt(struguriTranPriceInput.getEditText().getText().toString());
         if(struguriTranPriceNoReceiptInput.getEditText().length()!=0) priceNoReceipt=Integer.parseInt(struguriTranPriceNoReceiptInput.getEditText().getText().toString());
 
 
 
-        if(checkInput(buyer, quantity, quantityNR, paletteNr, price, priceNoReceipt)){
+        if(checkInput(buyer, quantity, quantityNR, boxNr, boxNRNr, boxWeight, price, priceNoReceipt)){
             StruguriTransaction struguriTransaction = new StruguriTransaction(struguriRepo.getAllTransaction().size(),
                     buyer,
-                    quantity,
-                    quantityNR,
-                    paletteNr,
+                    quantity-(boxNr*boxWeight),
+                    quantityNR-(boxNRNr*boxWeight),
+                    boxNr,
+                    boxNRNr,
+                    boxWeight,
                     price,
                     priceNoReceipt,
                     day,
@@ -170,12 +180,13 @@ public class StruguriTransactionAddDialog extends DialogFragment {
             struguriRepo.insert(struguriTransaction);
 
             //Add safety check to not exceed the current quantity and the harvested quantity
-
+            //StruguriTransaction struguriTransaction1 = struguriRepo.getTransactionByID(struguriRepo.getAllTransaction().size()-1);
             Struguri struguri = struguriRepo.get();
-            struguri.decQuantityCurrent(quantity+quantityNR);
-            struguri.addQuantitySold(quantity+quantityNR);
-            struguri.addMoneyTotal(quantity*price);
-            struguri.addMoneyNRTotal(quantityNR*priceNoReceipt);
+            struguri.decBoxCurrent(boxNr+boxNRNr);
+            struguri.addBoxSold(boxNr+boxNRNr);
+            struguri.addQuantitySold(struguriTransaction.getQuantity()+struguriTransaction.getQuantityNoReceipt());
+            struguri.addMoneyTotal(struguriTransaction.getQuantity()*price);
+            struguri.addMoneyNRTotal(struguriTransaction.getQuantityNoReceipt()*priceNoReceipt);
             struguriRepo.update(struguri);
 
 
@@ -189,57 +200,59 @@ public class StruguriTransactionAddDialog extends DialogFragment {
         }
     }
 
-    private boolean checkInput(String buyer, Integer quantity, Integer quantityNR,  Integer paletteNr, Integer price, Integer priceNoReceipt) {
-        boolean ans=true;
+    private boolean checkInput(String buyer, Integer quantity, Integer quantityNR,  Integer boxNr, Integer boxNRNr, Integer boxWeight, Integer price, Integer priceNoReceipt) {
+        boolean ans=true, t=true;
         if (buyer == null || buyer.isEmpty()) {
             struguriTranBuyerInput.setError("Incomplet");
             ans=false;
         }
 
-        if (quantity==0 && quantityNR==0) {
+        if((quantity==0 && (boxNr!=0 || price!=0))){
+            struguriTranQuantityInput.setError("Incomplet");
+            ans=false;
+            t=false;
+        }
+
+        if((boxNr==0 && (quantity!=0 || price!=0))){
+            struguriTranBoxNrInput.setError("Incomplet");
+            ans=false;
+            t=false;
+        }
+
+        if((price==0 && (boxNr!=0 || quantity!=0))){
+            struguriTranPriceInput.setError("Incomplet");
+            ans=false;
+            t=false;
+        }
+
+        if((quantityNR==0 && (boxNRNr!=0 || priceNoReceipt!=0))){
+            struguriTranQuantityNRInput.setError("Incomplet");
+            ans=false;
+            t=false;
+        }
+
+        if((boxNRNr==0 && (quantityNR!=0 || priceNoReceipt!=0))){
+            struguriTranBoxNRNrInput.setError("Incomplet");
+            ans=false;
+            t=false;
+        }
+
+        if((priceNoReceipt==0 && (boxNRNr!=0 || quantityNR!=0))){
+            struguriTranPriceNoReceiptInput.setError("Incomplet");
+            ans=false;
+            t=false;
+        }
+
+        if((boxNr!=0 || boxNRNr!=0) && boxWeight==0){
+            struguriTranBoxWeightInput.setError("Incomplet");
+            ans=false;
+        }
+
+        if (quantity==0 && quantityNR==0 && t) {
             struguriTranQuantityInput.setError("Incomplet");
             struguriTranQuantityNRInput.setError("Incomplet");
             ans=false;
         }
-
-        if (quantity+quantityNR>struguriRepo.get().getQuantityCurrent()) {
-            struguriTranQuantityInput.setError(" ");
-            struguriTranQuantityNRInput.setError(" ");
-            Toast.makeText(getContext(),"Cantitate prea mare", Toast.LENGTH_SHORT).show();
-            ans=false;
-        }
-
-        if(paletteNr==0) {
-            struguriTranPaletteNrInput.setError("Incomplet");
-            ans=false;
-        }
-
-        if(price==0 && priceNoReceipt==0) {
-            struguriTranPriceInput.setError("Incomplet");
-            struguriTranPriceNoReceiptInput.setError("Incomplet");
-            ans=false;
-        }
-
-        if(quantity!=0 && price==0) {
-            struguriTranPriceInput.setError("Incomplet");
-            ans=false;
-        }
-
-        if(quantity==0 && price!=0) {
-            struguriTranQuantityInput.setError("Incomplet");
-            ans=false;
-        }
-
-        if(quantityNR!=0 && priceNoReceipt==0) {
-            struguriTranPriceNoReceiptInput.setError("Incomplet");
-            ans=false;
-        }
-
-        if(quantityNR==0 && priceNoReceipt!=0) {
-            struguriTranQuantityNRInput.setError("Incomplet");
-            ans=false;
-        }
-
 
         return ans;
     }
