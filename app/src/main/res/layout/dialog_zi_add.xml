@@ -40,10 +40,10 @@
         app:layout_constraintBottom_toTopOf="@id/dateInputHours"
         app:errorEnabled="true"
         android:hint="Info">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </EditText>
+        </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -58,11 +58,11 @@
         app:layout_constraintBottom_toTopOf="@id/struguriHarvestLayout"
         app:errorEnabled="true"
         android:hint="Ore lucrate">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </EditText>
+        </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/struguriHarvestLayout"
@@ -151,11 +151,11 @@
             app:layout_constraintBottom_toTopOf="parent"
             app:errorEnabled="true"
             android:hint="Lazi">
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </EditText>
+            </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -169,11 +169,11 @@
             app:layout_constraintBottom_toTopOf="@id/dateAngListRV"
             app:errorEnabled="true"
             android:hint="Lazi">
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </EditText>
+            </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

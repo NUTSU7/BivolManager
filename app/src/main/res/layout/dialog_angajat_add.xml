@@ -14,10 +14,10 @@
         app:layout_constraintRight_toRightOf="parent"
         android:paddingTop="20dp"
         android:hint="Nume">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </EditText>
+        </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -30,10 +30,10 @@
         app:layout_constraintRight_toRightOf="parent"
         android:hint="Prenume"
         android:paddingTop="20dp">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </EditText>
+        </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -46,11 +46,11 @@
         app:layout_constraintRight_toRightOf="parent"
         android:hint="Salariul (Total)"
         android:paddingTop="20dp">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </EditText>
+        </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -63,11 +63,11 @@
         app:layout_constraintRight_toRightOf="parent"
         android:hint="Datorii (Total)"
         android:paddingTop="20dp">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        </EditText>
+        </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

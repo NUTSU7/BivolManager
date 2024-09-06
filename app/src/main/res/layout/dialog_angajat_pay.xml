@@ -12,11 +12,11 @@
         app:layout_constraintTop_toTopOf="parent"
         android:hint="Suma"
         android:layout_margin="16dp">
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="number">
-        </EditText>
+        </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/paySwitch"

@@ -52,11 +52,11 @@
             android:layout_marginRight="10dp"
             app:boxBackgroundColor="@color/material_dynamic_primary30"
             android:hint="Ore">
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </EditText>
+            </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/ziAngCheckBox"
