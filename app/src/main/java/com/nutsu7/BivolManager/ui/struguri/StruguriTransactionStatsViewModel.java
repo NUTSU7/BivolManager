@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModel;
 import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.struguri.StruguriTransaction;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class StruguriTransactionStatsViewModel extends ViewModel {
     private StruguriRepo repo;
     private StruguriTransaction struguriTransaction;
@@ -21,31 +24,31 @@ public class StruguriTransactionStatsViewModel extends ViewModel {
         return struguriTransaction.getBuyer();
     }
 
-    public int getQuantity(){
+    public double getQuantity(){
         return struguriTransaction.getQuantity();
     }
 
-    public int getQuantityNR(){
+    public double getQuantityNR(){
         return struguriTransaction.getQuantityNoReceipt();
     }
 
-    public int getBoxWeight(){
+    public double getBoxWeight(){
         return struguriTransaction.getBoxWeight();
     }
 
-    public int getMoney(){
-        return struguriTransaction.getQuantity()*struguriTransaction.getPrice();
+    public double getMoney(){
+        return rouding(struguriTransaction.getQuantity()*struguriTransaction.getPrice());
     }
 
-    public int getMoneyNC(){
-        return struguriTransaction.getQuantityNoReceipt()*struguriTransaction.getPriceNoReceipt();
+    public double getMoneyNC(){
+        return rouding(struguriTransaction.getQuantityNoReceipt()*struguriTransaction.getPriceNoReceipt());
     }
 
-    public int getPrice(){
+    public double getPrice(){
         return struguriTransaction.getPrice();
     }
 
-    public int getPriceNC(){
+    public double getPriceNC(){
         return struguriTransaction.getPriceNoReceipt();
     }
 
@@ -67,5 +70,12 @@ public class StruguriTransactionStatsViewModel extends ViewModel {
 
     public int getYear(){
         return struguriTransaction.getYear();
+    }
+
+    private double rouding(Double a){
+        DecimalFormat decimalFormat = new DecimalFormat("##.##");
+        decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+        String formatResult = decimalFormat.format(a);
+        return Double.parseDouble(formatResult);
     }
 }

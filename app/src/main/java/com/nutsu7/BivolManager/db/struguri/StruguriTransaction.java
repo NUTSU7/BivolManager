@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 @Entity(tableName = "StruguriTransaction")
 public class StruguriTransaction {
     @PrimaryKey
@@ -13,13 +16,13 @@ public class StruguriTransaction {
     private String buyer;
 
     @ColumnInfo(name = "quantity")
-    private int quantity;
+    private double quantity;
 
     @ColumnInfo(name = "quantityNoReceipt")
-    private int quantityNoReceipt;
+    private double quantityNoReceipt;
 
     @ColumnInfo(name = "boxWeight")
-    private int boxWeight;
+    private double boxWeight;
 
     @ColumnInfo(name = "boxNr")
     private int boxNr;
@@ -28,10 +31,10 @@ public class StruguriTransaction {
     private int boxNRNr;
 
     @ColumnInfo(name = "price")
-    private int price;
+    private double price;
 
     @ColumnInfo(name = "priceNoReceipt")
-    private int priceNoReceipt;
+    private double priceNoReceipt;
 
     @ColumnInfo(name = "day")
     private Integer day;
@@ -42,19 +45,23 @@ public class StruguriTransaction {
     @ColumnInfo(name = "year")
     private Integer year;
 
-    public StruguriTransaction(int id, String buyer, int quantity, int quantityNoReceipt, int boxNr, int boxNRNr, int boxWeight, int price, int priceNoReceipt, Integer day, String month, Integer year) {
+    public StruguriTransaction(int id, String buyer, double quantity, double quantityNoReceipt, int boxNr, int boxNRNr, double boxWeight, double price, double priceNoReceipt, Integer day, String month, Integer year) {
         this.id = id;
         this.buyer = buyer;
-        this.quantity = quantity;
-        this.quantityNoReceipt = quantityNoReceipt;
+        this.quantity =  getNetQuantity(quantity, boxNr, boxWeight);
+        this.quantityNoReceipt = getNetQuantity(quantityNoReceipt, boxNRNr, boxWeight);
         this.boxNr = boxNr;
         this.boxNRNr = boxNRNr;
-        this.boxWeight = boxWeight;
-        this.price = price;
-        this.priceNoReceipt = priceNoReceipt;
+        this.boxWeight = rouding(boxWeight);
+        this.price = rouding(price);
+        this.priceNoReceipt = rouding(priceNoReceipt);
         this.day = day;
         this.month = month;
         this.year = year;
+    }
+
+    private double getNetQuantity(double quantity, int boxNr, double boxWeight){
+        return rouding(quantity-(boxNr*boxWeight));
     }
 
     public int getId() {
@@ -73,28 +80,28 @@ public class StruguriTransaction {
         this.buyer = buyer;
     }
 
-    public int getBoxWeight() {
+    public double getBoxWeight() {
         return boxWeight;
     }
 
-    public void setBoxWeight(int boxWeight) {
-        this.boxWeight = boxWeight;
+    public void setBoxWeight(double boxWeight) {
+        this.boxWeight = rouding(boxWeight);
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity(double quantity) {
+        this.quantity = rouding(quantity);
     }
 
-    public int getQuantityNoReceipt() {
+    public double getQuantityNoReceipt() {
         return quantityNoReceipt;
     }
 
-    public void setQuantityNoReceipt(int quantityNoReceipt) {
-        this.quantityNoReceipt = quantityNoReceipt;
+    public void setQuantityNoReceipt(double quantityNoReceipt) {
+        this.quantityNoReceipt = rouding(quantityNoReceipt);
     }
 
     public int getBoxNr() {
@@ -105,20 +112,20 @@ public class StruguriTransaction {
         this.boxNr = boxNr;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setPrice(double price) {
+        this.price = rouding(price);
     }
 
-    public int getPriceNoReceipt() {
+    public double getPriceNoReceipt() {
         return priceNoReceipt;
     }
 
-    public void setPriceNoReceipt(int priceNoReceipt) {
-        this.priceNoReceipt = priceNoReceipt;
+    public void setPriceNoReceipt(double priceNoReceipt) {
+        this.priceNoReceipt = rouding(priceNoReceipt);
     }
 
     public Integer getDay() {
@@ -151,5 +158,12 @@ public class StruguriTransaction {
 
     public void setBoxNRNr(int boxNRNr) {
         this.boxNRNr = boxNRNr;
+    }
+
+    private double rouding(Double a){
+        DecimalFormat decimalFormat = new DecimalFormat("##.##");
+        decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+        String formatResult = decimalFormat.format(a);
+        return Double.parseDouble(formatResult);
     }
 }

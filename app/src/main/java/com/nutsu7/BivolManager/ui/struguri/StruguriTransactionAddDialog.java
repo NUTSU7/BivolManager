@@ -142,7 +142,8 @@ public class StruguriTransactionAddDialog extends DialogFragment {
 
     private void handleData(AlertDialog dialog){
         String buyer="";
-        Integer quantity=0, quantityNR=0,  boxNr=0, boxNRNr=0, boxWeight=0, price=0, priceNoReceipt=0;
+        Integer  boxNr=0, boxNRNr=0;
+        Double quantity=0.0, quantityNR=0.0 ,boxWeight=0.0, price=0.0, priceNoReceipt=0.0;
 
         struguriTranBuyerInput.setError(null);
         struguriTranQuantityInput.setError(null);
@@ -154,21 +155,21 @@ public class StruguriTransactionAddDialog extends DialogFragment {
         struguriTranPriceNoReceiptInput.setError(null);
 
         if(struguriTranBuyerInput.getEditText().length()!=0) buyer=struguriTranBuyerInput.getEditText().getText().toString().trim();
-        if(struguriTranQuantityInput.getEditText().length()!=0) quantity=Integer.parseInt(struguriTranQuantityInput.getEditText().getText().toString());
-        if(struguriTranQuantityNRInput.getEditText().length()!=0) quantityNR=Integer.parseInt(struguriTranQuantityNRInput.getEditText().getText().toString());
+        if(struguriTranQuantityInput.getEditText().length()!=0) quantity=Double.parseDouble(struguriTranQuantityInput.getEditText().getText().toString());
+        if(struguriTranQuantityNRInput.getEditText().length()!=0) quantityNR=Double.parseDouble(struguriTranQuantityNRInput.getEditText().getText().toString());
         if(struguriTranBoxNrInput.getEditText().length()!=0) boxNr=Integer.parseInt(struguriTranBoxNrInput.getEditText().getText().toString());
         if(struguriTranBoxNRNrInput.getEditText().length()!=0) boxNRNr=Integer.parseInt(struguriTranBoxNRNrInput.getEditText().getText().toString());
-        if(struguriTranBoxWeightInput.getEditText().length()!=0) boxWeight=Integer.parseInt(struguriTranBoxWeightInput.getEditText().getText().toString());
-        if(struguriTranPriceInput.getEditText().length()!=0) price=Integer.parseInt(struguriTranPriceInput.getEditText().getText().toString());
-        if(struguriTranPriceNoReceiptInput.getEditText().length()!=0) priceNoReceipt=Integer.parseInt(struguriTranPriceNoReceiptInput.getEditText().getText().toString());
+        if(struguriTranBoxWeightInput.getEditText().length()!=0) boxWeight=Double.parseDouble(struguriTranBoxWeightInput.getEditText().getText().toString());
+        if(struguriTranPriceInput.getEditText().length()!=0) price=Double.parseDouble(struguriTranPriceInput.getEditText().getText().toString());
+        if(struguriTranPriceNoReceiptInput.getEditText().length()!=0) priceNoReceipt=Double.parseDouble(struguriTranPriceNoReceiptInput.getEditText().getText().toString());
 
 
 
         if(checkInput(buyer, quantity, quantityNR, boxNr, boxNRNr, boxWeight, price, priceNoReceipt)){
             StruguriTransaction struguriTransaction = new StruguriTransaction(struguriRepo.getAllTransaction().size(),
                     buyer,
-                    quantity-(boxNr*boxWeight),
-                    quantityNR-(boxNRNr*boxWeight),
+                    quantity,
+                    quantityNR,
                     boxNr,
                     boxNRNr,
                     boxWeight,
@@ -200,55 +201,55 @@ public class StruguriTransactionAddDialog extends DialogFragment {
         }
     }
 
-    private boolean checkInput(String buyer, Integer quantity, Integer quantityNR,  Integer boxNr, Integer boxNRNr, Integer boxWeight, Integer price, Integer priceNoReceipt) {
+    private boolean checkInput(String buyer, Double quantity, Double quantityNR,  Integer boxNr, Integer boxNRNr, Double boxWeight, Double price, Double priceNoReceipt) {
         boolean ans=true, t=true;
         if (buyer == null || buyer.isEmpty()) {
             struguriTranBuyerInput.setError("Incomplet");
             ans=false;
         }
 
-        if((quantity==0 && (boxNr!=0 || price!=0))){
+        if((quantity==0.0 && (boxNr!=0 || price!=0.0))){
             struguriTranQuantityInput.setError("Incomplet");
             ans=false;
             t=false;
         }
 
-        if((boxNr==0 && (quantity!=0 || price!=0))){
+        if((boxNr==0 && (quantity!=0.0 || price!=0.0))){
             struguriTranBoxNrInput.setError("Incomplet");
             ans=false;
             t=false;
         }
 
-        if((price==0 && (boxNr!=0 || quantity!=0))){
+        if((price==0.0 && (boxNr!=0 || quantity!=0.0))){
             struguriTranPriceInput.setError("Incomplet");
             ans=false;
             t=false;
         }
 
-        if((quantityNR==0 && (boxNRNr!=0 || priceNoReceipt!=0))){
+        if((quantityNR==0.0 && (boxNRNr!=0 || priceNoReceipt!=0.0))){
             struguriTranQuantityNRInput.setError("Incomplet");
             ans=false;
             t=false;
         }
 
-        if((boxNRNr==0 && (quantityNR!=0 || priceNoReceipt!=0))){
+        if((boxNRNr==0 && (quantityNR!=0.0 || priceNoReceipt!=0.0))){
             struguriTranBoxNRNrInput.setError("Incomplet");
             ans=false;
             t=false;
         }
 
-        if((priceNoReceipt==0 && (boxNRNr!=0 || quantityNR!=0))){
+        if((priceNoReceipt==0.0 && (boxNRNr!=0 || quantityNR!=0.0))){
             struguriTranPriceNoReceiptInput.setError("Incomplet");
             ans=false;
             t=false;
         }
 
-        if((boxNr!=0 || boxNRNr!=0) && boxWeight==0){
+        if((boxNr!=0 || boxNRNr!=0) && boxWeight==0.0){
             struguriTranBoxWeightInput.setError("Incomplet");
             ans=false;
         }
 
-        if (quantity==0 && quantityNR==0 && t) {
+        if (quantity==0.0 && quantityNR==0.0 && t) {
             struguriTranQuantityInput.setError("Incomplet");
             struguriTranQuantityNRInput.setError("Incomplet");
             ans=false;

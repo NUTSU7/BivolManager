@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 @Entity(tableName = "Struguri")
 public class Struguri {
     @PrimaryKey
@@ -19,16 +22,16 @@ public class Struguri {
     public int boxSold;
     
     @ColumnInfo(name = "quantitySold")
-    public int quantitySold;
+    public double quantitySold;
 
     @ColumnInfo(name = "daysWorked")
     public int daysWorked;
 
     @ColumnInfo(name = "moneyTotal")
-    public int moneyTotal;
+    public double moneyTotal;
 
     @ColumnInfo(name = "moneyNRTotal")
-    public int moneyNRTotal;
+    public double moneyNRTotal;
 
     public Struguri() {
         this.id = 0;
@@ -73,16 +76,16 @@ public class Struguri {
         this.boxHarvested -= boxHarvested;
     }
 
-    public int getQuantitySold() {
+    public double getQuantitySold() {
         return quantitySold;
     }
 
-    public void addQuantitySold(int quantitySold) {
-        this.quantitySold += quantitySold;
+    public void addQuantitySold(double quantitySold) {
+        this.quantitySold += rouding(quantitySold);
     }
 
-    public void decQuantitySold(int quantitySold) {
-        this.quantitySold -= quantitySold;
+    public void decQuantitySold(double quantitySold) {
+        this.quantitySold -= rouding(quantitySold);
     }
 
     public int getDaysWorked() {
@@ -97,28 +100,28 @@ public class Struguri {
         this.daysWorked -= daysWorked;
     }
 
-    public int getMoneyTotal() {
+    public double getMoneyTotal() {
         return moneyTotal;
     }
 
-    public void addMoneyTotal(int moneyTotal) {
-        this.moneyTotal += moneyTotal;
+    public void addMoneyTotal(double moneyTotal) {
+        this.moneyTotal += rouding(moneyTotal);
     }
 
-    public void decMoneyTotal(int moneyTotal) {
-        this.moneyTotal -= moneyTotal;
+    public void decMoneyTotal(double moneyTotal) {
+        this.moneyTotal -= rouding(moneyTotal);
     }
 
-    public int getMoneyNRTotal() {
+    public double getMoneyNRTotal() {
         return moneyNRTotal;
     }
 
-    public void addMoneyNRTotal(int moneyNRTotal) {
-        this.moneyNRTotal += moneyNRTotal;
+    public void addMoneyNRTotal(double moneyNRTotal) {
+        this.moneyNRTotal += rouding(moneyNRTotal);
     }
 
-    public void decMoneyNRTotal(int moneyNRTotal) {
-        this.moneyNRTotal -= moneyNRTotal;
+    public void decMoneyNRTotal(double moneyNRTotal) {
+        this.moneyNRTotal -= rouding(moneyNRTotal);
     }
 
     public int getBoxSold() {
@@ -131,5 +134,12 @@ public class Struguri {
 
     public void decBoxSold(int boxSold) {
         this.boxSold -= boxSold;
+    }
+
+    private double rouding(Double a){
+        DecimalFormat decimalFormat = new DecimalFormat("##.##");
+        decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+        String formatResult = decimalFormat.format(a);
+        return Double.parseDouble(formatResult);
     }
 }

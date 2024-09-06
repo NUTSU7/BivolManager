@@ -30,7 +30,7 @@ public class StruguriViewModel extends ViewModel {
         return struguri.getBoxHarvested();
     }
 
-    public int getQuantitySold(){
+    public double getQuantitySold(){
         return struguri.getQuantitySold();
     }
 
@@ -38,11 +38,11 @@ public class StruguriViewModel extends ViewModel {
         return struguri.getDaysWorked();
     }
 
-    public int getMoneyTotal(){
+    public double getMoneyTotal(){
         return struguri.getMoneyTotal();
     }
 
-    public int getMoneyNRTotal(){
+    public double getMoneyNRTotal(){
         return struguri.getMoneyNRTotal();
     }
 

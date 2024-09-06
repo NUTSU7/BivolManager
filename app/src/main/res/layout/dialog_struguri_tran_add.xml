@@ -60,7 +60,7 @@
         app:errorEnabled="true"
         android:hint="Cantitatea (kg)">
         <EditText
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </EditText>
@@ -79,7 +79,7 @@
         app:errorEnabled="true"
         android:hint="Cantitatea fara check (kg)">
         <EditText
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </EditText>
@@ -150,7 +150,7 @@
         app:errorEnabled="true"
         android:hint="Greutate lada">
         <EditText
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </EditText>
@@ -168,7 +168,7 @@
         app:errorEnabled="true"
         android:hint="Pretul (lei)">
         <EditText
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </EditText>
@@ -186,7 +186,7 @@
         app:errorEnabled="true"
         android:hint="Pretul fara check (lei)">
         <EditText
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </EditText>

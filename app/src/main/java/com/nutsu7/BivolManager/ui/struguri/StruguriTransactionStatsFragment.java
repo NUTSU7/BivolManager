@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 
 import com.nutsu7.BivolManager.databinding.FragmentStruguriTransactionStatsBinding;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class StruguriTransactionStatsFragment extends Fragment {
     FragmentStruguriTransactionStatsBinding binding;
 
