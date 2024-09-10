@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-@Entity
+@Entity(tableName = "Rosii")
 public class Rosii {
     @PrimaryKey
     private int id;
