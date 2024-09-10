@@ -1,24 +1,16 @@
 package com.nutsu7.BivolManager.ui.home;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.nutsu7.BivolManager.databinding.FragmentZiStatsBinding;
-import com.nutsu7.BivolManager.ui.home.ZiStatsViewModel;
-
-import org.w3c.dom.Text;
 
 public class ZiStatsFragment extends Fragment {
     private FragmentZiStatsBinding binding;

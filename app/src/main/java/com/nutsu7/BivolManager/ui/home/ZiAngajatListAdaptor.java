@@ -3,7 +3,6 @@ package com.nutsu7.BivolManager.ui.home;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import com.nutsu7.BivolManager.db.angajat.AngajatRepo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class ZiAngajatListAdaptor extends RecyclerView.Adapter<ZiAngajatListAdaptor.ZiAngajatViewHolder> {

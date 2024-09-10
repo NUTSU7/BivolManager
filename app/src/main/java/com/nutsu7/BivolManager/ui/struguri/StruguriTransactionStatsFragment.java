@@ -1,20 +1,16 @@
 package com.nutsu7.BivolManager.ui.struguri;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.nutsu7.BivolManager.databinding.FragmentStruguriTransactionStatsBinding;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 public class StruguriTransactionStatsFragment extends Fragment {
     FragmentStruguriTransactionStatsBinding binding;

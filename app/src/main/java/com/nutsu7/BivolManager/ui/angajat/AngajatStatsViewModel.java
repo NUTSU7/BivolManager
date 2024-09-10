@@ -1,10 +1,8 @@
 package com.nutsu7.BivolManager.ui.angajat;
 
-import android.app.Activity;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.nutsu7.BivolManager.db.angajat.Angajat;

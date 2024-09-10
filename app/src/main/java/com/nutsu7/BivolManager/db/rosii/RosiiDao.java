@@ -12,10 +12,10 @@ import java.util.List;
 @Dao
 public interface RosiiDao {
     @Insert
-    public void insert(Rosii Rosii);
+    public void insert(Rosii rosii);
 
     @Update
-    public void update(Rosii Rosii);
+    public void update(Rosii rosii);
 
     @Query("SELECT * FROM Rosii WHERE id=0")
     public Rosii get();
@@ -25,19 +25,19 @@ public interface RosiiDao {
 
 
     @Insert
-    public void insert(RosiiTransaction RosiiTransaction);
+    public void insert(RosiiTransaction rosiiTransaction);
 
     @Insert
-    public void insertAll(List<RosiiTransaction> RosiiTransactionList);
+    public void insertAll(List<RosiiTransaction> rosiiTransactionList);
 
     @Delete
-    public void delete(RosiiTransaction RosiiTransaction);
+    public void delete(RosiiTransaction rosiiTransaction);
 
     @Query("DELETE FROM RosiiTransaction WHERE id=:id")
     public void deleteTransactionByID(int id);
 
     @Update
-    public void update(RosiiTransaction RosiiTransaction);
+    public void update(RosiiTransaction rosiiTransaction);
 
     @Query("UPDATE RosiiTransaction SET id=:id2 WHERE id=:id1")
     public void updateTransactionIDByID(int id1, int id2);

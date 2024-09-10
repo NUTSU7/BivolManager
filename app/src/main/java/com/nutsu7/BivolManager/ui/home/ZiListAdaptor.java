@@ -19,7 +19,6 @@ import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.zi.Zi;
 import com.nutsu7.BivolManager.db.zi.ZiRepo;
 
-
 import java.util.List;
 import java.util.Objects;
 

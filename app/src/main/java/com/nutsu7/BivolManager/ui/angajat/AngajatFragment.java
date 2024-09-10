@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,13 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.databinding.FragmentAngajatBinding;
-import com.nutsu7.BivolManager.db.AppDB;
-import com.nutsu7.BivolManager.db.angajat.Angajat;
-import com.nutsu7.BivolManager.db.angajat.AngajatRepo;
-
-import java.util.List;
 
 public class AngajatFragment extends Fragment {
     private FragmentAngajatBinding binding;

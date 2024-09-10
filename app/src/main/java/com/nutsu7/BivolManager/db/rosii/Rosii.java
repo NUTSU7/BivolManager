@@ -138,4 +138,34 @@ public class Rosii {
         String formatResult = decimalFormat.format(a);
         return Double.parseDouble(formatResult);
     }
+
+    //useless
+
+    public void setBoxCurrent1(int boxCurrent1) {
+        this.boxCurrent1 = boxCurrent1;
+    }
+
+    public void setBoxCurrent2(int boxCurrent2) {
+        this.boxCurrent2 = boxCurrent2;
+    }
+
+    public void setQuantitySold1(double quantitySold1) {
+        this.quantitySold1 = quantitySold1;
+    }
+
+    public void setQuantitySold2(double quantitySold2) {
+        this.quantitySold2 = quantitySold2;
+    }
+
+    public void setDaysWorked(int daysWorked) {
+        this.daysWorked = daysWorked;
+    }
+
+    public void setMoneyTotal1(double moneyTotal1) {
+        this.moneyTotal1 = moneyTotal1;
+    }
+
+    public void setMoneyTotal2(double moneyTotal2) {
+        this.moneyTotal2 = moneyTotal2;
+    }
 }

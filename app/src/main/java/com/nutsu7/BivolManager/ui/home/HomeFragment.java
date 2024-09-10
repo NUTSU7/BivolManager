@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nutsu7.BivolManager.databinding.FragmentHomeBinding;
 import com.nutsu7.BivolManager.ui.angajat.AngajatViewModel;
-
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
