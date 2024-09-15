@@ -270,11 +270,13 @@ public class RosiiTransactionAddDialog extends DialogFragment {
         }
 
         if(boxNr1>rosiiRepo.get().getBoxCurrent1()){
+            ans=false;
             rosiiTranBoxNr1Input.setError("Incomplet");
             Toast.makeText(getContext(),"Lazi inexistente", Toast.LENGTH_SHORT).show();
         }
 
         if(boxNr2>rosiiRepo.get().getBoxCurrent2()){
+            ans=false;
             rosiiTranBoxNr2Input.setError("Incomplet");
             Toast.makeText(getContext(),"Lazi inexistente", Toast.LENGTH_SHORT).show();
         }
