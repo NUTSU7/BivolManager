@@ -255,6 +255,13 @@ public class StruguriTransactionAddDialog extends DialogFragment {
             ans=false;
         }
 
+        if(boxNr+boxNRNr>struguriRepo.get().getBoxCurrent()){
+            struguriTranBoxNrInput.setError("Incomplet");
+            struguriTranBoxNRNrInput.setError("Incomplet");
+            Toast.makeText(getContext(),"Lazi inexistente", Toast.LENGTH_SHORT).show();
+            ans=false;
+        }
+
         return ans;
     }
 }
