@@ -23,8 +23,7 @@ public class StruguriTransactionFragment extends Fragment {
     }
 
     public static StruguriTransactionFragment newInstance() {
-        StruguriTransactionFragment fragment = new StruguriTransactionFragment();
-        return fragment;
+        return new StruguriTransactionFragment();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,

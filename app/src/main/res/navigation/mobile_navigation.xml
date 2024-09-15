@@ -22,10 +22,22 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_rosii"
-        android:name="com.nutsu7.BivolManager.ui.rosii.RosiiFragment"
+        android:id="@+id/navigation_rosiiPager"
+        android:name="com.nutsu7.BivolManager.ui.rosii.RosiiPagerFragment"
         android:label="@string/title_rosii"
-        tools:layout="@layout/fragment_rosii" />
+        tools:layout="@layout/fragment_rosii_pager">
+
+        <action
+            android:id="@+id/action_navigation_rosiiTransaction_to_navigation_rosiiTransactionStats"
+            app:destination="@id/navigation_rosiiTransactionStats"
+            app:enterAnim="@animator/slide_in_right"
+            app:exitAnim="@animator/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/navigation_rosiiTransactionStats"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_angajat"
@@ -76,5 +88,11 @@
         android:name="com.nutsu7.BivolManager.ui.struguri.StruguriTransactionStatsFragment"
         android:label="@string/title_struguri_transaction"
         tools:layout="@layout/fragment_struguri_transaction_stats" />
+
+    <fragment
+        android:id="@+id/navigation_rosiiTransactionStats"
+        android:name="com.nutsu7.BivolManager.ui.rosii.RosiiTransactionStatsFragment"
+        android:label="Tranzactii Rosii"
+        tools:layout="@layout/fragment_rosii_transaction_stats" />
 
 </navigation>

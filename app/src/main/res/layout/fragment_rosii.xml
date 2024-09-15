@@ -6,17 +6,383 @@
     android:layout_height="match_parent"
     tools:context=".ui.rosii.RosiiFragment">
 
-    <TextView
-        android:id="@+id/text_rosii"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/rosiiQuantityCardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rosiiQuantityLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiQuantityTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Cantitate vanduta"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@id/rosiiQuantity1TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiQuantity1TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Rosii"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/rosiiQuantity1"
+                app:layout_constraintEnd_toStartOf="@+id/rosiiQuantity2TextView"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rosiiQuantityTextView"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiQuantity1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/rosiiQuantity2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rosiiQuantity1TextView"
+                app:layout_constraintHorizontal_chainStyle="packed"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiQuantity2TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Roze"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/rosiiQuantityTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rosiiQuantity1TextView"
+                app:layout_constraintBottom_toTopOf="@id/rosiiQuantity2" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiQuantity2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/rosiiQuantity2TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rosiiQuantity1"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/rosiiBoxCardView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/rosiiMoneyCardView"
+        app:layout_constraintTop_toBottomOf="@+id/rosiiQuantityCardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiCurrBoxTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Lazi curente"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/rosiiCurrBox1TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiCurrBox1TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Rosii"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/rosiiCurrBoxTextView"
+                app:layout_constraintEnd_toStartOf="@id/rosiiCurrBox2TextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/rosiiCurrBox1"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiCurrBox2TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Roze"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/rosiiCurrBoxTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rosiiCurrBox1TextView"
+                app:layout_constraintBottom_toTopOf="@id/rosiiCurrBox2" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiCurrBox1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/rosiiSoldBoxTextView"
+                app:layout_constraintEnd_toStartOf="@id/rosiiCurrBox2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rosiiCurrBox1TextView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiCurrBox2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintVertical_chainStyle="spread"
+                app:layout_constraintBottom_toTopOf="@+id/rosiiSoldBoxTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rosiiCurrBox1"
+                app:layout_constraintTop_toBottomOf="@id/rosiiCurrBox2TextView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiSoldBoxTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Lazi vandute"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@id/rosiiSoldBox1TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rosiiCurrBox1" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiSoldBox1TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Rosii"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/rosiiSoldBoxTextView"
+                app:layout_constraintEnd_toStartOf="@id/rosiiSoldBox2TextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/rosiiSoldBox1"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiSoldBox2TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Roze"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/rosiiSoldBoxTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rosiiSoldBox1TextView"
+                app:layout_constraintBottom_toTopOf="@id/rosiiSoldBox2" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiSoldBox1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/rosiiSoldBox2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rosiiSoldBox1TextView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiSoldBox2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintVertical_chainStyle="spread"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rosiiSoldBox1"
+                app:layout_constraintTop_toBottomOf="@id/rosiiSoldBox2TextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/rosiiMoneyCardView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/rosiiBoxCardView"
+        app:layout_constraintBottom_toTopOf="@id/rosiiDaysCardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rosiiMoneyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiMoneyTextView"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:text="Bani total"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="@id/rosiiMoney1TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiMoney1TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Rosii"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/rosiiMoneyTextView"
+                app:layout_constraintEnd_toStartOf="@id/rosiiMoney2TextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/rosiiMoney1"
+                app:layout_constraintVertical_chainStyle="spread" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiMoney2TextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Roze"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/rosiiMoneyTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rosiiMoney1TextView"
+                app:layout_constraintBottom_toTopOf="@id/rosiiMoney2" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiMoney1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/rosiiMoney2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rosiiMoney1TextView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiMoney2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="20sp"
+                app:layout_constraintVertical_chainStyle="spread"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rosiiMoney1"
+                app:layout_constraintTop_toBottomOf="@id/rosiiMoney2TextView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/rosiiDaysCardView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/material_dynamic_primary50"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/rosiiMoneyCardView">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiDaysTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Zile"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/rosiiDays"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/rosiiDays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/material_dynamic_primary90"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rosiiDaysTextView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
