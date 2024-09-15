@@ -140,6 +140,10 @@ public class Rosii {
         this.daysWorked += daysWorked;
     }
 
+    public void decDaysWorked(int daysWorked) {
+        this.daysWorked -= daysWorked;
+    }
+
     public double getMoneyTotal1() {
         return moneyTotal1;
     }

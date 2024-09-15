@@ -27,6 +27,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.nutsu7.BivolManager.R;
 import com.nutsu7.BivolManager.db.angajat.AngajatRepo;
+import com.nutsu7.BivolManager.db.rosii.Rosii;
+import com.nutsu7.BivolManager.db.rosii.RosiiRepo;
 import com.nutsu7.BivolManager.db.struguri.Struguri;
 import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.zi.Zi;
@@ -57,6 +59,7 @@ public class ZiAddDialog extends DialogFragment {
     private ZiRepo ziRepo;
     private AngajatRepo angajatRepo;
     private StruguriRepo struguriRepo;
+    private RosiiRepo rosiiRepo;
     private Integer hours;
     private LocalDate date;
     private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -95,6 +98,7 @@ public class ZiAddDialog extends DialogFragment {
             ziRepo=new ZiRepo(getContext());
             angajatRepo= new AngajatRepo(getContext());
             struguriRepo = new StruguriRepo(getContext());
+            rosiiRepo = new RosiiRepo(getContext());
 
             rv = dialog.findViewById(R.id.dateAngListRV);
             dateInputInfo = dialog.findViewById(R.id.dateInputInfo);
@@ -245,6 +249,13 @@ public class ZiAddDialog extends DialogFragment {
                 struguri.addBoxCurrent(quantity1);
                 struguriRepo.update(struguri);
             }
+            else if(work=="Rosii"){
+                Rosii rosii = rosiiRepo.get();
+                rosii.addDaysWorked(1);
+                rosii.addBoxCurrent1(quantity1);
+                rosii.addBoxCurrent2(quantity2);
+                rosiiRepo.update(rosii);
+            }
 
             List<List<Integer>> angajatRVList = ziAngajatListAdaptor.getAngajatList();
             List<Pair<Integer,Integer>> angajatList = new ArrayList<>();
@@ -289,15 +300,11 @@ public class ZiAddDialog extends DialogFragment {
         }
 
         if(work.equals("Rosii")){
-            if(dateQuantity1Input.getEditText().length()==0) {
+            if(dateQuantity1Input.getEditText().length()==0 && dateQuantity2Input.getEditText().length()==0) {
                 dateQuantity1Input.setError("Incomplet");
-                ans=false;
-            }
-            if(dateQuantity2Input.getEditText().length()==0) {
                 dateQuantity2Input.setError("Incomplet");
                 ans=false;
             }
-
         }
 
 

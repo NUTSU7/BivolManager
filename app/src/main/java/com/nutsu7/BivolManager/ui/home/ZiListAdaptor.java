@@ -14,6 +14,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nutsu7.BivolManager.R;
+import com.nutsu7.BivolManager.db.rosii.Rosii;
+import com.nutsu7.BivolManager.db.rosii.RosiiRepo;
 import com.nutsu7.BivolManager.db.struguri.Struguri;
 import com.nutsu7.BivolManager.db.struguri.StruguriRepo;
 import com.nutsu7.BivolManager.db.zi.Zi;
@@ -27,11 +29,13 @@ public class ZiListAdaptor extends RecyclerView.Adapter<ZiListAdaptor.ZiViewHold
     private Context context;
     private ZiRepo ziRepo;
     private StruguriRepo struguriRepo;
+    private RosiiRepo rosiiRepo;
 
     public ZiListAdaptor(Context context){
         this.context=context;
         this.ziRepo= new ZiRepo(context);
         this.struguriRepo = new StruguriRepo(context);
+        this.rosiiRepo = new RosiiRepo(context);
         updateList();
     }
 
@@ -74,6 +78,13 @@ public class ZiListAdaptor extends RecyclerView.Adapter<ZiListAdaptor.ZiViewHold
                     struguri.decBoxCurrent(zi1.getQuantity1());
                     struguri.decBoxHarvested(zi1.getQuantity1());
                     struguriRepo.update(struguri);
+                }
+                else if(Objects.equals(zi1.getWork(), "Rosii")){
+                    Rosii rosii = rosiiRepo.get();
+                    rosii.decDaysWorked(1);
+                    rosii.decBoxCurrent1(zi1.getQuantity1());
+                    rosii.decBoxCurrent2(zi1.getQuantity2());
+                    rosiiRepo.update(rosii);
                 }
                 ziRepo.delete(zi1);
                 updateList();
