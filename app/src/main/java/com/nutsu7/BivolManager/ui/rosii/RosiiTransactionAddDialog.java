@@ -225,30 +225,58 @@ public class RosiiTransactionAddDialog extends DialogFragment {
     }
 
     private boolean checkInput(List<Double> quantity1, List<Double> quantity2, Integer boxNr1, Integer boxNr2, Double price1, Double price2){
-        boolean ans = true;
+        boolean ans = true, t=false;
 
-        if(quantity1.get(0)==0 && quantity1.get(1)==0 && quantity1.get(2)==0 &&
-                quantity2.get(0)==0 && quantity2.get(1)==0 && quantity2.get(2)==0){
-            ans=false;
+        if(quantity1.get(0)==0.0 && quantity1.get(1)==0.0 && quantity1.get(2)==0.0 &&
+                quantity2.get(0)==0.0 && quantity2.get(1)==0.0 && quantity2.get(2)==0.0){
             Toast.makeText(getContext(),"Adauga informatie", Toast.LENGTH_SHORT).show();
+            return false;
         }
 
-        if(quantity1.get(0)==null && quantity1.get(1)==null && quantity1.get(2)==null &&
-                quantity2.get(0)==null && quantity2.get(1)==null && quantity2.get(2)==null){
+        if((quantity1.get(0)!=0.0 || quantity1.get(1)!=0.0 || quantity1.get(2)!=0.0) && boxNr1==0){
             ans=false;
-            Toast.makeText(getContext(),"Adauga informatie", Toast.LENGTH_SHORT).show();
+            t=true;
+            rosiiTranBoxNr1Input.setError("Incomplet");
         }
 
-        if((boxNr1==0 || boxNr1==null) && (boxNr2==0 || boxNr2==null)){
+        if((quantity2.get(0)!=0.0 || quantity2.get(1)!=0.0 || quantity2.get(2)!=0.0) && boxNr2==0){
+            ans=false;
+            t=true;
+            rosiiTranBoxNr2Input.setError("Incomplet");
+        }
+
+        if((quantity1.get(0)!=0.0 || quantity1.get(1)!=0.0 || quantity1.get(2)!=0.0) && price1==0.0){
+            ans=false;
+            t=true;
+            rosiiTranPriceInput1.setError("Incomplet");
+        }
+
+        if((quantity2.get(0)!=0.0 || quantity2.get(1)!=0.0 || quantity2.get(2)!=0.0) && price2==0.0){
+            ans=false;
+            t=true;
+            rosiiTranPriceInput2.setError("Incomplet");
+        }
+
+        if((boxNr1==0) && (boxNr2==0) && !t){
             ans=false;
             rosiiTranBoxNr1Input.setError("Incomplet");
             rosiiTranBoxNr2Input.setError("Incomplet");
         }
 
-        if((price1==0 || price1==null) && (price2==0 || price2==null)){
+        if((price1==0.0) && (price2==0.0 && !t)){
             ans=false;
             rosiiTranPriceInput1.setError("Incomplet");
             rosiiTranPriceInput2.setError("Incomplet");
+        }
+
+        if(boxNr1>rosiiRepo.get().getBoxCurrent1()){
+            rosiiTranBoxNr1Input.setError("Incomplet");
+            Toast.makeText(getContext(),"Lazi inexistente", Toast.LENGTH_SHORT).show();
+        }
+
+        if(boxNr2>rosiiRepo.get().getBoxCurrent2()){
+            rosiiTranBoxNr2Input.setError("Incomplet");
+            Toast.makeText(getContext(),"Lazi inexistente", Toast.LENGTH_SHORT).show();
         }
 
         return ans;
